@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 /*
 Désormais l'index.js ne servira qu'a implémenter le serveur web
  */
