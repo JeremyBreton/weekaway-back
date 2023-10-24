@@ -43,6 +43,10 @@ router.route('/logout')
 .get(authController.logout);
 
 
+router.route('/users')
+.get(authController.findAllUsers);
+
+
 router.route('/register')
 .post(authController.register);
 
