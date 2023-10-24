@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import { Router } from 'express';
 import controller from '../controllers/index.controller.js';
 import validation from '../middlewares/validation.middleware.js';
@@ -36,20 +37,16 @@ router.route('/')
 
 //! Authentification
 router.route('/login')
-.post(authController.login);
-
+  .post(authController.login);
 
 router.route('/logout')
-.get(authController.logout);
-
+  .get(authController.logout);
 
 router.route('/users')
-.get(authController.findAllUsers);
-
+  .get(authController.findAllUsers);
 
 router.route('/register')
-.post(authController.register);
-
+  .post(authController.register);
 
 //! Fin Authentification
 

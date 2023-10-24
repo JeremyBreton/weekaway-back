@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import client from './client.js';
 
 export default {

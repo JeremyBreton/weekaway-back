@@ -12,8 +12,10 @@
         "settings": {
           "foreground": "#606060"
         }
-      }
+      },
+      
     ],
+    
     "comments": ""
   }
 }

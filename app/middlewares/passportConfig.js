@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-escape */
+/* eslint-disable linebreak-style */
 import { Strategy as LocalStrategy } from 'passport-local';
 import bcrypt from 'bcrypt';
 import authDataMapper from '../models/auth.dataMapper.js';

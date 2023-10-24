@@ -1,3 +1,6 @@
+/* eslint-disable no-inner-declarations */
+/* eslint-disable consistent-return */
+/* eslint-disable linebreak-style */
 import bcrypt from 'bcrypt';
 import passport from 'passport';
 import authDataMapper from '../models/auth.dataMapper.js';

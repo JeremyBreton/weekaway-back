@@ -1,16 +1,18 @@
-import express from "express";
-import cors from "cors";
-import session from "express-session";
-import passport from "passport";
-import router from "./routers/index.router.js";
-import passportConfig from "./middlewares/passportConfig.js";
+/* eslint-disable linebreak-style */
+import express from 'express';
+import cors from 'cors';
+import session from 'express-session';
+import passport from 'passport';
+import router from './routers/index.router.js';
+import passportConfig from './middlewares/passportConfig.js';
+
 passportConfig(passport);
 
 const app = express();
 
 // CORS setup
 const corsOptions = {
-  origin: process.env.CORS_DOMAINS || "*",
+  origin: process.env.CORS_DOMAINS || '*',
 };
 app.use(cors(corsOptions));
 
@@ -25,7 +27,7 @@ app.use(
     secret: 'secret',
     resave: true,
     saveUninitialized: true,
-  })
+  }),
 );
 
 // Passport middleware
