@@ -2,7 +2,7 @@
 import { Router } from 'express';
 import controller from '../controllers/index.controller.js';
 import validation from '../middlewares/validation.middleware.js';
-import schemaPost from '../schemas/app.post.schema.js';
+import * as schemaPost from '../schemas/app.post.schema.js';
 import schemaGet from '../schemas/app.get.schema.js';
 import controllerWrapper from '../middlewares/controller.wrapper.js';
 import NotFoundError from '../errors/notfound.error.js';
@@ -34,21 +34,42 @@ router.route('/')
     controllerWrapper(controller),
 
   );
-
-//! Authentification
 router.route('/login')
-  .post(authController.login);
 
-router.route('/logout')
-  .get(authController.logout);
+  .get(
+    validation(schemaGet, 'query'),
+  )
 
-router.route('/users')
-  .get(authController.findAllUsers);
+  .post(
+    validation(schemaPost.loginSchema, 'body'),
+    authController.login,
+  );
 
 router.route('/register')
-  .post(authController.register);
 
-//! Fin Authentification
+  .get(
+    validation(schemaGet, 'query'),
+  )
+  .post(
+    validation(schemaPost.registerSchema, 'body'),
+    authController.register,
+  );
+
+router.route('/logout')
+
+  .get(
+    validation(schemaGet, 'query'),
+  )
+
+  .post(
+    validation(schemaPost, 'body'),
+  );
+router.route('/users')
+
+  .get(
+    validation(schemaGet, 'query'),
+    authController.findAllUsers,
+  );
 
 router.use((_, __, next) => {
   next(new NotFoundError('404 not found'));
