@@ -7,6 +7,7 @@ import controllerWrapper from '../middlewares/controller.wrapper.js';
 import NotFoundError from '../errors/notfound.error.js';
 import errorHandler from '../middlewares/error.middleware.js';
 import logger from '../helpers/logger.js';
+import authController from '../controllers/auth.controller.js';
 
 /**
  * @typedef {object} ResponseError response error
@@ -32,6 +33,21 @@ router.route('/')
     controllerWrapper(controller),
 
   );
+
+//! Authentification
+router.route('/login')
+.post(authController.login);
+
+
+router.route('/logout')
+.get(authController.logout);
+
+
+router.route('/register')
+.post(authController.register);
+
+
+//! Fin Authentification
 
 router.use((_, __, next) => {
   next(new NotFoundError('404 not found'));
