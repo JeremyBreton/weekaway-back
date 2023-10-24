@@ -1,0 +1,4 @@
+%syntax-version=1.0.0
+%project=migration
+
+createTable 2023-10-24T12:26:38Z Renaud Berni <renau@Renaud-BERNI> # add the news tables
