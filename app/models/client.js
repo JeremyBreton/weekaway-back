@@ -1,7 +1,9 @@
 import pg from 'pg';
 
-const client = new pg.Client(process.env.DATABASE_URL);
+const { Pool } = pg;
 
-client.connect();
+const client = new Pool({
+  connectionString: process.env.DATABASE_URL
+});
 
 export default client;
