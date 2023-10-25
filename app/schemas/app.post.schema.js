@@ -1,5 +1,6 @@
 import Joi from 'joi';
 
+
 const registerSchema = Joi.object({
   firstname: Joi.string().min(1).max(255).required(),
   lastname: Joi.string().min(1).max(255).required(),
@@ -15,7 +16,14 @@ const registerSchema = Joi.object({
   profile_desc: Joi.string().max(500).allow(null, ''),
 });
 
-
+const eventSchema = Joi.object({
+  // for Events :
+  name: Joi.string().required(),
+  owner_id: Joi.number().required(),
+  status: Joi.boolean().required(),
+  description: Joi.string().required(),
+  picture: Joi.string().required(),
+  link_project: Joi.string().required(),
 
 
 const loginSchema = Joi.object({
@@ -23,4 +31,4 @@ const loginSchema = Joi.object({
   password: Joi.string().required(),
 });
 
-export { registerSchema, loginSchema };
+export { registerSchema, loginSchema, eventSchema };

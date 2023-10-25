@@ -1,8 +1,6 @@
--- Revert migration:createTable from pg
-
 BEGIN;
 
-DROP TABLE IF EXISTS users_has_event;
+DROP TABLE IF EXISTS user_has_event;
 DROP TABLE IF EXISTS USERCHOICE;
 DROP TABLE IF EXISTS EVENTDATE;
 DROP TABLE IF EXISTS THEME;

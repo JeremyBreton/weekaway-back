@@ -1,13 +1,11 @@
--- Deploy migration:createTable to pg
-
 BEGIN;
 
--- table USERS 
+-- table USER
 CREATE TABLE "user" (
     id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     firstname TEXT NOT NULL,
     lastname TEXT NOT NULL,
-    email TEXT NOT NULL UNIQUE,
+    email TEXT NOT NULL,
     address TEXT,
     password TEXT NOT NULL,
     birth_date timestamp,
@@ -20,10 +18,11 @@ CREATE TABLE "user" (
 CREATE TABLE EVENT (
     id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
-    owner_id INT REFERENCES "user"(id),
+    owner_id INT NOT NULL,
     status BOOLEAN NOT NULL,
     description TEXT,
     picture TEXT,
+    password TEXT NOT NULL,
     link_project TEXT
 );
 
@@ -51,7 +50,7 @@ CREATE TABLE USERCHOICE (
     event_id INT REFERENCES EVENT(id)
 );
 
-CREATE TABLE users_has_event (
+CREATE TABLE user_has_event (
     user_id INT REFERENCES "user"(id),
     event_id INT REFERENCES EVENT(id),
     PRIMARY KEY (user_id, event_id)

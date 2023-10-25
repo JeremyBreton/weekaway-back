@@ -1,5 +1,3 @@
--- Verify migration:createTable on pg
-
 BEGIN;
 
 DO $$ 
@@ -7,7 +5,7 @@ DECLARE
     tbl_name text;
     exists boolean;
 BEGIN 
-    FOREACH tbl_name IN ARRAY ARRAY['user', 'event', 'theme', 'eventdate', 'userchoice', 'users_has_event']
+    FOREACH tbl_name IN ARRAY ARRAY['user', 'event', 'theme', 'eventdate', 'userchoice', 'user_has_event']
     LOOP
         SELECT EXISTS (
             SELECT 1 
@@ -26,10 +24,11 @@ BEGIN
 END $$;
 
 
---SELECT * FROM users LIMIT 1;
+--SELECT * FROM user LIMIT 1;
 --SELECT * FROM event LIMIT 1;
 --SELECT * FROM theme LIMIT 1;
 --SELECT * FROM eventdate LIMIT 1;
 --SELECT * FROM userchoice LIMIT 1;
---SELECT * FROM users_has_event LIMIT 1;
+--SELECT * FROM user_has_event LIMIT 1;
 ROLLBACK;
+
