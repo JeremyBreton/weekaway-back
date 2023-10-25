@@ -31,6 +31,7 @@ const loginSchema = Joi.object({
   password: Joi.string().required(),
 });
 
+
 const userChoiceSchema = Joi.object({
   startDate: Joi.required(),
   endDate: Joi.required(),
@@ -38,6 +39,12 @@ const userChoiceSchema = Joi.object({
   userId: Joi.number().required(),
 });
 
+const themeSchema = Joi.object({
+  name: Joi.string().min(1).max(255).required(),
+  theme_id: Joi.number().integer().positive().required(),
+});
+
 export {
-  registerSchema, loginSchema, eventSchema, userChoiceSchema,
+  registerSchema, loginSchema, eventSchema, themeSchema, userChoiceSchema
+
 };

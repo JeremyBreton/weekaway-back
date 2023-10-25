@@ -62,6 +62,7 @@ Content-Type: application/json
 }
 
 
+
 ### Post UserChoice
 POST http://localhost:3000/api/userchoice
 Content-Type: application/json
@@ -98,3 +99,23 @@ Content-Type: application/json
 
 ### Delete userchoice
 DELETE http://localhost:3000/api/userchoice/4
+
+### Get 
+
+GET http://localhost:3000/api/theme
+
+### GetThemeById
+GET http://localhost:3000/api/theme/1
+
+### Delete Theme
+DELETE http://localhost:3000/api/theme/5
+
+
+### Post Theme
+POST http://localhost:3000/api/theme
+Content-Type: application/json
+
+{
+  "name": "Camping",
+  "theme_id": ""
+}
