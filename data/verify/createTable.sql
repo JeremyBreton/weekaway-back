@@ -7,7 +7,7 @@ DECLARE
     tbl_name text;
     exists boolean;
 BEGIN 
-    FOREACH tbl_name IN ARRAY ARRAY['users', 'event', 'theme', 'eventdate', 'userchoice', 'users_has_event']
+    FOREACH tbl_name IN ARRAY ARRAY['user', 'event', 'theme', 'eventdate', 'userchoice', 'users_has_event']
     LOOP
         SELECT EXISTS (
             SELECT 1 

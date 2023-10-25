@@ -49,12 +49,8 @@ export default {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         email: req.body.email,
-        address: req.body.address,
         password: hashedPassword,
-        birth_date: req.body.birth_date,
-        gender: req.body.gender,
-        profile_picture: req.body.profile_picture,
-        profile_desc: req.body.profile_desc,
+
       };
 
       const registeredUser = await authDataMapper.registerUser(newUser);

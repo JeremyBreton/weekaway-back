@@ -5,20 +5,16 @@ export default {
   //! INSCRIPTION
   async registerUser(user) {
     const query = `
-            INSERT INTO users(firstname,lastname,email,address,password,birth_date,gender,profile_picture,profile_desc)
-            VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9)
+            INSERT INTO "user"(firstname,lastname,email,password)
+            VALUES($1,$2,$3,$4)
             RETURNING *;
         `;
     const values = [
       user.firstname,
       user.lastname,
       user.email,
-      user.address,
       user.password,
-      user.birth_date,
-      user.gender,
-      user.profile_picture,
-      user.profile_desc,
+
     ];
     const results = await client.query(query, values);
     return results.rows[0];
@@ -28,7 +24,7 @@ export default {
 
   findAllUsers: async () => {
     try {
-      const results = await client.query('SELECT * FROM users');
+      const results = await client.query('SELECT * FROM "user"');
       return results.rows;
     } catch (error) {
       throw new Error(
@@ -40,7 +36,7 @@ export default {
   //! TROUVER PAR EMAIL
 
   findUserByEmail: async (email) => {
-    const results = await client.query('SELECT * FROM users WHERE email = $1', [
+    const results = await client.query('SELECT * FROM "user" WHERE email = $1', [
       email,
     ]);
     return results.rows[0];
@@ -49,7 +45,7 @@ export default {
   //! TROUVER PAR ID
 
   findUserById: async (id) => {
-    const results = await client.query('SELECT * FROM users WHERE id = $1', [
+    const results = await client.query('SELECT * FROM "user" WHERE id = $1', [
       id,
     ]);
     return results.rows[0];
