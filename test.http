@@ -1,4 +1,37 @@
 
 ### Get 
-GET http://localhost:3000/
+GET http://localhost:3000/event/
 
+### Update Event
+PATCH http://localhost:3000/event/1
+Content-Type: application/json
+
+{
+    
+  "name": "jean rachid",
+  "owner_id": 5,
+  "status" : true,
+  "description": "super event !!!",
+  "picture": "http://www.google.fr",
+  "link_project": "http://www.google.fr"
+
+}
+
+### Delete Event
+DELETE http://localhost:3000/event/1
+
+
+### Post Event
+POST http://localhost:3000/event
+Content-Type: application/json
+
+{
+    
+  "name": "zouzou",
+  "owner_id": 5,
+  "status" : true,
+  "description": "super event !!!",
+  "picture": "http://www.google.fr",
+  "link_project": "http://www.google.fr"
+
+}
