@@ -20,7 +20,7 @@ CREATE TABLE USERS (
 CREATE TABLE EVENT (
     id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
-    owner_id INT REFERENCES USERS(id),
+    owner_id INT NOT NULL,
     status BOOLEAN NOT NULL,
     description TEXT,
     picture TEXT,

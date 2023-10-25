@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import controller from '../controllers/index.controller.js';
+import eventController from '../controllers/event.controller.js';
 import validation from '../middlewares/validation.middleware.js';
 import schemaPost from '../schemas/app.post.schema.js';
 import schemaGet from '../schemas/app.get.schema.js';
@@ -20,19 +21,33 @@ router.use((req, _, next) => {
   next();
 });
 
-router.route('/')
-
-  .get(
-    validation(schemaGet, 'query'),
-    controllerWrapper(controller),
-  )
-
+router.route('/event')
+// Create a new event
   .post(
     validation(schemaPost, 'body'),
-    controllerWrapper(controller),
+    controllerWrapper(eventController.createEvent),
+
+  )
+  .get(
+    validation(schemaGet, 'body'),
+    controllerWrapper(eventController.findAllEvents),
 
   );
 
+router.route('/event/:id')
+// Create a new event
+  .get(
+    validation(schemaPost, 'body'),
+    controllerWrapper(eventController.findEventById),
+
+  )
+  .patch(
+    validation(schemaPost, 'body'),
+    controllerWrapper(eventController.updateEvent),
+  )
+  .delete(
+    controllerWrapper(eventController.deleteEvent),
+  );
 router.use((_, __, next) => {
   next(new NotFoundError('404 not found'));
 });
