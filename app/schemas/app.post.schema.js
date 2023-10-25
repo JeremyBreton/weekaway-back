@@ -18,11 +18,11 @@ const registerSchema = Joi.object({
 const eventSchema = Joi.object({
   // for Events :
   name: Joi.string().required(),
-  owner_id: Joi.number().required(),
+  ownerId: Joi.number().required(),
   status: Joi.boolean().required(),
   description: Joi.string().required(),
   picture: Joi.string().required(),
-  link_project: Joi.string().required(),
+  linkProject: Joi.string().required(),
   password: Joi.string().required(),
 });
 
@@ -31,4 +31,13 @@ const loginSchema = Joi.object({
   password: Joi.string().required(),
 });
 
-export { registerSchema, loginSchema, eventSchema };
+const userChoiceSchema = Joi.object({
+  startDate: Joi.required(),
+  endDate: Joi.required(),
+  eventId: Joi.number().required(),
+  userId: Joi.number().required(),
+});
+
+export {
+  registerSchema, loginSchema, eventSchema, userChoiceSchema,
+};

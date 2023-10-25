@@ -19,11 +19,11 @@ Content-Type: application/json
 {
     
   "name": "jean rachid",
-  "owner_id": 5,
+  "ownerId": 5,
   "status" : true,
   "description": "super event !!!",
   "picture": "http://www.google.fr",
-  "link_project": "http://www.google.fr",
+  "linkProject": "http://www.google.fr",
   "password": "verge"
 
 }
@@ -39,12 +39,12 @@ Content-Type: application/json
 {
     
   "name": "zouzou",
-  "password": "verge",
-  "owner_id": 5,
+  "password": "zouzouzou",
+  "ownerId": 5,
   "status" : true,
   "description": "super event !!!",
   "picture": "http://www.google.fr",
-  "link_project": "http://www.google.fr"
+  "linkProject": "http://www.google.fr"
 
 }
 
@@ -61,3 +61,40 @@ Content-Type: application/json
   "password": "Password123!"
 }
 
+
+### Post UserChoice
+POST http://localhost:3000/api/userchoice
+Content-Type: application/json
+
+{
+  "startDate": "2023-12-27 15:30:00+03:00",
+  "endDate": "2023-11-28 15:30:00+03:00",
+  "eventId": 1,
+  "userId": 1
+}
+
+
+### Get UserChoice by id
+GET http://localhost:3000/api/userchoice/1
+
+### Get all user choices
+GET http://localhost:3000/api/userchoice
+
+
+
+### Update userchoice
+PATCH http://localhost:3000/api/userchoice/1
+Content-Type: application/json
+
+{
+    
+  "startDate": "2023-10-25 15:30:00+03:00",
+  "endDate": "2023-10-25 15:30:00+03:00",
+  "eventId": 1,
+  "userId": 1
+
+}
+
+
+### Delete userchoice
+DELETE http://localhost:3000/api/userchoice/4
