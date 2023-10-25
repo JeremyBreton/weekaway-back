@@ -31,4 +31,11 @@ const loginSchema = Joi.object({
   password: Joi.string().required(),
 });
 
-export { registerSchema, loginSchema, eventSchema };
+const themeSchema = Joi.object({
+  name: Joi.string().min(1).max(255).required(),
+  theme_id: Joi.number().integer().positive().required(),
+});
+
+export {
+  registerSchema, loginSchema, eventSchema, themeSchema,
+};

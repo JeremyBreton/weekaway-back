@@ -2,8 +2,8 @@
 import { Router } from 'express';
 import authRouter from './auth.router.js';
 import eventRouter from './event.router.js';
+import themeRouter from './theme.router.js';
 import userRouter from './user.router.js';
-
 import NotFoundError from '../errors/notfound.error.js';
 import errorHandler from '../middlewares/error.middleware.js';
 import logger from '../helpers/logger.js';
@@ -27,6 +27,7 @@ mainRouter.use((req, _, next) => {
 mainRouter.use(authRouter);
 mainRouter.use(eventRouter);
 mainRouter.use(userRouter);
+mainRouter.use(themeRouter);
 
 mainRouter.use((_, __, next) => {
   next(new NotFoundError('404 not found'));
