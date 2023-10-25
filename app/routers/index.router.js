@@ -27,10 +27,10 @@ router.use((req, _, next) => {
   });
   next();
 });
-router.route('/event')
+router.route('/api/event')
 // Create a new event
   .post(
-    validation(schemaPost, 'body'),
+    validation(schemaPost.eventSchema, 'body'),
     controllerWrapper(eventController.createEvent),
 
   )
@@ -48,38 +48,33 @@ router
   .patch(controllerWrapper(userController.updateUserById))
   .delete(controllerWrapper(userController.deleteUserByEmail));
 
-
 router.post(
-  '/login',
+  '/api/login',
   validation(schemaPost.loginSchema, 'body'),
   controllerWrapper(authController.login),
 
 );
 router.post(
-  '/register',
+  '/api/register',
   validation(schemaPost.registerSchema, 'body'),
   controllerWrapper(authController.register),
 );
 
-router.route('/logout')
+router.route('/api/logout');
 
 router.get('/api/users', controllerWrapper(userController.getAllUsers));
 
-
-router.route('/event/:id')
+router.route('/api/event/:id')
 // Create a new event
   .get(
 
     validation(schemaGet, 'query'),
-  )
 
     controllerWrapper(eventController.findEventById),
-
-
   )
+
   .patch(
     validation(schemaPost.eventSchema, 'body'),
-
 
     controllerWrapper(eventController.updateEvent),
   )

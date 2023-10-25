@@ -13,10 +13,10 @@ export default {
   },
   async createEvent(req, res) {
     const {
-      name, owner_id, status, description, picture,
+      name, owner_id, status, description, picture, password,
     } = req.body;
     const data = {
-      name, owner_id, status, description, picture,
+      name, owner_id, status, description, picture, password,
     };
     const event = await datamapper.createEvent(data);
     res.json(event);

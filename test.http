@@ -1,13 +1,19 @@
 
 ### Get 
 
-GET http://localhost:3000/users
+GET http://localhost:3000/api/users/
 
-GET http://localhost:3000/event/
+
+### GetbyId
+GET http://localhost:3000/api/user/1
+
+
+### Get 
+GET http://localhost:3000/api/event/
 
 
 ### Update Event
-PATCH http://localhost:3000/event/1
+PATCH http://localhost:3000/api/event/1
 Content-Type: application/json
 
 {
@@ -22,16 +28,17 @@ Content-Type: application/json
 }
 
 ### Delete Event
-DELETE http://localhost:3000/event/1
+DELETE http://localhost:3000/api/event/1
 
 
 ### Post Event
-POST http://localhost:3000/event
+POST http://localhost:3000/api/event
 Content-Type: application/json
 
 {
     
   "name": "zouzou",
+  "password": "verge",
   "owner_id": 5,
   "status" : true,
   "description": "super event !!!",
@@ -39,3 +46,17 @@ Content-Type: application/json
   "link_project": "http://www.google.fr"
 
 }
+
+
+
+### Post User
+POST http://localhost:3000/api/register
+Content-Type: application/json
+
+{
+  "firstname": "Testtest",
+  "lastname": "MaSoeurtttt",
+  "email": "Vive-Test@testexample.com",
+  "password": "Password123!"
+}
+

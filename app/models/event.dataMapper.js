@@ -17,14 +17,16 @@ export default {
 
   async createEvent(data) {
     const query = `
-    INSERT INTO event (name, owner_id, status, description, picture, link_project) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
+    INSERT INTO event (name, owner_id, status, description, picture, link_project, password) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
     const values = [
       data.name,
       data.owner_id,
       data.status,
       data.description,
       data.picture,
-      data.link_project];
+      data.link_project,
+      data.password,
+    ];
     const result = await client.query(query, values);
     return result.rows[0];
   },
