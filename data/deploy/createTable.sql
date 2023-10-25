@@ -3,7 +3,7 @@
 BEGIN;
 
 -- table USER
-CREATE TABLE USER (
+CREATE TABLE "user" (
     id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     firstname TEXT NOT NULL,
     lastname TEXT NOT NULL,
@@ -48,12 +48,12 @@ CREATE TABLE USERCHOICE (
     id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     start_date_choice timestamptz NOT NULL,
     end_date_choice timestamptz NOT NULL,
-    user_id INT REFERENCES USERS(id),
+    user_id INT REFERENCES "user"(id),
     event_id INT REFERENCES EVENT(id)
 );
 
 CREATE TABLE user_has_event (
-    user_id INT REFERENCES USER(id),
+    user_id INT REFERENCES "user"(id),
     event_id INT REFERENCES EVENT(id),
     PRIMARY KEY (user_id, event_id)
 );
