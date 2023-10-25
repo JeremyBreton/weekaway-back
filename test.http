@@ -23,7 +23,8 @@ Content-Type: application/json
   "status" : true,
   "description": "super event !!!",
   "picture": "http://www.google.fr",
-  "link_project": "http://www.google.fr"
+  "link_project": "http://www.google.fr",
+  "password": "verge"
 
 }
 
