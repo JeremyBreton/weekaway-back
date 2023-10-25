@@ -34,7 +34,7 @@ router.route('/event')
   )
   .get(
     controllerWrapper(eventController.findAllEvents),
-
+  );
 
 // 2. Récupération d'un utilisateur par ID - GET `/api/user/:id` (Backend).
 // 3. Mise à jour des informations d'un utilisateur - PATCH `/api/user/:id` (Backend).
