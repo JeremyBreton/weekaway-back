@@ -38,9 +38,9 @@ router
 // 5. Récupération de la liste de tous les utilisateurs - GET `/api/users` (Backend).
 router
   .route('/api/user/:id')
-  .get(controllerWrapper(userController.getUserById)
-    .patch(controllerWrapper(userController.updateUserById))
-    .delete(controllerWrapper(userController.deleteUserByEmail)));
+  .get(controllerWrapper(userController.getUserById))
+  .patch(controllerWrapper(userController.updateUserById))
+  .delete(controllerWrapper(userController.deleteUserByEmail));
 
 router.get('/api/users', controllerWrapper(userController.getAllUsers));
 

@@ -61,6 +61,6 @@ export default {
       data.profile_desc = baseData.profile_desc;
     }
     const user = await userDataMapper.updateUserById(id, data);
-    res.json(user);
+    res.json('ça a marché mec!');
   },
 };
