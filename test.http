@@ -117,5 +117,5 @@ Content-Type: application/json
 
 {
   "name": "Camping",
-  "theme_id": ""
+  "theme_id": 2
 }

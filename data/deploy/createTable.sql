@@ -1,3 +1,4 @@
+-- SQLBook: Code
 BEGIN;
 
 -- table USER
@@ -29,8 +30,8 @@ CREATE TABLE EVENT (
 -- table THEME 
 CREATE TABLE THEME (
     id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    theme_id INT REFERENCES EVENT(id),
-    name TEXT NOT NULL
+    name TEXT NOT NULL,
+    event_id INT REFERENCES EVENT(id)
 );
 
 -- table EVENTDATE 
