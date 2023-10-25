@@ -1,6 +1,22 @@
 import Joi from 'joi';
 
-export default Joi.object({
+
+const registerSchema = Joi.object({
+  firstname: Joi.string().min(1).max(255).required(),
+  lastname: Joi.string().min(1).max(255).required(),
+  email: Joi.string().email().required(),
+  address: Joi.string().min(1).max(255),
+  password: Joi.string()
+    .min(8)
+    .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/)
+    .required(),
+  birth_date: Joi.date(),
+  gender: Joi.string().valid('Homme', 'Femme'),
+  profile_picture: Joi.string().uri().allow(null, ''),
+  profile_desc: Joi.string().max(500).allow(null, ''),
+});
+
+const eventSchema = Joi.object({
   // for Events :
   name: Joi.string().required(),
   owner_id: Joi.number().required(),
@@ -9,4 +25,10 @@ export default Joi.object({
   picture: Joi.string().required(),
   link_project: Joi.string().required(),
 
+
+const loginSchema = Joi.object({
+  email: Joi.string().email().required(),
+  password: Joi.string().required(),
 });
+
+export { registerSchema, loginSchema, eventSchema };

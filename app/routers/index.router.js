@@ -1,14 +1,16 @@
+/* eslint-disable linebreak-style */
 import { Router } from 'express';
 import controller from '../controllers/index.controller.js';
 import eventController from '../controllers/event.controller.js';
 import userController from '../controllers/user.controller.js';
 import validation from '../middlewares/validation.middleware.js';
-import schemaPost from '../schemas/app.post.schema.js';
+import * as schemaPost from '../schemas/app.post.schema.js';
 import schemaGet from '../schemas/app.get.schema.js';
 import controllerWrapper from '../middlewares/controller.wrapper.js';
 import NotFoundError from '../errors/notfound.error.js';
 import errorHandler from '../middlewares/error.middleware.js';
 import logger from '../helpers/logger.js';
+import authController from '../controllers/auth.controller.js';
 
 /**
  * @typedef {object} ResponseError response error
@@ -46,20 +48,44 @@ router
   .patch(controllerWrapper(userController.updateUserById))
   .delete(controllerWrapper(userController.deleteUserByEmail));
 
+
+router.post(
+  '/login',
+  validation(schemaPost.loginSchema, 'body'),
+  controllerWrapper(authController.login),
+
+);
+router.post(
+  '/register',
+  validation(schemaPost.registerSchema, 'body'),
+  controllerWrapper(authController.register),
+);
+
+router.route('/logout')
+
 router.get('/api/users', controllerWrapper(userController.getAllUsers));
+
 
 router.route('/event/:id')
 // Create a new event
   .get(
+
+    validation(schemaGet, 'query'),
+  )
+
     controllerWrapper(eventController.findEventById),
+
 
   )
   .patch(
-    validation(schemaPost, 'body'),
+    validation(schemaPost.eventSchema, 'body'),
+
+
     controllerWrapper(eventController.updateEvent),
   )
   .delete(
     controllerWrapper(eventController.deleteEvent),
+
   );
 router.use((_, __, next) => {
   next(new NotFoundError('404 not found'));

@@ -1,5 +1,3 @@
--- Verify migration:createTable on pg
-
 BEGIN;
 
 DO $$ 
@@ -33,3 +31,4 @@ END $$;
 --SELECT * FROM userchoice LIMIT 1;
 --SELECT * FROM user_has_event LIMIT 1;
 ROLLBACK;
+

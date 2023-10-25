@@ -1,5 +1,3 @@
--- Deploy migration:createTable to pg
-
 BEGIN;
 
 -- table USER
