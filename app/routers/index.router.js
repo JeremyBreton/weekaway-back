@@ -22,38 +22,17 @@ router.use((req, _, next) => {
   next();
 });
 
-router.route('/')
+router.post(
+  '/login',
+  validation(schemaPost.loginSchema, 'body'),
+  controllerWrapper(authController.login),
 
-  .get(
-    validation(schemaGet, 'query'),
-    controllerWrapper(controller),
-  )
-
-  .post(
-    validation(schemaPost, 'body'),
-    controllerWrapper(controller),
-
-  );
-router.route('/login')
-
-  .get(
-    validation(schemaGet, 'query'),
-  )
-
-  .post(
-    validation(schemaPost.loginSchema, 'body'),
-    authController.login,
-  );
-
-router.route('/register')
-
-  .get(
-    validation(schemaGet, 'query'),
-  )
-  .post(
-    validation(schemaPost.registerSchema, 'body'),
-    authController.register,
-  );
+);
+router.post(
+  '/register',
+  validation(schemaPost.registerSchema, 'body'),
+  controllerWrapper(authController.register),
+);
 
 router.route('/logout')
 
@@ -64,13 +43,6 @@ router.route('/logout')
   .post(
     validation(schemaPost, 'body'),
   );
-router.route('/users')
-
-  .get(
-    validation(schemaGet, 'query'),
-    authController.findAllUsers,
-  );
-
 router.use((_, __, next) => {
   next(new NotFoundError('404 not found'));
 });
