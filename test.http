@@ -1,6 +1,6 @@
 
 ### Get 
-GET http://localhost:3000/event
+GET http://localhost:3000/event/
 
 ### Update Event
 PATCH http://localhost:3000/event/1

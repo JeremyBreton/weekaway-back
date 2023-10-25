@@ -29,7 +29,6 @@ router.route('/event')
 
   )
   .get(
-    validation(schemaGet, 'body'),
     controllerWrapper(eventController.findAllEvents),
 
   );
@@ -37,7 +36,6 @@ router.route('/event')
 router.route('/event/:id')
 // Create a new event
   .get(
-    validation(schemaPost, 'body'),
     controllerWrapper(eventController.findEventById),
 
   )
