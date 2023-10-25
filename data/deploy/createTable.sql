@@ -2,16 +2,16 @@
 
 BEGIN;
 
--- table USERS 
-CREATE TABLE USERS (
+-- table USER
+CREATE TABLE "user" (
     id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     firstname TEXT NOT NULL,
     lastname TEXT NOT NULL,
     email TEXT NOT NULL,
-    address TEXT NOT NULL,
+    address TEXT,
     password TEXT NOT NULL,
-    birth_date timestamp NOT NULL,
-    gender TEXT NOT NULL,
+    birth_date timestamp,
+    gender TEXT,
     profile_picture TEXT,
     profile_desc TEXT
 );
@@ -20,10 +20,11 @@ CREATE TABLE USERS (
 CREATE TABLE EVENT (
     id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
-    owner_id INT,
+    owner_id INT NOT NULL,
     status BOOLEAN NOT NULL,
     description TEXT,
     picture TEXT,
+    password TEXT NOT NULL,
     link_project TEXT
 );
 
@@ -47,12 +48,12 @@ CREATE TABLE USERCHOICE (
     id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     start_date_choice timestamptz NOT NULL,
     end_date_choice timestamptz NOT NULL,
-    user_id INT REFERENCES USERS(id),
+    user_id INT REFERENCES "user"(id),
     event_id INT REFERENCES EVENT(id)
 );
 
-CREATE TABLE users_has_event (
-    user_id INT REFERENCES USERS(id),
+CREATE TABLE user_has_event (
+    user_id INT REFERENCES "user"(id),
     event_id INT REFERENCES EVENT(id),
     PRIMARY KEY (user_id, event_id)
 );
