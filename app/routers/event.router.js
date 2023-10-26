@@ -7,8 +7,28 @@ import controllerWrapper from '../middlewares/controller.wrapper.js';
 
 const eventRouter = Router();
 
+/**
+ * @swagger
+ * /api/event:
+ *   post:
+ *     summary: Create a new event
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/eventSchema'
+ *     responses:
+ *       200:
+ *         description: Event created successfully
+
+ *   get:
+ *     summary: Get all events
+ *     responses:
+ *       200:
+ *         description: List of all events
+ */
 eventRouter.route('/api/event')
-// Create a new event
   .post(
     validation(schemaPost.eventSchema, 'body'),
     controllerWrapper(eventController.createEvent),
@@ -18,8 +38,54 @@ eventRouter.route('/api/event')
     controllerWrapper(eventController.findAllEvents),
   );
 
+/**
+ * @swagger
+ * /api/event/{id}:
+ *   get:
+ *     summary: Get an event by ID
+ *     parameters:
+ *       - in: query
+ *         name: id
+ *         required: true
+ *         description: Event ID
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Event details
+
+ *   patch:
+ *     summary: Update an event by ID
+ *     parameters:
+ *       - in: query
+ *         name: id
+ *         required: true
+ *         description: Event ID
+ *         schema:
+ *           type: string
+ *       - in: body
+ *         name: event
+ *         description: Event data to update
+ *         schema:
+ *           $ref: '#/components/schemas/eventSchema'
+ *     responses:
+ *       200:
+ *         description: Event updated
+
+ *   delete:
+ *     summary: Delete an event by ID
+ *     parameters:
+ *       - in: query
+ *         name: id
+ *         required: true
+ *         description: Event ID to delete
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Event deleted
+ */
 eventRouter.route('/api/event/:id')
-// Create a new event
   .get(
 
     validation(schemaGet, 'query'),

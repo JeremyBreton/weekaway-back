@@ -7,23 +7,58 @@ import controllerWrapper from '../middlewares/controller.wrapper.js';
 
 const authRouter = Router();
 
-// 2. Récupération d'un utilisateur par ID - GET `/api/user/:id` (Backend).
-// 3. Mise à jour des informations d'un utilisateur - PATCH `/api/user/:id` (Backend).
-// 4. Suppression d'un utilisateur - DELETE `/api/user/:id` (Backend).
-// 5. Récupération de la liste de tous les utilisateurs - GET `/api/users` (Backend).
-
+/**
+ * @swagger
+ * /api/login:
+ *   post:
+ *     summary: Authenticate a user
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/loginSchema'
+ *     responses:
+ *       200:
+ *         description: User authenticated successfully
+ */
 authRouter.post(
   '/api/login',
   validation(schemaPost.loginSchema, 'body'),
   controllerWrapper(authController.login),
 
 );
+
+/**
+ * @swagger
+ * /api/register:
+ *   post:
+ *     summary: Register a new user
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/registerSchema'
+ *     responses:
+ *       200:
+ *         description: User registered successfully
+ */
 authRouter.post(
   '/api/register',
   validation(schemaPost.registerSchema, 'body'),
   controllerWrapper(authController.register),
 );
 
+/**
+ * @swagger
+ * /api/logout:
+ *   post:
+ *     summary: Logout the currently authenticated user
+ *     responses:
+ *       200:
+ *         description: User logged out successfully
+ */
 authRouter.route('/api/logout');
 
 export default authRouter;
