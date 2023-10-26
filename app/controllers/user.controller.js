@@ -19,9 +19,9 @@ export default {
     res.json(user);
   },
 
-  async deleteUserByEmail(req, res) {
-    const { email } = req.params;
-    const user = await userDataMapper.deleteUserByEmail(email);
+  async deleteUserById(req, res) {
+    const { id } = req.params;
+    const user = await userDataMapper.deleteUserById(id);
     res.json(user);
   },
 
