@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import passport from 'passport';
 import authDataMapper from '../models/auth.dataMapper.js';
+import mailService from '../services/mailer/mailer.js';
 
 const isValidEmail = (email) => {
   const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
@@ -8,20 +9,20 @@ const isValidEmail = (email) => {
 };
 
 export default {
-  //! CONNEXION 
+  //! CONNEXION
   login(req, res, next) {
     return passport.authenticate('local', (err, user, info) => {
       if (err) {
         return next(err);
       }
       if (!user) {
-        return res.status(401).json({ message: info.message });
+        return res.status(401).json({ message: info.message, logged: false });
       }
       req.login(user, (error) => {
         if (error) {
           return next(error);
         }
-        return res.status(200).json({ message: 'Connexion réussie.' });
+        return res.status(200).json({ firstname: user.firstname, logged: true });
       });
     })(req, res, next);
   },
@@ -52,6 +53,7 @@ export default {
 
     const registeredUser = await authDataMapper.registerUser(newUser);
     if (registeredUser) {
+      mailService.sendMail(newUser);
       return res.status(201).json({ message: 'Inscription réussie!' });
     }
     return res.status(500).json({ message: 'Erreur lors de l’inscription.' });

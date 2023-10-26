@@ -66,9 +66,9 @@ POST http://localhost:3000/api/register
 Content-Type: application/json
 
 {
-  "firstname": "Testtest",
-  "lastname": "MaSoeurtttt",
-  "email": "Vive-Test@testexample.com",
+  "firstname": "Geoffrey",
+  "lastname": "Fardeau",
+  "email": "frenchelectrolove@gmail.com",
   "password": "Password123!"
 }
 
@@ -111,9 +111,25 @@ Content-Type: application/json
 ### Delete userchoice
 DELETE http://localhost:3000/api/userchoice/4
 
+
+### Delete user
+DELETE http://localhost:3000/api/user/33
 ### Get 
 
 GET http://localhost:3000/api/theme
+
+
+### Login
+POST http://localhost:3000/api/login
+Content-Type: application/json
+
+{
+  "email": "test@test.fr",
+  "password": "Password123!"
+}
+
+
+
 
 ### GetThemeById
 GET http://localhost:3000/api/theme/1
