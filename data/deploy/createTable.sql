@@ -12,8 +12,10 @@ CREATE TABLE "user" (
     birth_date timestamp,
     gender TEXT,
     profile_picture TEXT,
-    profile_desc TEXT
-);
+    profile_desc TEXT,
+    "created_at" timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,--on peut utiliser now() aussi
+    "updated_at" timestamptz
+    );
 
 -- table EVENT 
 CREATE TABLE EVENT (
@@ -24,23 +26,29 @@ CREATE TABLE EVENT (
     description TEXT,
     picture TEXT,
     password TEXT NOT NULL,
-    link_project TEXT
-);
+    link_project TEXT,
+    "created_at" timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,--on peut utiliser now() aussi
+    "updated_at" timestamptz
+    );
 
 -- table THEME 
 CREATE TABLE THEME (
     id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
-    event_id INT REFERENCES EVENT(id)
-);
+    event_id INT REFERENCES EVENT(id),
+    "created_at" timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,--on peut utiliser now() aussi
+    "updated_at" timestamptz
+    );
 
 -- table EVENTDATE 
 CREATE TABLE EVENTDATE (
     id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     start_date timestamptz NOT NULL,
     end_date timestamptz NOT NULL,
-    event_id INT REFERENCES EVENT(id)
-);
+    event_id INT REFERENCES EVENT(id),
+    "created_at" timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,--on peut utiliser now() aussi
+    "updated_at" timestamptz
+    );
 
 -- table USERCHOICE 
 CREATE TABLE USERCHOICE (
@@ -48,13 +56,17 @@ CREATE TABLE USERCHOICE (
     start_date_choice timestamptz NOT NULL,
     end_date_choice timestamptz NOT NULL,
     user_id INT REFERENCES "user"(id),
-    event_id INT REFERENCES EVENT(id)
-);
+    event_id INT REFERENCES EVENT(id),
+    "created_at" timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,--on peut utiliser now() aussi
+    "updated_at" timestamptz
+    );
 
 CREATE TABLE user_has_event (
     user_id INT REFERENCES "user"(id),
     event_id INT REFERENCES EVENT(id),
-    PRIMARY KEY (user_id, event_id)
-);
+    PRIMARY KEY (user_id, event_id),
+    "created_at" timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,--on peut utiliser now() aussi
+    "updated_at" timestamptz
+    );
 
 COMMIT;
