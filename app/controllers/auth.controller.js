@@ -16,13 +16,13 @@ export default {
         return next(err);
       }
       if (!user) {
-        return res.status(401).json({ message: info.message });
+        return res.status(401).json({ message: info.message, logged: false });
       }
       req.login(user, (error) => {
         if (error) {
           return next(error);
         }
-        return res.status(200).json({ message: 'Connexion réussie.' });
+        return res.status(200).json({ firstname: user.firstname, logged: true });
       });
     })(req, res, next);
   },
