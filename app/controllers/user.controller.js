@@ -27,40 +27,44 @@ export default {
 
   async updateUserById(req, res) {
     const { id } = req.params;
-    const { data } = req.body;
+    const data = req.body;
     const baseData = await userDataMapper.getUserById(id);
-    // ! TODO : Création d'une boucle pour éviter les répétition de if (!data.email) {...}
-    if (!data.email) {
-      data.email = baseData.email;
-    }
-    if (!data.password) {
-      data.password = baseData.password;
-    }
+
+    const dataToUpdate = [
+      'email',
+      'password',
+      'address',
+      'birth_date',
+      'firstname',
+      'lastname',
+      'gender',
+      'profile_picture',
+      'profile_desc',
+    ];
+
+    dataToUpdate.forEach((element) => {
+      if (!data[element]) {
+        data[element] = baseData[element];
+      }
+    });
+
     if (data.password) {
       data.password = await bcrypt.hash(data.password, 10);
     }
-    if (!data.address) {
-      data.address = baseData.address;
-    }
-    if (!data.birth_date) {
-      data.birth_date = baseData.birth_date;
-    }
-    if (!data.firstname) {
-      data.firstname = baseData.firstname;
-    }
-    if (!data.lastname) {
-      data.lastname = baseData.lastname;
-    }
-    if (!data.gender) {
-      data.gender = baseData.gender;
-    }
-    if (!data.profile_picture) {
-      data.profile_picture = baseData.profile_picture;
-    }
-    if (!data.profile_desc) {
-      data.profile_desc = baseData.profile_desc;
-    }
+
     const user = await userDataMapper.updateUserById(id, data);
     res.json('ça a marché mec!');
+  },
+
+  async getUserWithEvents(req, res) {
+    const { id } = req.params;
+    const user = await userDataMapper.getUserWithEvents(id);
+    res.json(user);
+  },
+
+  async getUserWithEventsAndUserChoices(req, res) {
+    const { id } = req.params;
+    const user = await userDataMapper.getUserWithEventsAndUserChoices(id);
+    res.json(user);
   },
 };
