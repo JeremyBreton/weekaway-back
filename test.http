@@ -141,6 +141,6 @@ POST http://localhost:3001/api/invitelink/
 Content-Type: application/json
 
 {
-  "email": "renaud.berni@oclock.school",
+  "email": "fardeau.geoffrey@gmail.com",
   "eventId": "37"
 }
