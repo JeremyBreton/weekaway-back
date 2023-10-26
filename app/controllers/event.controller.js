@@ -8,9 +8,10 @@ export default {
 
   async findEventById(req, res) {
     const { id } = req.params;
-    const event = await datamapper.findEventById(id);
-    res.json(event);
+    const eventDetails = await datamapper.findEventById(id);
+    res.json(eventDetails);
   },
+
   async createEvent(req, res) {
     const {
       name, ownerId, status, description, picture, password, linkProject,
