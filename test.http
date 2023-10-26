@@ -33,13 +33,12 @@ DELETE http://localhost:3000/api/event/1
 
 
 ### Post Event
-POST http://localhost:3000/api/event
+POST http://localhost:3001/api/event
 Content-Type: application/json
 
 {
     
-  "name": "zouzou",
-  "password": "zouzouzou",
+  "name": "Soirée alcoolisée et débauche",
   "ownerId": 5,
   "status" : true,
   "description": "super event !!!",
@@ -134,4 +133,14 @@ Content-Type: application/json
 {
   "name": "Camping",
   "theme_id": 2
+}
+
+
+### Post user invation
+POST http://localhost:3001/api/invitelink/
+Content-Type: application/json
+
+{
+  "email": "renaud.berni@oclock.school",
+  "eventId": "37"
 }

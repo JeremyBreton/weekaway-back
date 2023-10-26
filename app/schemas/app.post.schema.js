@@ -23,7 +23,6 @@ const eventSchema = Joi.object({
   description: Joi.string().required(),
   picture: Joi.string().required(),
   linkProject: Joi.string().required(),
-  password: Joi.string().required(),
 });
 
 const loginSchema = Joi.object({
