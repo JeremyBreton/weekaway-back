@@ -152,3 +152,39 @@ GET http://localhost:3000/api/user/1/events
 
 ### Get User With Event and UserChoice
 GET http://localhost:3000/api/user/1/events/choices
+
+
+### Get all eventDate 
+GET http://localhost:3000/api/eventDate
+
+### Post createEventDate
+POST http://localhost:3000/api/eventDate
+Content-Type: application/json
+
+{
+  "start_date": "2023-12-27 15:30:00+03:00",
+  "end_date": "2023-11-28 15:30:00+03:00",
+  "eventId": 1
+}
+
+### Get eventDate by id
+GET http://localhost:3000/api/eventDate/1
+
+### Update eventDate
+PATCH http://localhost:3000/api/eventDate/1
+Content-Type: application/json
+
+{
+  "start_date": "2023-11-27 20:30:00+03:00",
+  "end_date": "2023-12-28 20:30:00+03:00",
+  "eventId": 1
+}
+
+### Delete eventDate
+DELETE http://localhost:3000/api/eventDate/1
+
+### Get eventDate with eventId by eventDateId
+GET http://localhost:3000/api/eventDates/1/event
+
+### Get eventDate with eventId and userChoices by eventId 
+GET http://localhost:3000/api/eventDate/1/event/userChoices
