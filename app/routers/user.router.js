@@ -71,4 +71,40 @@ userRouter
   )
   .delete(controllerWrapper(userController.deleteUserById));
 
+/**
+ * @swagger
+ * /api/user/{id}/events}:
+ *  get:
+ *    summary: Get all events by user ID
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        required: true
+ *        description: User ID
+ *    responses:
+ *      200:
+ *        description: List of one User and all his events
+*/
+userRouter
+  .route('/api/user/:id/events')
+  .get(controllerWrapper(userController.getUserWithEvents));
+
+/**
+ * @swagger
+ * /api/user/{id}/events/choices:
+ *  get:
+ *   summary: Get all events and user choices by user ID
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        required: true
+ *        description: User ID
+ *    responses:
+ *       200:
+ *        description: List of all events and user choices
+ */
+userRouter
+  .route('/api/user/:id/events/choices')
+  .get(controllerWrapper(userController.getUserWithEventsAndUserChoices));
+
 export default userRouter;

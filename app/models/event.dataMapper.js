@@ -8,11 +8,35 @@ export default {
   },
 
   async findEventById(id) {
-    const result = await client.query(
-      'SELECT * FROM event WHERE id=$1',
-      [id],
-    );
-    return result.rows[0];
+    const eventDetails = await client.query('SELECT * FROM event WHERE id=$1', [id]);
+
+    const eventDates = await client.query('SELECT * FROM eventdate WHERE event_id=$1', [id]);
+
+    const usersJoined = await client.query(`
+        SELECT "user".* 
+        FROM "user"
+        JOIN user_has_event ON "user".id = user_has_event.user_id
+        WHERE user_has_event.event_id=$1
+    `, [id]);
+
+    const usersWithChoices = await Promise.all(usersJoined.rows.map(async (user) => {
+      const userChoices = await client.query(`
+            SELECT start_date_choice, end_date_choice
+            FROM userchoice 
+            WHERE user_id=$1 AND event_id=$2
+        `, [user.id, id]);
+
+      return {
+        ...user,
+        choices: userChoices.rows,
+      };
+    }));
+
+    return {
+      event: eventDetails.rows[0],
+      dates: eventDates.rows,
+      users: usersWithChoices,
+    };
   },
 
   async createEvent(data) {

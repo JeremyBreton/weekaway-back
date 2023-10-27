@@ -1,11 +1,22 @@
 
-### Get 
-
+### Get all users
 GET http://localhost:3000/api/users/
 
 
-### GetbyId
+### Get user by id
 GET http://localhost:3000/api/user/1
+
+### Update user
+PATCH http://localhost:3000/api/user/1
+Content-Type: application/json
+
+{
+  "email": "fesses@gmouilledessous.fr",
+  "firstname": "Testtest",
+  "lastname": "Monfrèèèrrreeee",
+  "password": "Password25852!",
+  "profile_picture": "https://resize.elle.fr/square/var/plain_site/storage/images/minceur/astuces-minceur/comment-avoir-des-fesses-de-reve-3896751/94237773-2-fre-FR/Avec-ou-sans-chirurgie-les-astuces-pour-des-fesses-de-reve.jpg"
+}
 
 
 ### Get 
@@ -135,6 +146,7 @@ Content-Type: application/json
 }
 
 
+
 ### Post user invation
 POST http://localhost:3001/api/invitelink/
 Content-Type: application/json
@@ -152,4 +164,10 @@ Content-Type: application/json
   "email": "fardeau.geoffrey@gmail.com",
   "password": "7x5lx"
 }
+
+### Get User with event
+GET http://localhost:3000/api/user/1/events
+
+### Get User With Event and UserChoice
+GET http://localhost:3000/api/user/1/events/choices
 
