@@ -60,7 +60,6 @@ export default {
 
     const registeredUser = await authDataMapper.registerUser(userData);
     if (registeredUser) {
-
       const userForToken = {
         id: registeredUser.id,
         email: registeredUser.email,
@@ -80,7 +79,6 @@ export default {
 
       mailService.sendMail(newUser);
       return res.status(201).json({ message: 'Inscription réussie!' });
-
     }
     return res.status(500).json({ message: 'Erreur lors de l’inscription.', logged: false });
   },
