@@ -8,7 +8,7 @@ const userHasEventRouter = Router();
 
 userHasEventRouter.post(
   '/api/userhasevent',
-//   validation(schemaPost.userHasEventSchema, 'body'),
+  validation(schemaPost.userHasEventSchema, 'body'),
   controllerWrapper(userHasEventController.deleteUserFromEvent),
 );
 
