@@ -12,7 +12,7 @@ Content-Type: application/json
 
 {
   "email": "fesses@gmouilledessous.fr",
-  "firstname": "Testtest",
+  "firstname": "Jean yves la fesse",
   "lastname": "Monfrèèèrrreeee",
   "password": "Password25852!",
   "profile_picture": "https://resize.elle.fr/square/var/plain_site/storage/images/minceur/astuces-minceur/comment-avoir-des-fesses-de-reve-3896751/94237773-2-fre-FR/Avec-ou-sans-chirurgie-les-astuces-pour-des-fesses-de-reve.jpg"
@@ -154,6 +154,12 @@ GET http://localhost:3000/api/user/1/events
 GET http://localhost:3000/api/user/1/events/choices
 
 
+######### ! ############################# 
+
+# ! Event Date
+
+######### ! #############################
+
 ### Get all eventDate 
 GET http://localhost:3000/api/eventDate
 
@@ -164,27 +170,27 @@ Content-Type: application/json
 {
   "start_date": "2023-12-27 15:30:00+03:00",
   "end_date": "2023-11-28 15:30:00+03:00",
-  "eventId": 1
+  "event_id": 1
 }
 
 ### Get eventDate by id
 GET http://localhost:3000/api/eventDate/1
 
+### Get eventDate by eventId
+GET http://localhost:3000/api/eventDate/event/3
+
 ### Update eventDate
-PATCH http://localhost:3000/api/eventDate/1
+PATCH http://localhost:3000/api/eventDate/25
 Content-Type: application/json
 
 {
   "start_date": "2023-11-27 20:30:00+03:00",
   "end_date": "2023-12-28 20:30:00+03:00",
-  "eventId": 1
+  "event_id": 1
 }
 
 ### Delete eventDate
 DELETE http://localhost:3000/api/eventDate/1
 
 ### Get eventDate with eventId by eventDateId
-GET http://localhost:3000/api/eventDates/1/event
-
-### Get eventDate with eventId and userChoices by eventId 
-GET http://localhost:3000/api/eventDate/1/event/userChoices
+GET http://localhost:3000/api/eventDate/3/event

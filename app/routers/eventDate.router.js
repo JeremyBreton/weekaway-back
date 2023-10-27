@@ -21,10 +21,10 @@ eventDateRouter.route('/api/eventDate/:id')
   )
   .delete(controllerWrapper(eventDateController.deleteEventDateById));
 
+eventDateRouter.route('/api/eventDate/event/:eventId')
+  .get(controllerWrapper(eventDateController.getEventDateByeventId));
+
 eventDateRouter.route('/api/eventDate/:id/event')
   .get(controllerWrapper(eventDateController.getEventDateWithEvent));
-
-eventDateRouter.route('/api/eventDate/:id/event/userChoices')
-  .get(controllerWrapper(eventDateController.getEventDateWithEventAndUserChoices));
 
 export default eventDateRouter;

@@ -12,6 +12,12 @@ export default {
     res.json(eventDate);
   },
 
+  async getEventDateByeventId(req, res) {
+    const { eventId } = req.params;
+    const eventDate = await eventDateDataMapper.getEventDateByeventId(eventId);
+    res.json(eventDate);
+  },
+
   async deleteEventDateById(req, res) {
     const { id } = req.params;
     const eventDate = await eventDateDataMapper.deleteEventDateById(id);
@@ -28,12 +34,10 @@ export default {
     const { id } = req.params;
     const data = req.body;
     const baseData = await eventDateDataMapper.getEventDateById(id);
-
     const dataToUpdate = [
       'event_id',
-      'date',
-      'participants',
-      'description',
+      'start_date',
+      'end_date',
     ];
 
     dataToUpdate.forEach((element) => {
@@ -49,14 +53,6 @@ export default {
   async getEventDateWithEvent(req, res) {
     const { id } = req.params;
     const eventDate = await eventDateDataMapper.getEventDateWithEvent(id);
-    res.json(eventDate);
-  },
-
-  async getEventDateWithEventAndUserChoices(req, res) {
-    const { id } = req.params;
-    const eventDate = await eventDateDataMapper.getEventDateWithEventAndUserChoices(
-      id,
-    );
     res.json(eventDate);
   },
 };

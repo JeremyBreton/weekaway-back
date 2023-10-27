@@ -2,21 +2,29 @@ import client from './client.js';
 
 export default {
   async getAllEventDates() {
-    const result = await client.query('SELECT * FROM "event_date"');
+    const result = await client.query('SELECT * FROM "eventdate"');
     return result.rows;
   },
 
   async getEventDateById(id) {
     const result = await client.query(
-      'SELECT * FROM "event_date" WHERE id = $1',
+      'SELECT * FROM "eventdate" WHERE id = $1',
       [id],
     );
     return result.rows[0];
   },
 
+  async getEventDateByeventId(eventId) {
+    const result = await client.query(
+      'SELECT * FROM "eventdate" WHERE event_id = $1',
+      [eventId],
+    );
+    return result.rows;
+  },
+
   async deleteEventDateById(id) {
     const result = await client.query(
-      'DELETE FROM "event_date" WHERE id = $1',
+      'DELETE FROM "eventdate" WHERE id = $1',
       [id],
     );
     return result.rows[0];
@@ -32,7 +40,7 @@ export default {
 
   async updateEventDateById(id, data) {
     const result = await client.query(
-      'UPDATE "event_date" SET event_id = $1, start_date = $2, end_date = $3 WHERE id = $5 RETURNING *',
+      'UPDATE "eventdate" SET event_id = $1, start_date = $2, end_date = $3 WHERE id = $4 RETURNING *',
       [
         data.event_id,
         data.start_date,
@@ -45,21 +53,9 @@ export default {
 
   async getEventDateWithEvent(id) {
     const result = await client.query(
-      `SELECT * FROM "event_date" 
-        INNER JOIN event ON event_date.event_id = event.id  
-        WHERE event_date.id = $1`,
-      [id],
-    );
-    return result.rows;
-  },
-
-  async getEventDateWithEventAndUserChoices(id) {
-    const result = await client.query(
-      `SELECT * FROM "event_date" 
-        INNER JOIN event ON event_date.event_id = event.id
-        INNER JOIN user_has_event_date ON event_date.id = user_has_event_date.event_date_id
-        INNER JOIN "user" ON user_has_event_date.user_id = "user".id
-        WHERE event_date.id = $1`,
+      `SELECT * FROM "eventdate" 
+        INNER JOIN event ON eventdate.event_id = event.id  
+        WHERE eventdate.id = $1`,
       [id],
     );
     return result.rows;
