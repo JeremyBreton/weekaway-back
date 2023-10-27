@@ -1,40 +1,39 @@
-##################################!
-#! USERS
-##################################!
+######### ! ############################# 
 
-Get all users
+#! USERS
+
+######### ! ############################# 
+
+### ? Get all users
 GET http://localhost:3000/api/users/
 
-Get user by id
+### ? Get user by id
 GET http://localhost:3000/api/user/1
 
-Update user
+### ? Update user
 PATCH http://localhost:3000/api/user/1
 Content-Type: application/json
 
 {
   "email": "fesses@gmouilledessous.fr",
-  "firstname": "Testtest",
+  "firstname": "Jean yves la fesse",
   "lastname": "Monfrèèèrrreeee",
   "password": "Password25852!",
   "profile_picture": "https://resize.elle.fr/square/var/plain_site/storage/images/minceur/astuces-minceur/comment-avoir-des-fesses-de-reve-3896751/94237773-2-fre-FR/Avec-ou-sans-chirurgie-les-astuces-pour-des-fesses-de-reve.jpg"
 }
 
-Post User
-POST http://localhost:3000/api/register
+### ? Post User
+POST http://localhost:3001/api/register
 Content-Type: application/json
 
 {
   "firstname": "Geoffrey",
   "lastname": "Fardeau",
-  "email": "frenchelectrolove@gmail.com",
+  "email": "fardeau.geoffrey@gmail.com",
   "password": "Password123!"
 }
 
-Delete user
-DELETE http://localhost:3000/api/user/33
-
-Login
+### ? Login
 POST http://localhost:3000/api/login
 Content-Type: application/json
 
@@ -43,56 +42,91 @@ Content-Type: application/json
   "password": "Password123!"
 }
 
-Get User with event
-GET http://localhost:3000/api/user/1/events
+######### ! ############################# 
 
-Get User With Event and UserChoice
-GET http://localhost:3000/api/user/1/events/choices
-
-
-##################################!
 #! EVENTS
-##################################!
 
+######### ! ############################# 
 
-Get
+### ? Get 
 GET http://localhost:3000/api/event/
 
-Update Event
-PATCH http://localhost:3000/api/event/1
+### ? Update Event
+PATCH http://localhost:3001/api/event/21
 Content-Type: application/json
 
 {
+    
   "name": "jean rachid",
   "ownerId": 5,
   "status" : true,
   "description": "super event !!!",
-  "picture": "http://www.google.fr/",
-  "linkProject": "http://www.google.fr/",
+  "picture": "http://www.google.fr",
+  "linkProject": "http://www.google.fr",
+
 }
 
-Delete Event
+### ? Delete Event
 DELETE http://localhost:3000/api/event/1
 
-Post Event
+### ? Post to Create Event
 POST http://localhost:3000/api/event
 Content-Type: application/json
 
 {
-  "name": "zouzou",
-  "password": "zouzouzou",
+    
+  "name": "Vive macron !!!!",
   "ownerId": 5,
   "status" : true,
   "description": "super event !!!",
-  "picture": "http://www.google.fr/",
-  "linkProject": "http://www.google.fr/"
+  "picture": "http://www.google.fr",
+  "linkProject": "http://www.google.fr"
+
 }
 
-##################################!
-#! USERCHOICE
-##################################!
+############ ! ############################# 
 
-Post UserChoice
+#! USER EVENT GESTION AND INVITATION 
+
+############ ! ############################# 
+
+### ? Post user invitation
+POST http://localhost:3001/api/invitelink/
+Content-Type: application/json
+
+{
+  "email": "fardeau.geoffrey@gmail.com",
+  "eventId": "37"
+}
+
+### ? Post event passs
+POST http://localhost:3001/api/joinevent/
+Content-Type: application/json
+
+{
+  "email": "fardeau.geoffrey@gmail.com",
+  "password": "7x5lx"
+}
+
+######### ! ############################# 
+
+#! USER AND EVENT AND USER CHOICE
+
+######### ! ############################# 
+
+### ? Get User with event
+GET http://localhost:3000/api/user/1/events
+
+### ? Get User With Event and UserChoice
+GET http://localhost:3000/api/user/1/events/choices
+
+######### ! ############################# 
+
+#! USERCHOICE
+
+######### ! ############################# 
+
+### ? Post UserChoice
 POST http://localhost:3000/api/userchoice
 Content-Type: application/json
 
@@ -103,14 +137,83 @@ Content-Type: application/json
   "userId": 1
 }
 
-Get UserChoice by id
+### ? Get UserChoice by id
 GET http://localhost:3000/api/userchoice/1
 
-Get all user choices
-GET http
+### ? Get all user choices
+GET http://localhost:3000/api/userchoice
+
+
+### ? Update userchoice
+PATCH http://localhost:3000/api/userchoice/1
+Content-Type: application/json
+
+{
+    
+  "startDate": "2023-10-25 15:30:00+03:00",
+  "endDate": "2023-10-25 15:30:00+03:00",
+  "eventId": 1,
+  "userId": 1
+
+}
+
+### ? Delete userchoice
+DELETE http://localhost:3000/api/userchoice/4
+
+### ? Delete user
+DELETE http://localhost:3000/api/user/33
+
+######### ! ############################# 
+
+#! THEME
+
+######### ! ############################# 
+
+### ? Get Theme
+GET http://localhost:3000/api/theme
+
+### ? GetThemeById
+GET http://localhost:3000/api/theme/1
+
+### ? Delete Theme
+DELETE http://localhost:3000/api/theme/5
+
+### ? Post Theme
+POST http://localhost:3000/api/theme
+Content-Type: application/json
+
+{
+  "name": "Camping",
+  "theme_id": 2
+}
+
+######### ! ############################# 
+
+# ! Event Date
+
+######### ! #############################
+
+### ? Get all eventDate 
+GET http://localhost:3000/api/eventDate
+
+### ? Post createEventDate
+POST http://localhost:3000/api/eventDate
+Content-Type: application/json
+
+{
+  "start_date": "2023-12-27 15:30:00+03:00",
+  "end_date": "2023-11-28 15:30:00+03:00",
+  "event_id": 1
+}
+
+### ? Get eventDate by id
+GET http://localhost:3000/api/eventDate/1
+
+### ? Get eventDate by eventId
+GET http://localhost:3000/api/eventDate/event/3
 
 ### ? Update eventDate
-PATCH http://localhost:3001/api/eventDate/25
+PATCH http://localhost:3000/api/eventDate/25
 Content-Type: application/json
 
 {
@@ -118,3 +221,9 @@ Content-Type: application/json
   "end_date": "2023-12-28 20:30:00+03:00",
   "event_id": 1
 }
+
+### ? Delete eventDate
+DELETE http://localhost:3000/api/eventDate/1
+
+### ? Get eventDate with eventId by eventDateId
+GET http://localhost:3000/api/eventDate/3/event

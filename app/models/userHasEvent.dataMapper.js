@@ -6,11 +6,15 @@ export default {
     const values = [userId, eventId];
     const result = await client.query(query, values);
     return result.rows[0];
-
   },
 
   async verifyUserInEvent(userId, eventId) {
     const result = await client.query('SELECT * FROM user_has_event WHERE user_id = $1 AND event_id = $2', [userId, eventId]);
     return result.rows[0];
-  }
+  },
+
+  async deleteUserFromEvent(userId, eventId) {
+    const result = await client.query('DELETE FROM user_has_event WHERE user_id = $1 AND event_id = $2', [userId, eventId]);
+    return result.rows[0];
+  },
 };
