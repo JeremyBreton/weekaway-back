@@ -1,5 +1,6 @@
 import { Strategy as LocalStrategy } from 'passport-local';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import authDataMapper from '../models/auth.dataMapper.js';
 
 const isValidEmail = (email) => {
@@ -25,6 +26,18 @@ export default function (passport) {
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (isMatch) {
+          const userForToken = {
+            id: user.id,
+            email: user.email,
+            firstname: user.firstname,
+          };
+
+          const token = jwt.sign(userForToken, process.env.JWT_SECRET, {
+            expiresIn: '1d',
+          });
+
+          user.token = token;
+
           return done(null, user);
         }
 
