@@ -2,8 +2,6 @@ import { Router } from 'express';
 import userChoiceController from '../controllers/userChoice.controller.js';
 import validation from '../middlewares/validation.middleware.js';
 import * as schemaPost from '../schemas/app.post.schema.js';
-// eslint-disable-next-line no-unused-vars
-import schemaGet from '../schemas/app.get.schema.js';
 import controllerWrapper from '../middlewares/controller.wrapper.js';
 
 const userChoiceRouter = Router();
