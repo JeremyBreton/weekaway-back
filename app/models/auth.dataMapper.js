@@ -1,6 +1,7 @@
 import client from './client.js';
 
 export default {
+ 
 
   //! INSCRIPTION
   async registerUser(user) {

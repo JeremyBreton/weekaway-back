@@ -1,6 +1,15 @@
 import datamapper from '../models/event.dataMapper.js';
 import randomId from '../services/randomId.services.js';
 
+/**
+   * @typedef {object} EventInput
+   * @property {string} name
+   * @property {integer} ownerId
+   * @property {boolean} status
+   * @property {string} description
+   * @property {string} linkProject
+  */
+
 export default {
   async findAllEvents(req, res) {
     const events = await datamapper.findAllEvents();

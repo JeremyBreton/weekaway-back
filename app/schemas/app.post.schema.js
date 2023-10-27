@@ -39,7 +39,7 @@ const userChoiceSchema = Joi.object({
 
 const themeSchema = Joi.object({
   name: Joi.string().min(1).max(255).required(),
-  theme_id: Joi.number().integer().positive().required(),
+  event_id: Joi.number().integer().positive().required(),
 });
 
 const UserGestionSchema = Joi.object({

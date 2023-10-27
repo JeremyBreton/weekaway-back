@@ -1,4 +1,9 @@
 import datamapper from '../models/theme.dataMapper.js';
+/**
+   * @typedef {object} Theme
+   * @property {string} name
+   * @property {integer} theme_id
+  */
 
 export default {
   async findAllTheme(req, res) {

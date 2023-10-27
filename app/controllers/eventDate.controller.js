@@ -1,5 +1,13 @@
 import eventDateDataMapper from '../models/eventDate.dataMapper.js';
 
+/**
+   * @typedef {object} EventDate
+   * @property {integer} event_id
+   * @property {timestamp} start_date
+   * @property {timestamp} end_date
+
+  */
+
 export default {
   async getAllEventDates(req, res) {
     const eventDates = await eventDateDataMapper.getAllEventDates();

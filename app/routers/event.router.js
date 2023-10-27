@@ -7,84 +7,29 @@ import controllerWrapper from '../middlewares/controller.wrapper.js';
 
 const eventRouter = Router();
 
-/**
- * @swagger
- * /api/event:
- *   post:
- *     summary: Create a new event
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/eventSchema'
- *     responses:
- *       200:
- *         description: Event created successfully
-
- *   get:
- *     summary: Get all events
- *     responses:
- *       200:
- *         description: List of all events
- */
 eventRouter.route('/api/event')
   .post(
     validation(schemaPost.eventSchema, 'body'),
     controllerWrapper(eventController.createEvent),
 
   )
+  /**
+   * POST /api/event
+   * @summary Register a new event
+   * @tags Event
+   * @param {EventInput} request.body.required - event infos
+   * - object with different personnailzed sentence parts
+
+   */
   .get(
     controllerWrapper(eventController.findAllEvents),
   );
-
 /**
- * @swagger
- * /api/event/{id}:
- *   get:
- *     summary: Get an event by ID
- *     parameters:
- *       - in: query
- *         name: id
- *         required: true
- *         description: Event ID
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: Event details
-
- *   patch:
- *     summary: Update an event by ID
- *     parameters:
- *       - in: query
- *         name: id
- *         required: true
- *         description: Event ID
- *         schema:
- *           type: string
- *       - in: body
- *         name: event
- *         description: Event data to update
- *         schema:
- *           $ref: '#/components/schemas/eventSchema'
- *     responses:
- *       200:
- *         description: Event updated
-
- *   delete:
- *     summary: Delete an event by ID
- *     parameters:
- *       - in: query
- *         name: id
- *         required: true
- *         description: Event ID to delete
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: Event deleted
+   * GET /api/event/
+   * @summary Get all events
+   * @tags Event
  */
+
 eventRouter.route('/api/event/:id')
   .get(
 
@@ -92,15 +37,34 @@ eventRouter.route('/api/event/:id')
 
     controllerWrapper(eventController.findEventById),
   )
+  /**
+   * GET /api/event/:id
+   * @summary Get an evet by id
+   * @tags Event
+ */
 
   .patch(
     validation(schemaPost.eventSchema, 'body'),
 
     controllerWrapper(eventController.updateEvent),
   )
+/**
+   * PATCH /api/event/:id
+   * @summary Modify event infos
+   * @tags Event
+   * @param {EventInput} request.body.required - event infos
+   * - object with different personnailzed sentence parts
+
+   */
   .delete(
     controllerWrapper(eventController.deleteEvent),
 
   );
+
+/**
+   * DELETE /api/event/:id
+   * @summary Delete an event by id
+   * @tags Event
+ */
 
 export default eventRouter;

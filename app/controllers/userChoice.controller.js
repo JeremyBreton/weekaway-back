@@ -1,5 +1,13 @@
 import datamapper from '../models/userChoice.dataMapper.js';
 
+/**
+   * @typedef {object} UserChoice
+   * @property {timestamp} startDate
+   * @property {timestamp} endDate
+   * @property {integer} eventId
+   * @property {integer} userId
+  */
+
 export default {
   async getAllUsersChoices(req, res) {
     const userChoices = await datamapper.getAllUsersChoices();

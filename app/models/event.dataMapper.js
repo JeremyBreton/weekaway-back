@@ -81,5 +81,5 @@ export default {
       [password],
     );
     return result.rows[0];
-  }
+  },
 };
