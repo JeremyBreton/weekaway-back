@@ -11,8 +11,6 @@ const isValidEmail = (email) => {
 
 export default {
 
-  //! CONNEXION
-
   login(req, res, next) {
     return passport.authenticate('local', (err, user, info) => {
       if (err) {
@@ -28,23 +26,26 @@ export default {
           return next(error);
         }
 
-        return res.status(200).json({
-          message: 'Connexion réussie!',
-          firstname: user.firstname,
-          token: user.token,
-          logged: true,
-        });
+        return res.status(200)
+          .cookie('jwt', user.token, {
+            httpOnly: true,
+            maxAge: 24 * 60 * 60 * 1000, // 1 jour
+          })
+          .json({
+            message: 'Connexion réussie!',
+            firstname: user.firstname,
+            logged: true,
+            token: user.token,
+          });
       });
     })(req, res, next);
   },
 
-  //! DISCONNEXION
   logout(req, res) {
     req.logout();
-    res.redirect('/login');
+    res.clearCookie('jwt').redirect('/login');
   },
 
-  //! REGISTRATION
   async register(req, res) {
     if (!isValidEmail(req.body.email)) {
       return res.status(400).json({ message: 'Adresse mail incorrecte.' });
@@ -70,19 +71,20 @@ export default {
         expiresIn: '1d',
       });
 
-      return res.status(201).json({
-        message: 'Inscription réussie!',
-        firstname: registeredUser.firstname,
-        token,
-        logged: true,
-      });
-
-      mailService.sendMail(newUser);
-      return res.status(201).json({ message: 'Inscription réussie!' });
+      return res.status(201)
+        .cookie('jwt', token, {
+          httpOnly: true,
+          maxAge: 24 * 60 * 60 * 1000, // 1 jour
+        })
+        .json({
+          message: 'Inscription réussie!',
+          firstname: registeredUser.firstname,
+          logged: true,
+        });
     }
     return res.status(500).json({ message: 'Erreur lors de l’inscription.', logged: false });
   },
-  //! FIND ALL USERS
+
   async findAllUsers(req, res) {
     const users = await authDataMapper.findAllUsers();
 

@@ -1,6 +1,3 @@
-/*
-Désormais l'index.js ne servira qu'a implémenter le serveur web
- */
 import './app/helpers/env.load.js';
 import { createServer } from 'node:http';
 // L'application sera récupérer en tant que module
