@@ -2,10 +2,10 @@ import datamapper from '../models/userChoice.dataMapper.js';
 
 /**
    * @typedef {object} UserChoice
-   * @property {string} startDate
-   * @property {string} endDate
-   * @property {string} eventId
-   * @property {string} userId
+   * @property {timestamp} startDate
+   * @property {timestamp} endDate
+   * @property {integer} eventId
+   * @property {integer} userId
   */
 
 export default {
