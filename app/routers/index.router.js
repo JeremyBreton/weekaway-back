@@ -5,16 +5,16 @@ import eventRouter from './event.router.js';
 import themeRouter from './theme.router.js';
 import userRouter from './user.router.js';
 import userChoiceRouter from './userChoice.router.js';
-import eventDateRouter from './eventDate.router.js'; 
+import eventDateRouter from './eventDate.router.js';
 import NotFoundError from '../errors/notfound.error.js';
 import errorHandler from '../middlewares/error.middleware.js';
 import logger from '../helpers/logger.js';
 import eventLinkRouter from './eventLink.router.js';
+
 /**
  * @typedef {object} ResponseError response error
  * @property {string} error the error string
  */
-
 const mainRouter = Router();
 
 mainRouter.use((req, _, next) => {
