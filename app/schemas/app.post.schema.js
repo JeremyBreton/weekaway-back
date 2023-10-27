@@ -23,7 +23,6 @@ const eventSchema = Joi.object({
   description: Joi.string().required(),
   picture: Joi.string().required(),
   linkProject: Joi.string().required(),
-  password: Joi.string().required(),
 });
 
 const loginSchema = Joi.object({
@@ -57,7 +56,18 @@ const UserGestionSchema = Joi.object({
   profile_desc: Joi.string().max(500).allow(null, ''),
 });
 
-export {
-  registerSchema, loginSchema, eventSchema, themeSchema, userChoiceSchema, UserGestionSchema,
+const eventDateSchema = Joi.object({
+  event_id: Joi.number().integer().positive().required(),
+  start_date: Joi.date().required(),
+  end_date: Joi.date().required(),
+});
 
+export {
+  registerSchema,
+  loginSchema,
+  eventSchema,
+  themeSchema,
+  userChoiceSchema,
+  UserGestionSchema,
+  eventDateSchema,
 };

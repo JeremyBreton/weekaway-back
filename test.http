@@ -2,13 +2,13 @@
 #! USERS
 ##################################!
 
-### Get all users
+Get all users
 GET http://localhost:3000/api/users/
 
-### Get user by id
+Get user by id
 GET http://localhost:3000/api/user/1
 
-### Update user
+Update user
 PATCH http://localhost:3000/api/user/1
 Content-Type: application/json
 
@@ -20,7 +20,7 @@ Content-Type: application/json
   "profile_picture": "https://resize.elle.fr/square/var/plain_site/storage/images/minceur/astuces-minceur/comment-avoir-des-fesses-de-reve-3896751/94237773-2-fre-FR/Avec-ou-sans-chirurgie-les-astuces-pour-des-fesses-de-reve.jpg"
 }
 
-### Post User
+Post User
 POST http://localhost:3000/api/register
 Content-Type: application/json
 
@@ -31,10 +31,10 @@ Content-Type: application/json
   "password": "Password123!"
 }
 
-### Delete user
+Delete user
 DELETE http://localhost:3000/api/user/33
 
-### Login
+Login
 POST http://localhost:3000/api/login
 Content-Type: application/json
 
@@ -43,10 +43,10 @@ Content-Type: application/json
   "password": "Password123!"
 }
 
-### Get User with event
+Get User with event
 GET http://localhost:3000/api/user/1/events
 
-### Get User With Event and UserChoice
+Get User With Event and UserChoice
 GET http://localhost:3000/api/user/1/events/choices
 
 
@@ -55,10 +55,10 @@ GET http://localhost:3000/api/user/1/events/choices
 ##################################!
 
 
-### Get 
+Get
 GET http://localhost:3000/api/event/
 
-### Update Event
+Update Event
 PATCH http://localhost:3000/api/event/1
 Content-Type: application/json
 
@@ -67,15 +67,14 @@ Content-Type: application/json
   "ownerId": 5,
   "status" : true,
   "description": "super event !!!",
-  "picture": "http://www.google.fr",
-  "linkProject": "http://www.google.fr",
-  "password": "verge"
+  "picture": "http://www.google.fr/",
+  "linkProject": "http://www.google.fr/",
 }
 
-### Delete Event
+Delete Event
 DELETE http://localhost:3000/api/event/1
 
-### Post Event
+Post Event
 POST http://localhost:3000/api/event
 Content-Type: application/json
 
@@ -85,15 +84,15 @@ Content-Type: application/json
   "ownerId": 5,
   "status" : true,
   "description": "super event !!!",
-  "picture": "http://www.google.fr",
-  "linkProject": "http://www.google.fr"
+  "picture": "http://www.google.fr/",
+  "linkProject": "http://www.google.fr/"
 }
 
 ##################################!
 #! USERCHOICE
 ##################################!
 
-### Post UserChoice
+Post UserChoice
 POST http://localhost:3000/api/userchoice
 Content-Type: application/json
 
@@ -104,8 +103,8 @@ Content-Type: application/json
   "userId": 1
 }
 
-### Get UserChoice by id
+Get UserChoice by id
 GET http://localhost:3000/api/userchoice/1
 
-### Get all user choices
+Get all user choices
 GET http
