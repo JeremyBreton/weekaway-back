@@ -5,10 +5,13 @@ import session from 'express-session';
 import passport from 'passport';
 import router from './routers/index.router.js';
 import passportConfig from './middlewares/passportConfig.js';
+import userDocImplementation from './middlewares/swagger.doc.js';
 
 passportConfig(passport);
 
 const app = express();
+
+userDocImplementation(app);
 
 // CORS setup
 const corsOptions = {
