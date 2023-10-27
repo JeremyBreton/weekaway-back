@@ -14,4 +14,10 @@ eventLinkRouter.route('/api/invitelink')
 
   );
 
+eventLinkRouter.route('/api/joinevent')
+  .post(
+    controllerWrapper(eventLinkController.joinEvent),
+
+  );
+
 export default eventLinkRouter;

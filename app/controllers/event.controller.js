@@ -1,7 +1,6 @@
 import crypto from 'crypto';
 import datamapper from '../models/event.dataMapper.js';
 
-
 // Generate a random validation code
 function makeid(length) {
   let result = '';
@@ -53,6 +52,12 @@ export default {
   async deleteEvent(req, res) {
     const { id } = req.params;
     const event = await datamapper.deleteEvent(id);
+    res.json(event);
+  },
+
+  async findEventByPassword(req, res) {
+    const { password } = req.body;
+    const event = await datamapper.findEventByPassword(password);
     res.json(event);
   },
 };

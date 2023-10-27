@@ -13,7 +13,7 @@ GET http://localhost:3000/api/event/
 
 
 ### Update Event
-PATCH http://localhost:3000/api/event/1
+PATCH http://localhost:3001/api/event/21
 Content-Type: application/json
 
 {
@@ -24,7 +24,6 @@ Content-Type: application/json
   "description": "super event !!!",
   "picture": "http://www.google.fr",
   "linkProject": "http://www.google.fr",
-  "password": "verge"
 
 }
 
@@ -38,7 +37,7 @@ Content-Type: application/json
 
 {
     
-  "name": "Soirée alcoolisée et débauche",
+  "name": "Vive macron !!!!",
   "ownerId": 5,
   "status" : true,
   "description": "super event !!!",
@@ -50,13 +49,13 @@ Content-Type: application/json
 
 
 ### Post User
-POST http://localhost:3000/api/register
+POST http://localhost:3001/api/register
 Content-Type: application/json
 
 {
   "firstname": "Geoffrey",
   "lastname": "Fardeau",
-  "email": "frenchelectrolove@gmail.com",
+  "email": "fardeau.geoffrey@gmail.com",
   "password": "Password123!"
 }
 
@@ -144,3 +143,13 @@ Content-Type: application/json
   "email": "fardeau.geoffrey@gmail.com",
   "eventId": "37"
 }
+
+### Post event passs
+POST http://localhost:3001/api/joinevent/
+Content-Type: application/json
+
+{
+  "email": "fardeau.geoffrey@gmail.com",
+  "password": "7x5lx"
+}
+

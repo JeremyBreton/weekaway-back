@@ -50,4 +50,12 @@ export default {
     const result = await client.query('DELETE FROM event WHERE id=$1', [id]);
     return result.rows[0];
   },
+
+  async findEventByPassword(password) {
+    const result = await client.query(
+      'SELECT * FROM event WHERE password=$1',
+      [password],
+    );
+    return result.rows[0];
+  }
 };
