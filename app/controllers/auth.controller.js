@@ -48,6 +48,7 @@ export default {
           })
           .json({
             message: 'Connexion réussie!',
+            user_id: user.id,
             firstname: user.firstname,
             logged: true,
             token: user.token,
