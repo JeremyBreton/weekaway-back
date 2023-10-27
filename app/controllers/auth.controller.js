@@ -29,7 +29,8 @@ export default {
         return res.status(200)
           .cookie('jwt', user.token, {
             httpOnly: true,
-            maxAge: 24 * 60 * 60 * 1000, // 1 jour
+            //! secure / HTTPS à ajouté plus tard pour plus de sécurité
+            maxAge: 24 * 60 * 60 * 1000, //!  1 jour (à choisir selon les préférences)
           })
           .json({
             message: 'Connexion réussie!',
@@ -74,7 +75,7 @@ export default {
       return res.status(201)
         .cookie('jwt', token, {
           httpOnly: true,
-          maxAge: 24 * 60 * 60 * 1000, // 1 jour
+          maxAge: 24 * 60 * 60 * 1000, //!  1 jour (à choisir selon les préférences)
         })
         .json({
           message: 'Inscription réussie!',
