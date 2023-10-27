@@ -42,8 +42,8 @@ Content-Type: application/json
 DELETE http://localhost:3000/api/event/1
 
 
-### Post Event
-POST http://localhost:3001/api/event
+### Post to Create Event
+POST http://localhost:3000/api/event
 Content-Type: application/json
 
 {

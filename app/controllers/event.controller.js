@@ -1,18 +1,5 @@
-import crypto from 'crypto';
 import datamapper from '../models/event.dataMapper.js';
-
-// Generate a random validation code
-function makeid(length) {
-  let result = '';
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  const charactersLength = characters.length;
-  let counter = 0;
-  while (counter < length) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    counter += 1;
-  }
-  return result;
-}
+import randomId from '../services/randomId.services.js';
 
 export default {
   async findAllEvents(req, res) {
@@ -27,7 +14,7 @@ export default {
   },
 
   async createEvent(req, res) {
-    const password = makeid(5);
+    const password = randomId.makeId(5);
     const {
       name, ownerId, status, description, picture, linkProject,
     } = req.body;
