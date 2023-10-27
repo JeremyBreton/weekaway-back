@@ -9,6 +9,20 @@ const isValidEmail = (email) => {
   return regex.test(email);
 };
 
+/**
+   * @typedef {object} UserInput
+   * @property {string} firstname
+   * @property {string} lastname
+   * @property {string} email
+   * @property {string} password
+  */
+
+/**
+   * @typedef {object} UserInputLogin
+   * @property {string} email
+   * @property {string} password
+  */
+
 export default {
 
   //! CONNEXION

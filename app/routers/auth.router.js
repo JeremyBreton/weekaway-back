@@ -3,46 +3,30 @@ import authController from '../controllers/auth.controller.js';
 import validation from '../middlewares/validation.middleware.js';
 import * as schemaPost from '../schemas/app.post.schema.js';
 import controllerWrapper from '../middlewares/controller.wrapper.js';
+/**
+ * @typedef {object} ResponseError response error
+ * @property {string} error the error string
+ */
 
 const authRouter = Router();
 
-/**
- * @swagger
- * /api/login:
- *   post:
- *     summary: Authenticate a user
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/loginSchema'
- *     responses:
- *       200:
- *         description: User authenticated successfully
- */
 authRouter.post(
   '/api/login',
   validation(schemaPost.loginSchema, 'body'),
   controllerWrapper(authController.login),
 
 );
-
 /**
- * @swagger
- * /api/register:
- *   post:
- *     summary: Register a new user
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/registerSchema'
- *     responses:
- *       200:
- *         description: User registered successfully
- */
+
+POST /api/login
+@summary Post login infos to authenticate user
+@tags Auth
+@param {string} email - email of the user
+@param {string} password - password of the user
+* @param {UserInputLogin} request.body.required - user infos
+
+*/
+
 authRouter.post(
   '/api/register',
   validation(schemaPost.registerSchema, 'body'),
@@ -50,14 +34,18 @@ authRouter.post(
 );
 
 /**
- * @swagger
- * /api/logout:
- *   post:
- *     summary: Logout the currently authenticated user
- *     responses:
- *       200:
- *         description: User logged out successfully
- */
-authRouter.route('/api/logout');
+   * POST /api/register
+   * @summary Register a new user
+   * @tags Auth
+   * @param {UserInput} request.body.required - user infos
+   * - object with different personnailzed sentence parts
 
+   */
+
+authRouter.route('/api/logout');
+/**
+   * GET /api/logout
+   * @summary disconnect an user
+   * @tags Auth
+ */
 export default authRouter;

@@ -7,92 +7,29 @@ import controllerWrapper from '../middlewares/controller.wrapper.js';
 
 const themeRouter = Router();
 
-/**
- * @swagger
- * /api/theme:
- *   post:
- *     summary: Create a new theme
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/themeSchema'
- *     responses:
- *       200:
- *         description: Theme created successfully
-
- *   get:
- *     summary: Get all themes
- *     parameters:
- *       - in: query
- *         name: id
- *         required: false
- *         description: Optional theme ID for filtering
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: List of all themes
- */
 themeRouter.route('/api/theme')
   .post(
     validation(schemaPost.themeSchema, 'body'),
     controllerWrapper(themeController.createTheme),
-
   )
+  /**
+   * POST /api/theme
+   * @summary add a theme
+   * @tags Theme
+   * @param {Theme} request.body.required
+   *
+
+   */
   .get(
     validation(schemaGet, 'query'),
     controllerWrapper(themeController.findAllTheme),
   );
-
 /**
- * @swagger
- * /api/theme/{id}:
- *   get:
- *     summary: Get a theme by ID
- *     parameters:
- *       - in: query
- *         name: id
- *         required: true
- *         description: Theme ID
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: Theme details
-
- *   patch:
- *     summary: Update a theme by ID
- *     parameters:
- *       - in: query
- *         name: id
- *         required: true
- *         description: Theme ID
- *         schema:
- *           type: string
- *       - in: body
- *         name: theme
- *         description: Theme data to update
- *         schema:
- *           $ref: '#/components/schemas/themeSchema'
- *     responses:
- *       200:
- *         description: Theme updated
-
- *   delete:
- *     summary: Delete a theme by ID
- *     parameters:
- *       - in: query
- *         name: id
- *         required: true
- *         description: Theme ID to delete
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: Theme deleted
+   * GET /api/theme
+   * @summary Get all themes
+   * @tags Theme
  */
+
 themeRouter.route('/api/theme/:id')
 // theme par id
   .get(
@@ -101,15 +38,34 @@ themeRouter.route('/api/theme/:id')
 
     controllerWrapper(themeController.findThemeById),
   )
+/**
+   * GET /api/theme/:id
+   * @summary Get a theme by his id
+   * @tags Theme
+ */
 
   .patch(
     validation(schemaPost.themeSchema, 'body'),
 
     controllerWrapper(themeController.updateTheme),
   )
+/**
+   * PATCH /api/theme/:id
+   * @summary modify a theme
+   * @tags Theme
+   * @param {Theme} request.body.required
+   *
+
+   */
   .delete(
     controllerWrapper(themeController.deleteTheme),
 
   );
+/**
+   * DELETE /api/theme/:id
+   * @summary Delete theme by id
+   * @tags Theme
+
+   */
 
 export default themeRouter;

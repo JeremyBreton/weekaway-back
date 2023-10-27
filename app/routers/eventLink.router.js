@@ -9,11 +9,28 @@ eventLinkRouter.route('/api/invitelink')
     controllerWrapper(eventLinkController.createInviteLink),
 
   );
+/**
+   * POST /api/inviteLink
+   * @summary Send an event invite link to a user
+   * @tags EventInvitation
+   * @param {createEventLink} request.body.required - event infos
+   * - Email = the email of the user to invite
 
-eventLinkRouter.route('/api/joinevent')
+   */
+
+eventLinkRouter.route('/api/joinEvent')
   .post(
     controllerWrapper(eventLinkController.joinEvent),
 
   );
+
+/**
+   * POST /api/joinEvent
+   * @summary Join an event with a password
+   * @tags EventInvitation
+   * @param {joinEvent} request.body.required - event infos
+   * - Email = the email of the user to add into the event
+
+   */
 
 export default eventLinkRouter;

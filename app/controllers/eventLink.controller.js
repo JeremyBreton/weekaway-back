@@ -3,6 +3,18 @@ import eventDatamapper from '../models/event.dataMapper.js';
 import mailService from '../services/mailer/inviteLink.mailer.js';
 import userHasEventDataMapper from '../models/userHasEvent.dataMapper.js';
 
+/**
+   * @typedef {object} createEventLink
+   * @property {integer} eventId
+   * @property {string} email
+  */
+
+/**
+   * @typedef {object} joinEvent
+   * @property {string} password
+   * @property {string} email
+  */
+
 export default {
 
   async createInviteLink(req, res) {

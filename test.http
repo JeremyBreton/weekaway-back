@@ -108,3 +108,13 @@ GET http://localhost:3000/api/userchoice/1
 
 Get all user choices
 GET http
+
+### ? Update eventDate
+PATCH http://localhost:3001/api/eventDate/25
+Content-Type: application/json
+
+{
+  "start_date": "2023-11-27 20:30:00+03:00",
+  "end_date": "2023-12-28 20:30:00+03:00",
+  "event_id": 1
+}
