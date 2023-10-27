@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import session from 'express-session';
 import passport from 'passport';
+import cookieParser from 'cookie-parser';
 import router from './routers/index.router.js';
 import passportConfig from './middlewares/passportConfig.js';
 import userDocImplementation from './middlewares/swagger.doc.js';
@@ -15,9 +16,14 @@ userDocImplementation(app);
 
 // CORS setup
 const corsOptions = {
-  origin: process.env.CORS_DOMAINS || '*',
+  origin: (origin, callback) => {
+    callback(null, true);
+  },
+  credentials: true,
 };
+
 app.use(cors(corsOptions));
+app.use(cookieParser());
 
 // middleaware pour récupérer un body au format JSON
 app.use(express.json());
