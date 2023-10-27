@@ -5,6 +5,7 @@ import eventRouter from './event.router.js';
 import themeRouter from './theme.router.js';
 import userRouter from './user.router.js';
 import userChoiceRouter from './userChoice.router.js';
+import eventDateRouter from './eventDate.router.js'; 
 import NotFoundError from '../errors/notfound.error.js';
 import errorHandler from '../middlewares/error.middleware.js';
 import logger from '../helpers/logger.js';
@@ -30,6 +31,7 @@ mainRouter.use(eventRouter);
 mainRouter.use(userRouter);
 mainRouter.use(userChoiceRouter);
 mainRouter.use(themeRouter);
+mainRouter.use(eventDateRouter);
 mainRouter.use(eventLinkRouter);
 mainRouter.use((_, __, next) => {
   next(new NotFoundError('404 not found'));
