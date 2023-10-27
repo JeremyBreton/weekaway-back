@@ -8,7 +8,7 @@ import userChoiceRouter from './userChoice.router.js';
 import NotFoundError from '../errors/notfound.error.js';
 import errorHandler from '../middlewares/error.middleware.js';
 import logger from '../helpers/logger.js';
-
+import eventLinkRouter from './eventLink.router.js';
 /**
  * @typedef {object} ResponseError response error
  * @property {string} error the error string
@@ -30,6 +30,7 @@ mainRouter.use(eventRouter);
 mainRouter.use(userRouter);
 mainRouter.use(userChoiceRouter);
 mainRouter.use(themeRouter);
+mainRouter.use(eventLinkRouter);
 mainRouter.use((_, __, next) => {
   next(new NotFoundError('404 not found'));
 });
