@@ -15,11 +15,11 @@ PATCH http://localhost:3000/api/user/1
 Content-Type: application/json
 
 {
-  “email”: “fesses@gmouilledessous.fr”,
-  “firstname”: “Jean yves la fesse”,
-  “lastname”: “Monfrèèèrrreeee”,
-  “password”: “Password25852!“,
-  “profile_picture”: “https://resize.elle.fr/square/var/plain_site/storage/images/minceur/astuces-minceur/comment-avoir-des-fesses-de-reve-3896751/94237773-2-fre-FR/Avec-ou-sans-chirurgie-les-astuces-pour-des-fesses-de-reve.jpg”
+  "email": "fesses@gmouilledessous.fr",
+  "firstname": "Jean yves la fesse",
+  "lastname": "Monfrèèèrrreeee",
+  "password": "Password25852!",
+  "profile_picture": "https://resize.elle.fr/square/var/plain_site/storage/images/minceur/astuces-minceur/comment-avoir-des-fesses-de-reve-3896751/94237773-2-fre-FR/Avec-ou-sans-chirurgie-les-astuces-pour-des-fesses-de-reve.jpg"
 }
 
 ### ? Post User
@@ -27,10 +27,10 @@ POST http://localhost:3001/api/register
 Content-Type: application/json
 
 {
-  “firstname”: “Geoffrey”,
-  “lastname”: “Fardeau”,
-  “email”: “fardeau.geoffrey@gmail.com”,
-  “password”: “Password123!”
+  "firstname": "Geoffrey",
+  "lastname": "Fardeau",
+  "email": "fardeau.geoffrey@gmail.com",
+  "password": "Password123!"
 }
 
 ### ? Login
@@ -38,8 +38,8 @@ POST http://localhost:3000/api/login
 Content-Type: application/json
 
 {
-  “email”: “test@test.fr”,
-  “password”: “Password123!”
+  "email": "test@test.fr",
+  "password": "Password123!"
 }
 
 ######### ! ############################# 
@@ -57,12 +57,12 @@ Content-Type: application/json
 
 {
     
-  “name”: “jean rachid”,
-  “ownerId”: 5,
-  “status” : true,
-  “description”: “super event !!!“,
-  “picture”: “http://www.google.fr”,
-  “linkProject”: “http://www.google.fr”,
+  "name": "jean rachid",
+  "ownerId": 5,
+  "status" : true,
+  "description": "super event !!!",
+  "picture": "http://www.google.fr",
+  "linkProject": "http://www.google.fr",
 
 }
 
@@ -75,12 +75,12 @@ Content-Type: application/json
 
 {
     
-  “name”: “Vive macron !!!!“,
-  “ownerId”: 5,
-  “status” : true,
-  “description”: “super event !!!“,
-  “picture”: “http://www.google.fr”,
-  “linkProject”: “http://www.google.fr”
+  "name": "Vive macron !!!!",
+  "ownerId": 5,
+  "status" : true,
+  "description": "super event !!!",
+  "picture": "http://www.google.fr",
+  "linkProject": "http://www.google.fr"
 
 }
 
@@ -95,8 +95,8 @@ POST http://localhost:3001/api/invitelink/
 Content-Type: application/json
 
 {
-  “email”: “fardeau.geoffrey@gmail.com”,
-  “eventId”: “37"
+  "email": "fardeau.geoffrey@gmail.com",
+  "eventId": "37"
 }
 
 ### ? Post event passs
@@ -104,8 +104,8 @@ POST http://localhost:3001/api/joinevent/
 Content-Type: application/json
 
 {
-  “email”: “fardeau.geoffrey@gmail.com”,
-  “password”: “7x5lx”
+  "email": "fardeau.geoffrey@gmail.com",
+  "password": "7x5lx"
 }
 
 ######### ! ############################# 
@@ -131,10 +131,10 @@ POST http://localhost:3000/api/userchoice
 Content-Type: application/json
 
 {
-  “startDate”: “2023-12-27 15:30:00+03:00",
-  “endDate”: “2023-11-28 15:30:00+03:00",
-  “eventId”: 1,
-  “userId”: 1
+  "startDate": "2023-12-27 15:30:00+03:00",
+  "endDate": "2023-11-28 15:30:00+03:00",
+  "eventId": 1,
+  "userId": 1
 }
 
 ### ? Get UserChoice by id
@@ -150,10 +150,10 @@ Content-Type: application/json
 
 {
     
-  “startDate”: “2023-10-25 15:30:00+03:00",
-  “endDate”: “2023-10-25 15:30:00+03:00",
-  “eventId”: 1,
-  “userId”: 1
+  "startDate": "2023-10-25 15:30:00+03:00",
+  "endDate": "2023-10-25 15:30:00+03:00",
+  "eventId": 1,
+  "userId": 1
 
 }
 
@@ -183,8 +183,8 @@ POST http://localhost:3000/api/theme
 Content-Type: application/json
 
 {
-  “name”: “Camping”,
-  “theme_id”: 2
+  "name": "Camping",
+  "theme_id": 2
 }
 
 ######### ! ############################# 
@@ -201,9 +201,9 @@ POST http://localhost:3000/api/eventDate
 Content-Type: application/json
 
 {
-  “start_date”: “2023-12-27 15:30:00+03:00”,
-  “end_date”: “2023-11-28 15:30:00+03:00”,
-  “event_id”: 1
+  "start_date": "2023-12-27 15:30:00+03:00",
+  "end_date": "2023-11-28 15:30:00+03:00",
+  "event_id": 1
 }
 
 ### ? Get eventDate by id
@@ -217,13 +217,13 @@ PATCH http://localhost:3000/api/eventDate/25
 Content-Type: application/json
 
 {
-  “start_date”: “2023-11-27 20:30:00+03:00",
-  “end_date”: “2023-12-28 20:30:00+03:00",
-  “event_id”: 1
+  "start_date": "2023-11-27 20:30:00+03:00",
+  "end_date": "2023-12-28 20:30:00+03:00",
+  "event_id": 1
 }
 
-### Delete eventDate
+### ? Delete eventDate
 DELETE http://localhost:3000/api/eventDate/1
 
-### Get eventDate with eventId by eventDateId
+### ? Get eventDate with eventId by eventDateId
 GET http://localhost:3000/api/eventDate/3/event
