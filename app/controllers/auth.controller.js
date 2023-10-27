@@ -81,6 +81,7 @@ export default {
           message: 'Inscription réussie!',
           firstname: registeredUser.firstname,
           logged: true,
+          tokeb: token,
         });
     }
     return res.status(500).json({ message: 'Erreur lors de l’inscription.', logged: false });
