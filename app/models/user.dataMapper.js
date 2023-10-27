@@ -48,10 +48,28 @@ export default {
 
   async getUserWithEvents(id) {
     const result = await client.query(
-      `SELECT * FROM "user" 
-      INNER JOIN user_has_event ON "user".id = user_has_event.user_id
-      INNER JOIN event ON user_has_event.event_id = event.id  
-      WHERE "user".id = $1`,
+      `SELECT
+        "user_has_event".user_id,
+        JSONB_AGG(
+            JSONB_BUILD_OBJECT(
+                'eventId', "user_has_event".event_id,
+                'name', "event".name,
+                'owner_id', "event".owner_id,
+                'status', "event".status,
+                'description', "event".description,
+                'picture', "event".picture,
+                'link_project', "event".link_project
+        ) ORDER BY "user_has_event".event_id
+      ) AS event
+      FROM
+        "user"
+      JOIN "user_has_event" ON "user".id = "user_has_event".user_id
+      JOIN "event" ON "user_has_event".event_id = "event".id
+      WHERE
+            "user".id = $1
+      GROUP BY
+            "user_has_event".user_id;
+        `,
       [id],
     );
     return result.rows;
@@ -59,11 +77,42 @@ export default {
 
   async getUserWithEventsAndUserChoices(id) {
     const result = await client.query(
-      `SELECT * FROM "user" 
-        INNER JOIN user_has_event ON "user".id = user_has_event.user_id 
-        INNER JOIN event ON user_has_event.event_id = event.id
-        INNER JOIN userchoice ON event.id = userchoice.event_id
-      WHERE "user".id = $1`,
+      `SELECT DISTINCT 
+        "user"."firstname",
+        "user"."lastname",
+        "user"."email",
+        "user"."address",
+        "user"."birth_date",
+        "user"."gender",
+        "user"."profile_picture",
+        "user"."profile_desc", 
+        "user_has_event".user_id,
+        JSONB_AGG(
+          JSONB_BUILD_OBJECT(
+            'eventId', "user_has_event".event_id,
+            'name', "event".name,
+            'owner_id', "event".owner_id,
+            'status', "event".status,
+            'description', "event".description,
+            'picture', "event".picture,
+            'link_project', "event".link_project,
+            'start_date_choice', "userchoice".start_date_choice,
+            'end_date_choice', "userchoice".end_date_choice
+        ) ORDER BY "user_has_event".event_id
+        ) AS eventAndChoice
+        FROM "user" 
+                INNER JOIN user_has_event ON "user".id = user_has_event.user_id 
+                INNER JOIN event ON user_has_event.event_id = event.id
+                INNER JOIN userchoice ON event.id = userchoice.event_id
+              WHERE "user".id = $1
+            GROUP BY "user"."firstname", "user"."lastname",
+        "user"."email",
+        "user"."address",
+        "user"."birth_date",
+        "user"."gender",
+        "user"."profile_picture",
+        "user"."profile_desc", 
+        "user_has_event".user_id`,
       [id],
     );
     return result.rows;
