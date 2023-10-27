@@ -117,4 +117,12 @@ export default {
     );
     return result.rows;
   },
+
+  async updateUserPic(id, path) {
+    const result = await client.query(
+      'UPDATE "user" SET profile_picture = $1 WHERE id = $2 RETURNING *',
+      [path, id],
+    );
+    return result.rows[0];
+  },
 };

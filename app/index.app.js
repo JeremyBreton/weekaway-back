@@ -13,6 +13,7 @@ passportConfig(passport);
 const app = express();
 
 userDocImplementation(app);
+app.use('/static', express.static('uploads'));
 
 // CORS setup
 const corsOptions = {
@@ -24,7 +25,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(cookieParser());
-
 // middleaware pour récupérer un body au format JSON
 app.use(express.json());
 // On peut donner la possibilité d'utiliser les 2 format dans la même app

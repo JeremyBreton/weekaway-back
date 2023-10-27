@@ -82,4 +82,12 @@ export default {
     );
     return result.rows[0];
   },
+
+  async modifyEventPicture(id, picture) {
+    const result = await client.query(
+      'UPDATE event SET picture=$1 WHERE id=$2 RETURNING *',
+      [picture, id],
+    );
+    return result.rows[0];
+  }
 };
