@@ -1,6 +1,11 @@
 import userDataMapper from '../models/user.dataMapper.js';
 import dataMapper from '../models/userHasEvent.dataMapper.js';
 
+/**
+   * @typedef {object} data
+   * @property {integer} event_id
+   * @property {integer} user_id
+  */
 export default {
   async deleteUserFromEvent(req, res) {
     const data = req.body;
