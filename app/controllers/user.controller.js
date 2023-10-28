@@ -1,6 +1,18 @@
 import bcrypt from 'bcrypt';
 import userDataMapper from '../models/user.dataMapper.js';
 
+/**
+   * @typedef {object} data
+   * @property {string} email
+   * @property {string} password
+   * @property {string} address
+   * @property {timestamptz} birth_date
+   * @property {string} firstname
+   * @property {string} lastname
+   * @property {string} gender
+   * @property {string} profile_picture
+   * @property {string} profile_desc
+  */
 export default {
   async getAllUsers(req, res) {
     const users = await userDataMapper.getAllUsers();

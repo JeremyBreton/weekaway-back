@@ -60,7 +60,7 @@ export default {
                 'picture', "event".picture,
                 'link_project', "event".link_project
         ) ORDER BY "user_has_event".event_id
-      ) AS event
+      ) AS events
       FROM
         "user"
       JOIN "user_has_event" ON "user".id = "user_has_event".user_id
@@ -72,7 +72,7 @@ export default {
         `,
       [id],
     );
-    return result.rows;
+    return result.rows[0];
   },
 
   async getUserWithEventsAndUserChoices(id) {
@@ -101,9 +101,9 @@ export default {
         ) ORDER BY "user_has_event".event_id
         ) AS eventAndChoice
         FROM "user" 
-                INNER JOIN user_has_event ON "user".id = user_has_event.user_id 
-                INNER JOIN event ON user_has_event.event_id = event.id
-                INNER JOIN userchoice ON event.id = userchoice.event_id
+                JOIN user_has_event ON "user".id = user_has_event.user_id 
+                JOIN event ON user_has_event.event_id = event.id
+                JOIN userchoice ON event.id = userchoice.event_id
               WHERE "user".id = $1
             GROUP BY "user"."firstname", "user"."lastname",
         "user"."email",
@@ -115,6 +115,6 @@ export default {
         "user_has_event".user_id`,
       [id],
     );
-    return result.rows;
+    return result.rows[0];
   },
 };
