@@ -78,7 +78,7 @@ Content-Type: application/json
 
 {
     
-  "name": "Anniv de Gregory Lemarchal",
+  "name": "Fete au morbier",
   "ownerId": 17,
   "status" : false,
   "description": "super event !!!",
@@ -106,7 +106,7 @@ POST http://caca-boudin.fr/api/joinevent/
 Content-Type: application/json
 
 {
-  "id": "test@testeur.fr",
+  "id": "1",
   "password": "6yZxD"
 }
 
