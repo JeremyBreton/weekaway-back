@@ -6,13 +6,13 @@ import userHasEventDataMapper from '../models/userHasEvent.dataMapper.js';
 /**
    * @typedef {object} createEventLink
    * @property {integer} eventId
-   * @property {string} email
+   * @property {integer} id
   */
 
 /**
    * @typedef {object} joinEvent
    * @property {string} password
-   * @property {string} email
+   * @property {integer} id
   */
 
 export default {
