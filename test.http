@@ -63,8 +63,7 @@ Content-Type: application/json
   "name": "jean rachid",
   "ownerId": 5,
   "status" : true,
-  "description": "super event !!!",
-  "picture": "http://www.google.fr",
+  "description": "super event !!!"
   "linkProject": "http://www.google.fr",
 
 }
