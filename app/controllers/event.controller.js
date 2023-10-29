@@ -37,10 +37,10 @@ export default {
       const path = `http://caca-boudin.fr/static/${req.file.filename}`;
       data.picture = path;
     }
-    // const userHasEvent = await userHasEventDataMapper.addUserToEvent(user.id, event.id);
 
     const event = await datamapper.createEvent(data);
-    console.log(event);
+    // Add the owner to the event
+    // eslint-disable-next-line no-unused-vars
     const userHasEvent = await userHasEventDataMapper.addUserToEvent(ownerId, event.id);
     res.json(event);
   },

@@ -55,16 +55,16 @@ GET http://localhost:3000/api/event/
 GET http://localhost:3000/api/event/4
 
 ### ? Update Event
-PATCH http://localhost:3000/api/event/21
+PATCH http://localhost:3000/api/event/54
 Content-Type: application/json
 
 {
     
-  "name": "jean rachid",
-  "ownerId": 5,
-  "status" : true,
-  "description": "super event !!!"
-  "linkProject": "http://www.google.fr",
+  "name": "Vive les clébards",
+  "ownerId": 22,
+  "status" : false,
+  "description": "super event !!!",
+  "linkProject": "http://www.google.fr"
 
 }
 
