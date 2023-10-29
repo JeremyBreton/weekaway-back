@@ -23,7 +23,6 @@ export default {
   },
 
   async createEvent(req, res) {
-    const path = `http://caca-boudin.fr/static/${req.file.filename}`;
     const password = randomId.makeId(5);
     const {
       name, ownerId, status, description, picture, linkProject,
@@ -31,7 +30,13 @@ export default {
     const data = {
       name, ownerId, status, description, picture, password, linkProject,
     };
-    data.picture = path;
+
+    // If someone upload a picture, we add the path to the data
+    if (req.file) {
+      const path = `http://caca-boudin.fr/static/${req.file.filename}`;
+      data.picture = path;
+    }
+
     const event = await datamapper.createEvent(data);
     res.json(event);
   },
