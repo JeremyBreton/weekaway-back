@@ -40,6 +40,7 @@ export default {
     // const userHasEvent = await userHasEventDataMapper.addUserToEvent(user.id, event.id);
 
     const event = await datamapper.createEvent(data);
+    console.log(event);
     const userHasEvent = await userHasEventDataMapper.addUserToEvent(ownerId, event.id);
     res.json(event);
   },
