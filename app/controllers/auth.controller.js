@@ -86,6 +86,7 @@ export default {
       const token = jwt.sign(userForToken, process.env.JWT_SECRET, {
         expiresIn: '1d',
       });
+      mailService.sendMail(registeredUser);
 
       return res.status(201)
         .cookie('jwt', token, {

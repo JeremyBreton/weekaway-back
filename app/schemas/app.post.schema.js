@@ -21,7 +21,6 @@ const eventSchema = Joi.object({
   ownerId: Joi.number().required(),
   status: Joi.boolean().required(),
   description: Joi.string().required(),
-  picture: Joi.string().required(),
   linkProject: Joi.string().required(),
 });
 

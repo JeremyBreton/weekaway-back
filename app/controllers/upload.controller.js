@@ -1,6 +1,8 @@
 import userDataMapper from '../models/user.dataMapper.js';
 import eventDataMapper from '../models/event.dataMapper.js';
 
+
+// Maybe will be useless 
 export default {
 
   uploadProfilePicture(req, res) {

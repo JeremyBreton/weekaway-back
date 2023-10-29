@@ -1,14 +1,36 @@
 import { Router } from 'express';
+import multer from 'multer';
 import eventController from '../controllers/event.controller.js';
 import validation from '../middlewares/validation.middleware.js';
 import * as schemaPost from '../schemas/app.post.schema.js';
 import schemaGet from '../schemas/app.get.schema.js';
 import controllerWrapper from '../middlewares/controller.wrapper.js';
 
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename(req, file, cb) {
+    console.log(file);
+    const fileObj = {
+      'image/png': '.png',
+      'image/jpeg': '.jpeg',
+      'image/jpg': '.jpg',
+    };
+    if (fileObj[file.mimetype] === undefined) {
+      cb(new Error('file format not valid'));
+    } else {
+      cb(null, `${file.fieldname}-${Date.now()}${fileObj[file.mimetype]}`);
+    }
+  },
+});
+const upload = multer({ storage });
+
 const eventRouter = Router();
 
 eventRouter.route('/api/event')
   .post(
+    upload.single('event'),
     validation(schemaPost.eventSchema, 'body'),
     controllerWrapper(eventController.createEvent),
 
