@@ -4,7 +4,7 @@ import { promisify } from 'util';
 import fs from 'fs';
 
 export default {
-  async sendMail(ownerInfos, event, password, email) {
+  async sendMail(ownerInfos, event, email) {
     const readFile = promisify(fs.readFile);
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -19,8 +19,8 @@ export default {
     const data = {
       firstname: ownerInfos.firstname,
       lastname: ownerInfos.lastname,
-      eventPassword: event.password,
-      eventName: event.name,
+      eventPassword: event.event_password,
+      eventName: event.event_name,
     };
     const htmlToSend = template(data);
 

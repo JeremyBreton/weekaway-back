@@ -8,7 +8,7 @@
 GET http://caca-boudin.fr/api/users/
 
 ### ? Get user by id
-GET http://localhost:3000/api/user/2
+GET http://localhost:3000/api/user/1
 
 ### ? Update user
 PATCH http://localhost:3000/api/user/1
@@ -55,7 +55,7 @@ GET http://localhost:3000/api/event/
 GET http://localhost:3000/api/event/4
 
 ### ? Update Event
-PATCH http://localhost:3001/api/event/21
+PATCH http://localhost:3000/api/event/21
 Content-Type: application/json
 
 {
@@ -79,7 +79,7 @@ Content-Type: application/json
 {
     
   "name": "Fete au morbier",
-  "ownerId": 17,
+  "ownerId": 1,
   "status" : false,
   "description": "super event !!!",
   "linkProject": "http://www.google.fr"
@@ -93,12 +93,12 @@ Content-Type: application/json
 ############ ! ############################# 
 
 ### ? Post user invitation
-POST http://localhost:3001/api/invitelink/
+POST http://localhost:3000/api/invitelink/
 Content-Type: application/json
 
 {
   "email": "fardeau.geoffrey@gmail.com",
-  "eventId": "37"
+  "eventId": "42"
 }
 
 ### ? Post event passs
