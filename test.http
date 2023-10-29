@@ -8,7 +8,7 @@
 GET http://localhost:3000/api/users/
 
 ### ? Get user by id
-GET http://localhost:3000/api/user/1
+GET http://localhost:3000/api/user/2
 
 ### ? Update user
 PATCH http://localhost:3000/api/user/1
@@ -50,6 +50,9 @@ Content-Type: application/json
 
 ### ? Get 
 GET http://localhost:3000/api/event/
+
+### ? Get event by id
+GET http://localhost:3000/api/event/4
 
 ### ? Update Event
 PATCH http://localhost:3001/api/event/21
@@ -225,7 +228,31 @@ Content-Type: application/json
 ### ? Delete eventDate
 DELETE http://localhost:3000/api/eventDate/1
 
+
 ### ? Get eventDate with eventId by eventDateId
 GET http://localhost:3000/api/eventDate/3/event
 
+
+
+### ! Get eventDate with eventId by eventDateId
+GET http://localhost:3000/api/eventDate/3/event
+
+######### ! ############################# 
+
+# ! USER HAS EVENT
+
+######### ! #############################
+
+### ? Get all user with Event
+GET http://localhost:3000/api/user/3/events
+
+
+### ? DELETE all userHasEvent
+POST http://localhost:3000/api/userhasevent
+Content-Type: application/json
+
+{
+  "user_id": 2,
+  "event_id": 7
+}
 
