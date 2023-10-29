@@ -1,5 +1,6 @@
 import datamapper from '../models/event.dataMapper.js';
 import randomId from '../services/randomId.services.js';
+import userHasEventDataMapper from '../models/userHasEvent.dataMapper.js';
 
 /**
    * @typedef {object} EventInput
@@ -36,8 +37,10 @@ export default {
       const path = `http://caca-boudin.fr/static/${req.file.filename}`;
       data.picture = path;
     }
+    // const userHasEvent = await userHasEventDataMapper.addUserToEvent(user.id, event.id);
 
     const event = await datamapper.createEvent(data);
+    const userHasEvent = await userHasEventDataMapper.addUserToEvent(ownerId, event.id);
     res.json(event);
   },
 
