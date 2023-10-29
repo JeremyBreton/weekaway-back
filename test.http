@@ -5,7 +5,7 @@
 ######### ! ############################# 
 
 ### ? Get all users
-GET http://localhost:3000/api/users/
+GET http://caca-boudin.fr/api/users/
 
 ### ? Get user by id
 GET http://localhost:3000/api/user/2
@@ -23,13 +23,13 @@ Content-Type: application/json
 }
 
 ### ? Post User
-POST http://localhost:3001/api/register
+POST http://caca-boudin.fr/api/register
 Content-Type: application/json
 
 {
   "firstname": "Geoffrey",
   "lastname": "Fardeau",
-  "email": "sexeroyal@grosspoutre.com",
+  "email": "fardeau.geoffrey@gmail.com",
   "password": "Password123!"
 }
 
@@ -78,11 +78,10 @@ Content-Type: application/json
 
 {
     
-  "name": "J'ai le frein qui lache",
+  "name": "Anniv de Gregory Lemarchal",
   "ownerId": 17,
-  "status" : true,
+  "status" : false,
   "description": "super event !!!",
-  "picture": "http://www.google.fr",
   "linkProject": "http://www.google.fr"
 
 }
@@ -103,12 +102,12 @@ Content-Type: application/json
 }
 
 ### ? Post event passs
-POST http://localhost:3000/api/joinevent/
+POST http://caca-boudin.fr/api/joinevent/
 Content-Type: application/json
 
 {
-  "email": "test@testeur.fr",
-  "password": "Vw4aK"
+  "id": "test@testeur.fr",
+  "password": "6yZxD"
 }
 
 ######### ! ############################# 

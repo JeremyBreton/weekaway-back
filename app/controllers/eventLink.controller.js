@@ -35,8 +35,8 @@ export default {
   },
 
   async joinEvent(req, res) {
-    const { password, email } = req.body;
-    const user = await userDataMapper.getUserByEmail(email);
+    const { password, id } = req.body;
+    const user = await userDataMapper.getUserById(id);
     const event = await eventDatamapper.findEventByPassword(password);
     const userIsInEvent = await userHasEventDataMapper.verifyUserInEvent(user?.id, event?.id);
 
