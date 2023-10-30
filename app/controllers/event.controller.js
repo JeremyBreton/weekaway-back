@@ -2,6 +2,7 @@ import datamapper from '../models/event.dataMapper.js';
 import randomId from '../services/randomId.services.js';
 import userHasEventDataMapper from '../models/userHasEvent.dataMapper.js';
 
+
 /**
    * @typedef {object} EventInput
    * @property {string} name

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import upload from '../services/multer.js';
+import upload from '../services/sharp-multer.js';
 import eventController from '../controllers/event.controller.js';
 import validation from '../middlewares/validation.middleware.js';
 import * as schemaPost from '../schemas/app.post.schema.js';
