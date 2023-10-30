@@ -129,8 +129,21 @@ export default {
   },
 
   async deleteEvent(id) {
-    const result = await client.query('DELETE FROM event WHERE id=$1', [id]);
-    return result.rows[0];
+    await client.query('BEGIN');
+
+    try {
+      await client.query('DELETE FROM user_has_event WHERE event_id=$1', [id]);
+      await client.query('DELETE FROM userchoice WHERE event_id=$1', [id]);
+      await client.query('DELETE FROM eventdate WHERE event_id=$1', [id]);
+      await client.query('DELETE FROM theme WHERE event_id=$1', [id]);
+      const result = await client.query('DELETE FROM event WHERE id=$1', [id]);
+
+      await client.query('COMMIT');
+      return result.rowCount;
+    } catch (error) {
+      await client.query('ROLLBACK');
+      throw error;
+    }
   },
 
   async findEventByPassword(password) {
