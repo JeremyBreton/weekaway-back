@@ -79,8 +79,6 @@ Content-Type: application/json
   "name": "fete du spourme",
   "ownerId": 12,
   "status": false,
-  "description": "super event !!!",
-  "linkProject": "http://www.google.fr",
   "datesOfEvent": {
     "date1": {
       "startDate": "2023-12-27 15:30:00+03:00",
