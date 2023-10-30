@@ -76,14 +76,35 @@ POST http://localhost:3000/api/event
 Content-Type: application/json
 
 {
-    
-  "name": "fete du sperme ",
-  "ownerId": 22,
-  "status" : false,
+  "name": "fete du spourme",
+  "ownerId": 12,
+  "status": false,
   "description": "super event !!!",
-  "linkProject": "http://www.google.fr"
-
+  "linkProject": "http://www.google.fr",
+  "datesOfEvent": {
+    "date1": {
+      "startDate": "2023-12-27 15:30:00+03:00",
+      "endDate": "2023-12-27 15:30:00+03:00"
+    },
+    "date2": {
+      "startDate": "2023-12-27 15:30:00+03:00",
+      "endDate": "2023-12-27 15:30:00+03:00"
+    },
+    "date3": {
+      "startDate": "2023-12-27 15:30:00+03:00",
+      "endDate": "2023-12-27 15:30:00+03:00"
+    },
+    "date4": {
+      "startDate": "2023-12-29 15:30:00+03:00",
+      "endDate": "2023-12-29 15:30:00+03:00"
+    },
+    "date5": {
+      "startDate": "2023-12-28 15:30:00+03:00",
+      "endDate": "2023-12-29 15:30:00+03:00"
+    }
+  }
 }
+
 
 ############ ! ############################# 
 

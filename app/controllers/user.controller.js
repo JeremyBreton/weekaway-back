@@ -79,6 +79,4 @@ export default {
     const user = await userDataMapper.getUserWithEventsAndUserChoices(id);
     res.json(user);
   },
-
-
 };
