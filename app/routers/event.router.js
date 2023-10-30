@@ -10,8 +10,8 @@ const eventRouter = Router();
 
 eventRouter.route('/api/event')
   .post(
-    upload.single('event'),
-    validation(schemaPost.eventSchema, 'body'),
+    // upload.single('event'),
+    // validation(schemaPost.eventSchema, 'body'),
     controllerWrapper(eventController.createEvent),
 
   )
