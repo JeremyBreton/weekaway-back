@@ -1,5 +1,5 @@
 import datamapper from '../models/event.dataMapper.js';
-import randomId from '../services/randomId.services.js';
+import randomId from '../services/randomId.service.js';
 import userHasEventDataMapper from '../models/userHasEvent.dataMapper.js';
 import dateVerify from '../services/dateVerify.service.js';
 import eventDateDataMapper from '../models/eventDate.dataMapper.js';
@@ -41,7 +41,6 @@ export default {
       description: data.description,
       picture: data.picture,
       password,
-      linkProject: data.linkProject,
     };
 
     // If someone upload a picture, we add the path to the data
@@ -53,9 +52,8 @@ export default {
     }
 
     const event = await datamapper.createEvent(dataEvent);
-    const eventDate = await eventDateDataMapper.createEventDate(event.id, eventDateWithNoDuplicate);
-
-    const userHasEvent = await userHasEventDataMapper.addUserToEvent(dataEvent.ownerId, event.id);
+    await eventDateDataMapper.createEventDate(event.id, eventDateWithNoDuplicate);
+    await userHasEventDataMapper.addUserToEvent(dataEvent.ownerId, event.id);
     res.json(event);
   },
 
