@@ -66,7 +66,7 @@ export default {
                 'owner_id', "event".owner_id,
                 'status', "event".status,
                 'description', "event".description,
-                'picture', "event".picture,
+                'picture', "event".picture
         ) ORDER BY "user_has_event".event_id
       ) AS events
       FROM
