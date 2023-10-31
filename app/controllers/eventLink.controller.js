@@ -48,6 +48,6 @@ export default {
       return res.json({ message: `${user.firstname} ${user.lastname} ajouté à l'évènement ${event.name}` });
     }
 
-    return res.json({ message: 'Utilisateur fait déjà partie de l\'event !' });
+    return res.json({ eventId: event.id, message: 'Utilisateur déjà dans l\'évènement' });
   },
 };

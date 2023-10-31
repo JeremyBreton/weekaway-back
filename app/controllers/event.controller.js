@@ -4,7 +4,6 @@ import userHasEventDataMapper from '../models/userHasEvent.dataMapper.js';
 import dateVerify from '../services/dateVerify.service.js';
 import eventDateDataMapper from '../models/eventDate.dataMapper.js';
 
-
 /**
    * @typedef {object} EventInput
    * @property {string} name
@@ -54,6 +53,7 @@ export default {
     const event = await datamapper.createEvent(dataEvent);
     await eventDateDataMapper.createEventDate(event.id, eventDateWithNoDuplicate);
     await userHasEventDataMapper.addUserToEvent(dataEvent.ownerId, event.id);
+    console.log(event);
     res.json(event);
   },
 
