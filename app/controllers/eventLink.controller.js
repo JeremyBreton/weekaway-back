@@ -45,9 +45,9 @@ export default {
       return res.json({ message: 'Mot de passe incorrect ou evènement non existant ou utilisateur non identifié / inexistant' });
     } if (!userIsInEvent) {
       const userHasEvent = await userHasEventDataMapper.addUserToEvent(user.id, event.id);
-      return res.json({ message: `${user.firstname} ${user.lastname} ajouté à l'évènement ${event.name}` });
+      return res.json({ eventId: event.id, message: `${user.firstname} ${user.lastname} ajouté à l'évènement ${event.name}` });
     }
 
-    return res.json({ eventId: event.id, message: 'Utilisateur déjà dans l\'évènement' });
+    return res.json({ message: 'Utilisateur déjà dans l\'évènement' });
   },
 };

@@ -72,11 +72,11 @@ Content-Type: application/json
 DELETE http://localhost:3000/api/event/1
 
 ### ? Post to Create Event
-POST http://localhost:3000/api/event
+POST http://caca-boudin.fr/api/event
 Content-Type: application/json
 
 {
-  "name": "fete du spourme",
+  "name": "fete du chewing-gum",
   "ownerId": 12,
   "status": false,
   "datesOfEvent": {
