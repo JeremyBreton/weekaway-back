@@ -28,9 +28,9 @@ export default {
   async createEvent(req, res) {
     const password = randomId.makeId(5);
     const data = req.body;
-
+    console.log(data)
     const eventDates = data.datesOfEvent;
-
+    console.log(eventDates);
     const dataEvent = {
       name: data.name,
       ownerId: data.ownerId,
@@ -49,7 +49,7 @@ export default {
     }
 
     const event = await datamapper.createEvent(dataEvent);
-    if (eventDates) {
+    if (eventDates === undefined && eventDates === null) {
       const eventDateWithNoDuplicate = dateVerify.removeDuplicateDates(eventDates);
       await eventDateDataMapper.createEventDate(event.id, eventDateWithNoDuplicate);
     }
