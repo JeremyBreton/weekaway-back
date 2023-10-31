@@ -15,13 +15,14 @@ userRouter.get('/api/users', controllerWrapper(userController.getAllUsers));
 
 userRouter
   .route('/api/user/:id')
-
+// ! TODO : Faire schema pour les .get
   .get(controllerWrapper(userController.getUserById))
   /**
    * GET /api/user/:id
    * @summary Get user by id
    * @tags User
  */
+// ! TODO : Faire schema pour les .patch (remettre les schema post dans un doc patch)
   .patch(
     validation(schemaPost.UserGestionSchema, 'body'),
     controllerWrapper(userController.updateUserById),
@@ -44,6 +45,7 @@ userRouter
 
 userRouter
   .route('/api/user/:id/events')
+// ! TODO : Faire schema pour les .get
   .get(controllerWrapper(userController.getUserWithEvents));
 
 /**
@@ -54,6 +56,7 @@ userRouter
 
 userRouter
   .route('/api/user/:id/events/choices')
+// ! TODO : Faire schema pour les .get
   .get(controllerWrapper(userController.getUserWithEventsAndUserChoices));
 /**
    * GET /api/users/:id/choices

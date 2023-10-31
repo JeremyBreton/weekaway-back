@@ -20,8 +20,9 @@ export default {
   async createInviteLink(req, res) {
     const { email, eventId } = req.body;
     const userExist = await userDataMapper.getUserByEmail(email);
+
+    // ! Voir pour faire juste une requete ou tu recupe les info de l'owner de l'event
     const event = await eventDatamapper.findEventById(eventId);
-    console.log(event);
     const eventOwner = await userDataMapper.getUserById(event.event_owner_id);
 
     const ownerInfos = { firstname: eventOwner.firstname, lastname: eventOwner.lastname };
@@ -44,7 +45,7 @@ export default {
     if (!event || !user) {
       return res.json({ message: 'Mot de passe incorrect ou evènement non existant ou utilisateur non identifié / inexistant' });
     } if (!userIsInEvent) {
-      const userHasEvent = await userHasEventDataMapper.addUserToEvent(user.id, event.id);
+      await userHasEventDataMapper.addUserToEvent(user.id, event.id);
       return res.json({ eventId: event.id, message: `${user.firstname} ${user.lastname} ajouté à l'évènement ${event.name}` });
     }
 

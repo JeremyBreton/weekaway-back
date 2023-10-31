@@ -4,6 +4,7 @@ import passport from 'passport';
 import authDataMapper from '../models/auth.dataMapper.js';
 import mailService from '../services/mailer/mailer.js';
 
+// ! TODO : Mettre la regex dans un service pour la réutiliser
 const isValidEmail = (email) => {
   const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
   return regex.test(email);
@@ -59,7 +60,7 @@ export default {
 
   logout(req, res) {
     req.logout();
-    res.clearCookie('jwt').redirect('/login');
+    res.clearCookie('jwt').redirect('/login');  // (à changer?)
   },
 
   async register(req, res) {
@@ -84,11 +85,12 @@ export default {
       };
 
       const token = jwt.sign(userForToken, process.env.JWT_SECRET, {
-        expiresIn: '1d',
+        expiresIn: '1d', // TOKEN DURATION TIME
       });
       mailService.sendMail(registeredUser);
 
       return res.status(201)
+      // ! TODO : A revoir pour la récurité en https et avec secure : true
         .cookie('jwt', token, {
           httpOnly: true,
           maxAge: 24 * 60 * 60 * 1000, //!  1 jour (à choisir selon les préférences)
@@ -101,15 +103,5 @@ export default {
         });
     }
     return res.status(500).json({ message: 'Erreur lors de l’inscription.', logged: false });
-  },
-
-  async findAllUsers(req, res) {
-    const users = await authDataMapper.findAllUsers();
-
-    if (!users || users.length === 0) {
-      return res.status(404).json({ message: 'Aucun utilisateur trouvé.' });
-    }
-
-    return res.status(200).json(users);
   },
 };

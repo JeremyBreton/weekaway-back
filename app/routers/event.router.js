@@ -10,8 +10,8 @@ const eventRouter = Router();
 
 eventRouter.route('/api/event')
   .post(
-    // upload.single('event'),
-    // validation(schemaPost.eventSchema, 'body'),
+    upload.single('event'),
+    validation(schemaPost.eventSchema, 'body'),
     controllerWrapper(eventController.createEvent),
 
   )
@@ -23,6 +23,7 @@ eventRouter.route('/api/event')
    * - object with different personnailzed sentence parts
 
    */
+// ! TODO : Faire schema pour les .get
   .get(
     controllerWrapper(eventController.findAllEvents),
   );
@@ -34,7 +35,7 @@ eventRouter.route('/api/event')
 
 eventRouter.route('/api/event/:id')
   .get(
-
+    // ! TODO : Faire schema pour les .get
     validation(schemaGet, 'query'),
 
     controllerWrapper(eventController.findEventById),
@@ -44,7 +45,7 @@ eventRouter.route('/api/event/:id')
    * @summary Get an evet by id
    * @tags Event
  */
-
+// ! TODO : Faire schema pour les .patch (remettre les schema post dans un doc patch)
   .patch(
     validation(schemaPost.eventSchema, 'body'),
 

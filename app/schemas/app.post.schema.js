@@ -16,12 +16,10 @@ const registerSchema = Joi.object({
 });
 
 const eventSchema = Joi.object({
-  // for Events :
   name: Joi.string().required(),
   ownerId: Joi.number().required(),
   status: Joi.boolean().required(),
-  description: Joi.string().required(),
-  linkProject: Joi.string().required(),
+  description: Joi.string(),
 });
 
 const loginSchema = Joi.object({

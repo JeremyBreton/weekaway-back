@@ -5,7 +5,7 @@ export default {
     const result = await client.query('SELECT * FROM "userchoice"');
     return result.rows;
   },
-  // Ordering by timestamp
+  // Ordering by timestamptz
   async getUserChoiceByUserId(id) {
     const result = await client.query('SELECT * FROM "userchoice" WHERE user_id = $1 ORDER BY start_date_choice ASC', [id]);
     return result.rows;
@@ -23,7 +23,7 @@ export default {
     return result.rows[0];
   },
 
-  // Ordering by timestamp
+  // Ordering by timestamptz
   async getUserChoiceByEventId(id) {
     const result = await client.query('SELECT * FROM "userchoice" WHERE event_id = $1 ORDER BY start_date_choice ASC', [id]);
     return result.rows;

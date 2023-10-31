@@ -18,8 +18,8 @@ themeRouter.route('/api/theme')
    * @tags Theme
    * @param {Theme} request.body.required
    *
-
    */
+// ! TODO : Faire schema pour les .get
   .get(
     validation(schemaGet, 'query'),
     controllerWrapper(themeController.findAllTheme),
@@ -31,7 +31,7 @@ themeRouter.route('/api/theme')
  */
 
 themeRouter.route('/api/theme/:id')
-// theme par id
+// ! TODO : Faire schema pour les .get
   .get(
 
     validation(schemaGet, 'query'),
@@ -43,7 +43,7 @@ themeRouter.route('/api/theme/:id')
    * @summary Get a theme by his id
    * @tags Theme
  */
-
+// ! TODO : Faire schema pour les .patch (remettre les schema post dans un doc patch)
   .patch(
     validation(schemaPost.themeSchema, 'body'),
 
