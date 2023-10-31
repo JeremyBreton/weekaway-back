@@ -10,7 +10,6 @@ import eventDateDataMapper from '../models/eventDate.dataMapper.js';
    * @property {integer} ownerId
    * @property {boolean} status
    * @property {string} description
-   * @property {string} linkProject
   */
 
 export default {
@@ -28,9 +27,7 @@ export default {
   async createEvent(req, res) {
     const password = randomId.makeId(5);
     const data = req.body;
-    console.log(data)
     const eventDates = data.datesOfEvent;
-    console.log(eventDates);
     const dataEvent = {
       name: data.name,
       ownerId: data.ownerId,
@@ -44,8 +41,7 @@ export default {
     if (!req.file) {
       dataEvent.picture = 'http://caca-boudin.fr/static/default.jpg';
     } else if (req.file) {
-      const path = `http://caca-boudin.fr/static/${req.file.filename}`;
-      dataEvent.picture = path;
+      dataEvent.picture = `http://caca-boudin.fr/static/${req.file.filename}`;
     }
 
     const event = await datamapper.createEvent(dataEvent);

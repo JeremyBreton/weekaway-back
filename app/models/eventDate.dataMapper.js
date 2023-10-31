@@ -30,10 +30,10 @@ export default {
     return result.rows[0];
   },
 
-  async createEventDate(id, datesOfEvent) {
+  async createEventDate(eventId, datesOfEvent) {
     const insertPromises = Object.values(datesOfEvent).map((date) => client.query(
       'INSERT INTO "eventdate" (event_id, start_date, end_date) VALUES ($1, $2, $3) RETURNING *',
-      [id, date.start_date, date.end_date],
+      [eventId, date.start_date, date.end_date],
     ));
     const results = await Promise.all(insertPromises);
 
@@ -56,7 +56,7 @@ export default {
   async getEventDateWithEvent(id) {
     const result = await client.query(
       `SELECT * FROM "eventdate" 
-        INNER JOIN event ON eventdate.event_id = event.id  
+        JOIN event ON eventdate.event_id = event.id  
         WHERE eventdate.id = $1`,
       [id],
     );

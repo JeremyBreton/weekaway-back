@@ -26,7 +26,6 @@ CREATE TABLE EVENT (
     description TEXT,
     picture TEXT,
     password TEXT NOT NULL,
-    link_project TEXT,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,--on peut utiliser now() aussi
     "updated_at" TIMESTAMPTZ 
     );

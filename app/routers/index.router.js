@@ -11,7 +11,6 @@ import errorHandler from '../middlewares/error.middleware.js';
 import logger from '../helpers/logger.js';
 import eventLinkRouter from './eventLink.router.js';
 import userHasEventRouter from './userHasEvent.router.js';
-import imageUploadRouter from './imageUpload.router.js';
 
 /**
  * @typedef {object} ResponseError response error
@@ -36,7 +35,6 @@ mainRouter.use(themeRouter);
 mainRouter.use(eventDateRouter);
 mainRouter.use(eventLinkRouter);
 mainRouter.use(userHasEventRouter);
-mainRouter.use(imageUploadRouter);
 
 mainRouter.use((_, __, next) => {
   next(new NotFoundError('404 not found'));

@@ -7,6 +7,7 @@ import controllerWrapper from '../middlewares/controller.wrapper.js';
 const eventDateRouter = Router();
 
 eventDateRouter.route('/api/eventDate')
+// ! TODO : Faire schema pour les .get
   .get(controllerWrapper(eventDateController.getAllEventDates))
   /**
    * GET /api/eventDate
@@ -27,12 +28,14 @@ eventDateRouter.route('/api/eventDate')
    */
 
 eventDateRouter.route('/api/eventDate/:id')
+// ! TODO : Faire schema pour les .get
   .get(controllerWrapper(eventDateController.getEventDateById))
 /**
    * GET /api/eventDate/:id
    * @summary Get event date by id
    * @tags EventDate
  */
+// ! TODO : Faire schema pour les .patch (remettre les schema post dans un doc patch)
   .patch(
     validation(schemaPost.eventDateSchema),
     controllerWrapper(eventDateController.updateEventDateById),
@@ -54,6 +57,7 @@ eventDateRouter.route('/api/eventDate/:id')
    */
 
 eventDateRouter.route('/api/eventDate/event/:eventId')
+// ! TODO : Faire schema pour les .get
   .get(controllerWrapper(eventDateController.getEventDateByeventId));
 /**
    * GET /api/eventDate/event/:eventId
@@ -62,6 +66,7 @@ eventDateRouter.route('/api/eventDate/event/:eventId')
  */
 
 eventDateRouter.route('/api/eventDate/:id/event')
+// ! TODO : Faire schema pour les .get
   .get(controllerWrapper(eventDateController.getEventDateWithEvent));
 /**
    * GET /api/eventDate/:id/event
