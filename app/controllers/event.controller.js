@@ -75,6 +75,7 @@ export default {
     res.json(event);
   },
 
+  // ! TODO : delete eventDate when delete event
   async deleteEvent(req, res) {
     const { id } = req.params;
     const event = await datamapper.deleteEvent(id);
