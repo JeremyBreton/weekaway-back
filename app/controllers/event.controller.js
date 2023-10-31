@@ -4,7 +4,6 @@ import userHasEventDataMapper from '../models/userHasEvent.dataMapper.js';
 import dateVerify from '../services/dateVerify.service.js';
 import eventDateDataMapper from '../models/eventDate.dataMapper.js';
 
-
 /**
    * @typedef {object} EventInput
    * @property {string} name
@@ -75,6 +74,7 @@ export default {
     res.json(event);
   },
 
+  // ! TODO : delete eventDate when delete event
   async deleteEvent(req, res) {
     const { id } = req.params;
     const event = await datamapper.deleteEvent(id);
