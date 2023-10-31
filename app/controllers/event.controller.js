@@ -31,8 +31,6 @@ export default {
 
     const eventDates = data.datesOfEvent;
 
-    const eventDateWithNoDuplicate = dateVerify.removeDuplicateDates(eventDates);
-
     const dataEvent = {
       name: data.name,
       ownerId: data.ownerId,
@@ -51,9 +49,11 @@ export default {
     }
 
     const event = await datamapper.createEvent(dataEvent);
-    await eventDateDataMapper.createEventDate(event.id, eventDateWithNoDuplicate);
+    if (eventDates) {
+      const eventDateWithNoDuplicate = dateVerify.removeDuplicateDates(eventDates);
+      await eventDateDataMapper.createEventDate(event.id, eventDateWithNoDuplicate);
+    }
     await userHasEventDataMapper.addUserToEvent(dataEvent.ownerId, event.id);
-    console.log(event);
     res.json(event);
   },
 
