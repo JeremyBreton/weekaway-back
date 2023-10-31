@@ -39,7 +39,7 @@ export default {
 
     // If someone upload a picture, we add the path to the data
     if (!req.file) {
-      dataEvent.picture = 'http://caca-boudin.fr/static/default.jpg';
+      dataEvent.picture = 'http://caca-boudin.fr/static/default.png';
     } else if (req.file) {
       dataEvent.picture = `http://caca-boudin.fr/static/${req.file.filename}`;
     }

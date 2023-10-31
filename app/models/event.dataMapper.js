@@ -66,7 +66,7 @@ export default {
 
   async createEvent(data) {
     const query = `
-    INSERT INTO event (name, owner_id, status, description, picture, password) VALUES ($1, $2, $3, $4, $5, $6 RETURNING *`;
+    INSERT INTO event (name, owner_id, status, description, picture, password) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
     const values = [
       data.name,
       data.ownerId,
