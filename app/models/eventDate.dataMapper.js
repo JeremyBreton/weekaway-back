@@ -30,14 +30,23 @@ export default {
     return result.rows[0];
   },
 
-  async createEventDate(eventId, datesOfEvent) {
+  async createEventDateWithMultipleEvent(eventId, datesOfEvent) {
     const insertPromises = Object.values(datesOfEvent).map((date) => client.query(
       'INSERT INTO "eventdate" (event_id, start_date, end_date) VALUES ($1, $2, $3) RETURNING *',
       [eventId, date.start_date, date.end_date],
     ));
+
     const results = await Promise.all(insertPromises);
 
     return results.map((result) => result.rows[0]);
+  },
+
+  async createEventDate(eventId, data) {
+    const result = await client.query(
+      'INSERT INTO "eventdate" (event_id, start_date, end_date) VALUES ($1, $2, $3) RETURNING *',
+      [eventId, data.start_date, data.end_date],
+    );
+    return result.rows[0];
   },
 
   async updateEventDateById(id, data) {

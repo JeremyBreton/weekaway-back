@@ -27,7 +27,17 @@ export default {
   async createEvent(req, res) {
     const password = randomId.makeId(5);
     const data = req.body;
-    const eventDates = data.datesOfEvent;
+    let eventDates = null;
+    if (data.datesOfEvent !== undefined && data.datesOfEvent !== null) {
+      eventDates = data.datesOfEvent;
+    }
+    if (data.startDate && data.endDate) {
+      eventDates = {
+        start_date: data.startDate,
+        end_date: data.endDate,
+      };
+    }
+
     const dataEvent = {
       name: data.name,
       ownerId: data.ownerId,
@@ -45,9 +55,13 @@ export default {
     }
 
     const event = await datamapper.createEvent(dataEvent);
-    if (eventDates === undefined && eventDates === null) {
-      const eventDateWithNoDuplicate = dateVerify.removeDuplicateDates(eventDates);
-      await eventDateDataMapper.createEventDate(event.id, eventDateWithNoDuplicate);
+    if (eventDates !== undefined && eventDates !== null) {
+      if (eventDates.date === undefined && eventDates.date === null) {
+        const eventDateNoDuplicate = dateVerify.removeDuplicateDates(eventDates);
+        await eventDateDataMapper.createEventDateWithMultipleEvent(event.id, eventDateNoDuplicate);
+      } else {
+        await eventDateDataMapper.createEventDate(event.id, eventDates);
+      }
     }
     await userHasEventDataMapper.addUserToEvent(dataEvent.ownerId, event.id);
     res.json(event);
