@@ -20,6 +20,10 @@ const eventSchema = Joi.object({
   ownerId: Joi.number().required(),
   status: Joi.boolean().required(),
   description: Joi.string(),
+  // ! Resolution temporaires des problèmes de date (error : StartDate is not allowed)
+  startDate: Joi.date(),
+  endDate: Joi.date(),
+  datesOfEvent: Joi.object(),
 });
 
 const loginSchema = Joi.object({
