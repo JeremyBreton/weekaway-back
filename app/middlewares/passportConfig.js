@@ -3,12 +3,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import authDataMapper from '../models/auth.dataMapper.js';
 import userDataMapper from '../models/user.dataMapper.js';
-
-// ! TODO : Mettre la regex dans un service pour la réutiliser
-const isValidEmail = (email) => {
-  const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
-  return regex.test(email);
-};
+import isValidEmail from '../services/emailService.js';
 
 export default function (passport) {
   passport.use(
