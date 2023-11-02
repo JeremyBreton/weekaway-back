@@ -16,7 +16,7 @@ const registerSchema = Joi.object({
 
 const eventSchema = Joi.object({
   name: Joi.string(),
-  ownerId: Joi.number(),
+  owner_id: Joi.number(),
   status: Joi.boolean(),
   description: Joi.string(),
   // ! Resolution temporaires des problèmes de date (error : StartDate is not allowed)
@@ -58,7 +58,7 @@ const eventDateSchema = Joi.object({
   end_date: Joi.date(),
 });
 
-export default {
+export {
   registerSchema,
   loginSchema,
   eventSchema,
