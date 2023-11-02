@@ -70,7 +70,7 @@ export default {
     INSERT INTO event (name, owner_id,theme, status, description, picture, password) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
     const values = [
       data.name,
-      data.ownerId,
+      data.owner_id,
       data.theme,
       data.status,
       data.description,
