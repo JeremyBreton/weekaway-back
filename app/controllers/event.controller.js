@@ -74,9 +74,9 @@ export default {
     const baseData = await datamapper.findEventById(id);
 
     const dataToUpdate = [
-      'name', 'ownerId', 'status', 'description', 'picture', 'theme',
+      'name', 'owner_id', 'status', 'description', 'picture', 'theme',
     ];
-
+    console.log(baseData);
     dataToUpdate.forEach((element) => {
       if (!data[element]) {
         data[element] = baseData[element];

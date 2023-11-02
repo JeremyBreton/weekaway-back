@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import userController from '../controllers/user.controller.js';
 import validation from '../middlewares/validation.middleware.js';
-import * as schemaPost from '../schemas/app.post.schema.js';
+import * as schemaPatch from '../schemas/app.patch.schema.js';
 import controllerWrapper from '../middlewares/controller.wrapper.js';
 
 const userRouter = Router();
@@ -24,7 +24,7 @@ userRouter
  */
 // ! TODO : Faire schema pour les .patch (remettre les schema post dans un doc patch)
   .patch(
-    validation(schemaPost.UserGestionSchema, 'body'),
+    validation(schemaPatch.UserGestionSchema, 'body'),
     controllerWrapper(userController.updateUserById),
   )
   /**
