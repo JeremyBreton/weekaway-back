@@ -21,6 +21,7 @@ export default {
     const { email, eventId } = req.body;
     const userExist = await userDataMapper.getUserByEmail(email);
     const event = await eventDatamapper.findEventWithOwnerInfos(eventId);
+    console.log(event);
     const ownerInfos = { firstname: event.firstname, lastname: event.lastname };
 
     if (userExist) {
