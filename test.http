@@ -157,30 +157,6 @@ DELETE http://localhost:3000/api/user/5
 
 ######### ! ############################# 
 
-#! THEME
-
-######### ! ############################# 
-
-### ? Get Theme
-GET http://localhost:3000/api/theme
-
-### ? GetThemeById
-GET http://localhost:3000/api/theme/1
-
-### ? Delete Theme
-DELETE http://localhost:3000/api/theme/5
-
-### ? Post Theme
-POST http://localhost:3000/api/theme
-Content-Type: application/json
-
-{
-  "name": "Camping",
-  "theme_id": 2
-}
-
-######### ! ############################# 
-
 # ! Event Date
 
 ######### ! #############################
