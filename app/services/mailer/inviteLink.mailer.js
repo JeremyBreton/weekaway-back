@@ -19,8 +19,8 @@ export default {
     const data = {
       firstname: ownerInfos.firstname,
       lastname: ownerInfos.lastname,
-      eventPassword: event.event_password,
-      eventName: event.event_name,
+      eventPassword: event.password,
+      eventName: event.name,
     };
     const htmlToSend = template(data);
 
