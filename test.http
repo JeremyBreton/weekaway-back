@@ -52,11 +52,11 @@ GET http://caca-boudin.fr/api/event/
 GET http://localhost:3000/api/event/6
 
 ### ? Update Event
-PATCH http://localhost:3000/api/event/25
+PATCH http://caca-boudin.fr/api/event/55
 Content-Type: application/json
 
 {
-  "owner_id": 5
+  "status": true
 }
 
 ### ? Delete Event
@@ -89,7 +89,7 @@ Content-Type: application/json
 {
   "email": "fardeau.geoffrey@gmail.com",
 
-  "eventId": "30"
+  "eventId": "1"
 
 }
 
