@@ -41,7 +41,7 @@ export default {
     const dataEvent = {
       name: data.name,
       theme: data.theme,
-      ownerId: data.ownerId,
+      owner_id: data.owner_id,
       status: data.status,
       description: data.description,
       picture: data.picture,
@@ -64,7 +64,7 @@ export default {
         await eventDateDataMapper.createEventDate(event.id, eventDates);
       }
     }
-    await userHasEventDataMapper.addUserToEvent(dataEvent.ownerId, event.id);
+    await userHasEventDataMapper.addUserToEvent(dataEvent.owner_id, event.id);
     res.json(event);
   },
 

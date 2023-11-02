@@ -70,7 +70,7 @@ Content-Type: application/json
   "name": "fete du spourme",
    "theme": "fete du spourme",
     "description": "fete du spourme",
-  "ownerId": 5,
+  "owner_id": 5,
   "status": false,
   "startDate": "2023-12-27 15:30:00+03:00",
   "endDate": "2023-12-27 15:30:00+03:00"
