@@ -20,10 +20,9 @@ export default {
   async createInviteLink(req, res) {
     const { email, eventId } = req.body;
     const userExist = await userDataMapper.getUserByEmail(email);
-    const event = await eventDatamapper.findEventById(eventId);
-    const eventOwner = await userDataMapper.getUserById(event.event_owner_id);
 
-    const ownerInfos = { firstname: eventOwner.firstname, lastname: eventOwner.lastname };
+    const event = await eventDatamapper.findEventWithOwnerInfos(eventId);
+    const ownerInfos = { firstname: event.firstname, lastname: event.lastname };
 
     if (userExist) {
       mailService.sendMail(ownerInfos, event, email);
