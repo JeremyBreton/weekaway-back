@@ -18,6 +18,7 @@ app.use(helmet({
   crossOriginEmbedderPolicy: false,
   crossOriginOpenerPolicy: false,
   strictTransportSecurity: false,
+  originAgentCluster: false,
 
 }));
 
