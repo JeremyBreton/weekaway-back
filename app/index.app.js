@@ -15,6 +15,8 @@ const app = express();
 
 app.use(helmet({
   crossOriginResourcePolicy: false,
+  crossOriginEmbedderPolicy: false,
+
 }));
 
 userDocImplementation(app);
