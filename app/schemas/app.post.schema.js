@@ -17,7 +17,7 @@ const registerSchema = Joi.object({
 
 const eventSchema = Joi.object({
   name: Joi.string().required(),
-  ownerId: Joi.number().required(),
+  owner_id: Joi.number().required(),
   status: Joi.boolean().required(),
   description: Joi.string(),
   // ! Resolution temporaires des problèmes de date (error : StartDate is not allowed)
