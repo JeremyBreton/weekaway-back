@@ -25,3 +25,4 @@ sqitch.conf
 coverage/
 uploads/*
 !uploads/default.png
+.vscode/

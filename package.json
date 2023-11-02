@@ -11,7 +11,7 @@
     "Deploy": "psql -d weekaway -U postgres -f ./data/deploy/createTable.sql",
     "Revert": "psql -d weekaway -U postgres -f  ./data/revert/createTable.sql",
     "Verify": "psql -d weekaway -U postgres -f  ./data/verify/createTable.sql",
-    "resetDB" : "psql -d weekaway -U weekaway_admin -f  ./data/revert/createTable.sql; psql -d weekaway -U weekaway_admin -f ./data/deploy/createTable.sql;psql -d weekaway -U weekaway_admin -f  ./data/verify/createTable.sql; psql -d weekaway -U weekaway_admin -f data/seeding.sql"
+    "resetDB": "psql -d weekaway -U weekaway_admin -f  ./data/revert/createTable.sql; psql -d weekaway -U weekaway_admin -f ./data/deploy/createTable.sql;psql -d weekaway -U weekaway_admin -f  ./data/verify/createTable.sql; psql -d weekaway -U weekaway_admin -f data/seeding.sql"
   },
   "keywords": [],
   "author": "",
@@ -32,6 +32,7 @@
     "express-jsdoc-swagger": "^1.8.0",
     "express-session": "^1.17.3",
     "handlebars": "^4.7.8",
+    "helmet": "^7.0.0",
     "joi": "^17.10.2",
     "jsonwebtoken": "^9.0.2",
     "multer": "^1.4.5-lts.1",

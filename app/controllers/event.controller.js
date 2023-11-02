@@ -40,14 +40,13 @@ export default {
 
     const dataEvent = {
       name: data.name,
-      ownerId: data.ownerId,
+      theme: data.theme,
+      owner_id: data.owner_id,
       status: data.status,
       description: data.description,
       picture: data.picture,
       password,
     };
-
-    console.log(req.file);
 
     // If someone upload a picture, we add the path to the data
     if (!req.file) {
@@ -65,7 +64,7 @@ export default {
         await eventDateDataMapper.createEventDate(event.id, eventDates);
       }
     }
-    await userHasEventDataMapper.addUserToEvent(dataEvent.ownerId, event.id);
+    await userHasEventDataMapper.addUserToEvent(dataEvent.owner_id, event.id);
     res.json(event);
   },
 
@@ -75,9 +74,9 @@ export default {
     const baseData = await datamapper.findEventById(id);
 
     const dataToUpdate = [
-      'name', 'ownerId', 'status', 'description', 'picture',
+      'name', 'owner_id', 'status', 'description', 'picture', 'theme',
     ];
-
+    console.log(baseData);
     dataToUpdate.forEach((element) => {
       if (!data[element]) {
         data[element] = baseData[element];
@@ -99,4 +98,5 @@ export default {
     const event = await datamapper.findEventByPassword(password);
     res.json(event);
   },
+
 };

@@ -1,9 +1,11 @@
 import './app/helpers/env.load.js';
 import { createServer } from 'node:http';
-// L'application sera récupérer en tant que module
+// app is a module
 import app from './app/index.app.js';
-// Et on l'injecte dans le serveur web, comme on fournirai un middleware pour gérer les requêtes.
+// and we inject app, like a middleware
 const server = createServer(app);
+
+// Production mode or dev mode
 
 if (process.env.NODE_ENV === 'development') {
   server.listen(3000, () => console.log(`API launched on http://localhost:${3000}`));

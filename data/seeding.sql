@@ -44,28 +44,6 @@ VALUES
     ('Salon de l''Éducation', 1, false, 'Exposition des institutions éducatives', 'image20.jpg', 'motdepasse20');
 
 
-    INSERT INTO theme (name, event_id)
-VALUES
-    ('Fête de Printemps', 1),
-    ('Conférence sur la Technologie', 2),
-    ('Séminaire de Gestion', 1),
-    ('Salon de l''Automobile', 3),
-    ('Exposition d''Art Moderne', 2),
-    ('Course de Marathon', 4),
-    ('Festival de Musique', 3),
-    ('Salon de l''Innovation', 5),
-    ('Conférence sur l''Environnement', 4),
-    ('Salon de l''Emploi', 6),
-    ('Exposition de Design Industriel', 5),
-    ('Tournoi de Golf', 7),
-    ('Semaine de la Mode', 6),
-    ('Festival du Cinéma', 8),
-    ('Exposition de Photographie', 7),
-    ('Foire aux Livres', 9),
-    ('Salon de l''Alimentation', 8),
-    ('Conférence Médicale', 10),
-    ('Salon de la Mode Vintage', 9),
-    ('Salon de l''Informatique', 11);
 
     INSERT INTO userchoice (start_date_choice, end_date_choice, user_id, event_id)
 VALUES

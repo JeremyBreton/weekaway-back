@@ -2,6 +2,7 @@ import { Router } from 'express';
 import eventDateController from '../controllers/eventDate.controller.js';
 import validation from '../middlewares/validation.middleware.js';
 import * as schemaPost from '../schemas/app.post.schema.js';
+import * as schemaPatch from '../schemas/app.patch.schema.js';
 import controllerWrapper from '../middlewares/controller.wrapper.js';
 
 const eventDateRouter = Router();
@@ -35,9 +36,8 @@ eventDateRouter.route('/api/eventDate/:id')
    * @summary Get event date by id
    * @tags EventDate
  */
-// ! TODO : Faire schema pour les .patch (remettre les schema post dans un doc patch)
   .patch(
-    validation(schemaPost.eventDateSchema, 'body'),
+    validation(schemaPatch.eventDateSchema),
     controllerWrapper(eventDateController.updateEventDateById),
   )
   /**

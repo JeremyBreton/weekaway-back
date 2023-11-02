@@ -2,7 +2,6 @@
 import { Router } from 'express';
 import authRouter from './auth.router.js';
 import eventRouter from './event.router.js';
-import themeRouter from './theme.router.js';
 import userRouter from './user.router.js';
 import userChoiceRouter from './userChoice.router.js';
 import eventDateRouter from './eventDate.router.js';
@@ -31,7 +30,6 @@ mainRouter.use(authRouter);
 mainRouter.use(eventRouter);
 mainRouter.use(userRouter);
 mainRouter.use(userChoiceRouter);
-mainRouter.use(themeRouter);
 mainRouter.use(eventDateRouter);
 mainRouter.use(eventLinkRouter);
 mainRouter.use(userHasEventRouter);

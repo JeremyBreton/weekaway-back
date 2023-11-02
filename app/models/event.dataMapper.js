@@ -9,13 +9,14 @@ export default {
 
   async findEventById(id) {
     const result = await client.query(`SELECT
-      "event".id AS event_id,
-      "event".name AS event_name,
-      "event".owner_id AS event_owner_id,
-      "event".status AS event_status,
-      "event".description AS event_description,
-      "event".picture AS event_picture,
-      "event".password AS event_password,
+      "event".id AS id,
+      "event".name AS name,
+      "event".owner_id AS owner_id,
+      "event".status AS status,
+      "event".description AS description,
+      "event".picture AS picture,
+      "event".theme AS theme,
+      "event".password AS password,
       JSONB_AGG(DISTINCT event_dates) AS dates_of_event,
       JSONB_AGG(DISTINCT user_data) AS users
     FROM "event"
@@ -66,10 +67,11 @@ export default {
 
   async createEvent(data) {
     const query = `
-    INSERT INTO event (name, owner_id, status, description, picture, password) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
+    INSERT INTO event (name, owner_id,theme, status, description, picture, password) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
     const values = [
       data.name,
-      data.ownerId,
+      data.owner_id,
+      data.theme,
       data.status,
       data.description,
       data.picture,
@@ -81,13 +83,14 @@ export default {
 
   async updateEvent(id, data) {
     const query = `
-    UPDATE event SET name=$1, owner_id=$2, status=$3, description=$4, picture=$5, WHERE id=$6 RETURNING *`;
+    UPDATE event SET name=$1, owner_id=$2, status=$3, description=$4, picture=$5, theme=$6 WHERE id=$7 RETURNING *`;
     const values = [
       data.name,
-      data.ownerId,
+      data.owner_id,
       data.status,
       data.description,
       data.picture,
+      data.theme,
       id];
     const result = await client.query(query, values);
     return result.rows[0];
@@ -113,6 +116,15 @@ export default {
     const result = await client.query(
       'UPDATE event SET picture=$1 WHERE id=$2 RETURNING *',
       [picture, id],
+    );
+    return result.rows[0];
+  },
+
+  // Useful in EventLinkController, to send mail to user, gather infos about event and owner
+  async findEventWithOwnerInfos(eventId) {
+    const result = await client.query(
+      'SELECT "event".*, "user".* FROM event JOIN "user" ON "event".owner_id = "user".id WHERE "event".id = $1;',
+      [eventId],
     );
     return result.rows[0];
   },
