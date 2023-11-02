@@ -42,6 +42,7 @@ export default {
   },
 
   async createEventDate(eventId, data) {
+    console.log(data);
     const result = await client.query(
       'INSERT INTO "eventdate" (event_id, start_date, end_date) VALUES ($1, $2, $3) RETURNING *',
       [eventId, data.start_date, data.end_date],

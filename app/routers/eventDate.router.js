@@ -15,7 +15,7 @@ eventDateRouter.route('/api/eventDate')
    * @tags EventDate
  */
   .post(
-    validation(schemaPost.eventDateSchema),
+    validation(schemaPost.eventDateSchema, 'body'),
     controllerWrapper(eventDateController.createEventDate),
   );
 /**
@@ -37,7 +37,7 @@ eventDateRouter.route('/api/eventDate/:id')
  */
 // ! TODO : Faire schema pour les .patch (remettre les schema post dans un doc patch)
   .patch(
-    validation(schemaPost.eventDateSchema),
+    validation(schemaPost.eventDateSchema, 'body'),
     controllerWrapper(eventDateController.updateEventDateById),
   )
   /**

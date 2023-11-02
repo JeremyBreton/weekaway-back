@@ -93,23 +93,12 @@ export default {
     return result.rows[0];
   },
 
-  // ! Voir pour optimiser la suppression et avoir qu'un seule appel a la BDD : CF createEventDate
   async deleteEvent(id) {
-    await client.query('BEGIN');
-
-    try {
-      await client.query('DELETE FROM user_has_event WHERE event_id=$1', [id]);
-      await client.query('DELETE FROM userchoice WHERE event_id=$1', [id]);
-      await client.query('DELETE FROM eventdate WHERE event_id=$1', [id]);
-      await client.query('DELETE FROM theme WHERE event_id=$1', [id]);
-      const result = await client.query('DELETE FROM event WHERE id=$1', [id]);
-
-      await client.query('COMMIT');
-      return result.rowCount;
-    } catch (error) {
-      await client.query('ROLLBACK');
-      throw error;
-    }
+    const query = 'SELECT * FROM delete_event_on_cascade($1)';
+    const values = [
+      id];
+    const result = await client.query(query, values);
+    return result;
   },
 
   async findEventByPassword(password) {
