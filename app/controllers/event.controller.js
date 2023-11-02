@@ -98,4 +98,5 @@ export default {
     const event = await datamapper.findEventByPassword(password);
     res.json(event);
   },
+
 };
