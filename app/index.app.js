@@ -13,7 +13,9 @@ passportConfig(passport);
 
 const app = express();
 
-app.use(helmet());
+app.use(helmet({
+  crossOriginResourcePolicy: false,
+}));
 
 userDocImplementation(app);
 app.use('/static', express.static('uploads'));
