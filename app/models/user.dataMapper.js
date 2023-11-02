@@ -22,18 +22,11 @@ export default {
 
   // ! TODO : faire en sorte de faire qu'une seule requete a la BDD
   async deleteUserById(id) {
-    await client.query('BEGIN');
-
-    try {
-      await client.query('DELETE FROM userchoice WHERE user_id = $1', [id]);
-      await client.query('DELETE FROM user_has_event WHERE user_id = $1', [id]);
-      const result = await client.query('DELETE FROM "user" WHERE id = $1', [id]);
-      await client.query('COMMIT');
-      return result.rowCount;
-    } catch (error) {
-      await client.query('ROLLBACK');
-      throw error;
-    }
+    const query = 'SELECT * FROM delete_user_on_cascade($1)';
+    const values = [
+      id];
+    const result = await client.query(query, values);
+    return result.rowCount;
   },
 
   async updateUserById(id, data) {

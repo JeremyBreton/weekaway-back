@@ -16,7 +16,7 @@ eventDateRouter.route('/api/eventDate')
    * @tags EventDate
  */
   .post(
-    validation(schemaPost.eventDateSchema),
+    validation(schemaPost.eventDateSchema, 'body'),
     controllerWrapper(eventDateController.createEventDate),
   );
 /**

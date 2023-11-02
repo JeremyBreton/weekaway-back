@@ -153,7 +153,7 @@ Content-Type: application/json
 DELETE http://localhost:3000/api/userchoice/4
 
 ### ? Delete user
-DELETE http://localhost:3000/api/user/33
+DELETE http://localhost:3000/api/user/5
 
 ######### ! ############################# 
 
