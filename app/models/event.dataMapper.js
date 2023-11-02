@@ -123,7 +123,7 @@ export default {
   // Useful in EventLinkController, to send mail to user, gather infos about event and owner
   async findEventWithOwnerInfos(eventId) {
     const result = await client.query(
-      'SELECT "event".*, "user".* FROM event JOIN "user" ON "event".owner_id = "user".id WHERE "event".id = $1;',
+      'SELECT "event".*, "user".firstname, "user".lastname FROM event JOIN "user" ON "event".owner_id = "user".id WHERE "event".id = $1;',
       [eventId],
     );
     return result.rows[0];
