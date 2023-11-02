@@ -47,13 +47,6 @@ export default {
       password,
     };
 
-    // If someone upload a picture, we add the path to the data
-    if (!req.file) {
-      dataEvent.picture = 'http://caca-boudin.fr/static/default.png';
-    } else if (req.file) {
-      dataEvent.picture = `http://caca-boudin.fr/static/${req.file.filename}`;
-    }
-
     const event = await datamapper.createEvent(dataEvent);
     if (eventDates !== undefined && eventDates !== null) {
       if (eventDates.date === undefined && eventDates.date === null) {
@@ -62,6 +55,13 @@ export default {
       } else {
         await eventDateDataMapper.createEventDate(event.id, eventDates);
       }
+    }
+
+    // If someone upload a picture, we add the path to the data
+    if (!req.file) {
+      dataEvent.picture = 'http://caca-boudin.fr/static/default.png';
+    } else if (req.file) {
+      dataEvent.picture = `http://caca-boudin.fr/static/${req.file.filename}`;
     }
     await userHasEventDataMapper.addUserToEvent(dataEvent.ownerId, event.id);
     res.json(event);
