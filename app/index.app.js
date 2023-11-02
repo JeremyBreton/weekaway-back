@@ -13,14 +13,6 @@ passportConfig(passport);
 
 const app = express();
 
-app.use(helmet({
-  crossOriginResourcePolicy: false,
-  crossOriginEmbedderPolicy: false,
-  crossOriginOpenerPolicy: false,
-  strictTransportSecurity: false,
-  originAgentCluster: false,
-
-}));
 
 userDocImplementation(app);
 app.use('/static', express.static('uploads'));
