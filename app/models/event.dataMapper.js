@@ -15,6 +15,7 @@ export default {
       "event".status AS event_status,
       "event".description AS event_description,
       "event".picture AS event_picture,
+      "event".theme AS event_theme,
       "event".password AS event_password,
       JSONB_AGG(DISTINCT event_dates) AS dates_of_event,
       JSONB_AGG(DISTINCT user_data) AS users
@@ -66,10 +67,11 @@ export default {
 
   async createEvent(data) {
     const query = `
-    INSERT INTO event (name, owner_id, status, description, picture, password) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
+    INSERT INTO event (name, owner_id,theme, status, description, picture, password) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
     const values = [
       data.name,
       data.ownerId,
+      data.theme,
       data.status,
       data.description,
       data.picture,
@@ -81,13 +83,14 @@ export default {
 
   async updateEvent(id, data) {
     const query = `
-    UPDATE event SET name=$1, owner_id=$2, status=$3, description=$4, picture=$5, WHERE id=$6 RETURNING *`;
+    UPDATE event SET name=$1, owner_id=$2, status=$3, description=$4, picture=$5, theme=$6 WHERE id=$7 RETURNING *`;
     const values = [
       data.name,
       data.ownerId,
       data.status,
       data.description,
       data.picture,
+      data.theme,
       id];
     const result = await client.query(query, values);
     return result.rows[0];

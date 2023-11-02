@@ -40,14 +40,13 @@ export default {
 
     const dataEvent = {
       name: data.name,
+      theme: data.theme,
       ownerId: data.ownerId,
       status: data.status,
       description: data.description,
       picture: data.picture,
       password,
     };
-
-    console.log(req.file);
 
     // If someone upload a picture, we add the path to the data
     if (!req.file) {
@@ -75,7 +74,7 @@ export default {
     const baseData = await datamapper.findEventById(id);
 
     const dataToUpdate = [
-      'name', 'ownerId', 'status', 'description', 'picture',
+      'name', 'ownerId', 'status', 'description', 'picture', 'theme',
     ];
 
     dataToUpdate.forEach((element) => {
