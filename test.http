@@ -88,7 +88,7 @@ Content-Type: application/json
 
 {
   "email": "fardeau.geoffrey@gmail.com",
-  "eventId": "42"
+  "eventId": "2"
 }
 
 ### ? Post event passs
