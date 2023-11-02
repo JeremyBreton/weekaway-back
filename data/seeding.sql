@@ -20,52 +20,30 @@ VALUES
     ('Sophie', 'Martin', 'sophie.martin@example.com', '1010 Rue de la Plage, Ville', 'supersecret', '1988-03-05 08:45:00', 'Femme', 'http://exemple.com/photo_sophie.jpg', 'Description de Sophie Martin.'),
     ('Pierre', 'Dubois', 'pierre.dubois@example.com', '222 Rue des Montagnes, Ville', 'motdepasse789', '1991-07-25 14:00:00', 'Homme', 'http://exemple.com/photo_pierre.jpg', 'Description de Pierre Dubois.');
 
-INSERT INTO event (name, owner_id, status, description, picture, password, link_project)
+INSERT INTO event (name, owner_id, status, description, picture, password)
 VALUES
-    ('Conférence Tech 2023', 1, true, 'Conférence annuelle sur la technologie', 'image1.jpg', 'motdepasse1', 'lien_conference'),
-    ('Festival de Musique', 3, true, 'Festival de musique de trois jours', 'image2.jpg', 'motdepasse2', 'lien_festival_musique'),
-    ('Gala de Bienfaisance', 2, false, 'Gala de collecte de fonds pour une bonne cause', 'image3.jpg', 'motdepasse3', 'lien_gala_bienfaisance'),
-    ('Lancement de Produit', 1, true, 'Événement de lancement de notre nouveau produit', 'image4.jpg', 'motdepasse4', 'lien_lancement_produit'),
-    ('Atelier Communautaire', 4, true, 'Atelier pratique pour les amateurs de bricolage', 'image5.jpg', 'motdepasse5', 'lien_atelier_communaute'),
-    ('Exposition d''Art', 5, true, 'Mise en avant des artistes locaux', 'image6.jpg', 'motdepasse6', 'lien_exposition_art'),
-    ('Séminaire Éducatif', 2, true, 'Séminaire éducatif sur les nouvelles tendances', 'image7.jpg', 'motdepasse7', 'lien_seminaire_educatif'),
-    ('Tournoi de Sport', 3, false, 'Tournoi de sports inter-entreprises', 'image8.jpg', 'motdepasse8', 'lien_tournoi_sport'),
-    ('Forum des Entrepreneurs', 1, true, 'Forum annuel pour les entrepreneurs', 'image9.jpg', 'motdepasse9', 'lien_forum_entrepreneurs'),
-    ('Salon du Livre', 4, true, 'Rencontre des auteurs et dédicaces', 'image10.jpg', 'motdepasse10', 'lien_salon_livre'),
-    ('Exposition Technologique', 3, false, 'Exposition des dernières innovations technologiques', 'image11.jpg', 'motdepasse11', 'lien_exposition_technologique'),
-    ('Foire aux Métiers', 2, true, 'Foire pour explorer différentes carrières', 'image12.jpg', 'motdepasse12', 'lien_foire_metiers'),
-    ('Ciné-Club', 5, true, 'Projection de films indépendants', 'image13.jpg', 'motdepasse13', 'lien_cine_club'),
-    ('Conférence Médicale', 4, false, 'Conférence sur les avancées médicales', 'image14.jpg', 'motdepasse14', 'lien_conference_medicale'),
-    ('Festival de Cuisine', 1, true, 'Célébration de la gastronomie locale', 'image15.jpg', 'motdepasse15', 'lien_festival_cuisine'),
-    ('Salon de la Mode', 3, true, 'Présentation des dernières tendances de la mode', 'image16.jpg', 'motdepasse16', 'lien_salon_mode'),
-    ('Salon de l''Automobile', 2, false, 'Présentation des nouveaux modèles de voitures', 'image17.jpg', 'motdepasse17', 'lien_salon_automobile'),
-    ('Festival du Film', 5, true, 'Projection de films internationaux', 'image18.jpg', 'motdepasse18', 'lien_festival_film'),
-    ('Conférence Environnementale', 4, true, 'Débat sur les questions environnementales', 'image19.jpg', 'motdepasse19', 'lien_conference_environnement'),
-    ('Salon de l''Éducation', 1, false, 'Exposition des institutions éducatives', 'image20.jpg', 'motdepasse20', 'lien_salon_education');
+    ('Conférence Tech 2023', 1, true, 'Conférence annuelle sur la technologie', 'image1.jpg', 'motdepasse1'),
+    ('Festival de Musique', 3, true, 'Festival de musique de trois jours', 'image2.jpg', 'motdepasse2'),
+    ('Gala de Bienfaisance', 2, false, 'Gala de collecte de fonds pour une bonne cause', 'image3.jpg', 'motdepasse3'),
+    ('Lancement de Produit', 1, true, 'Événement de lancement de notre nouveau produit', 'image4.jpg', 'motdepasse4'),
+    ('Atelier Communautaire', 4, true, 'Atelier pratique pour les amateurs de bricolage', 'image5.jpg', 'motdepasse5'),
+    ('Exposition d''Art', 5, true, 'Mise en avant des artistes locaux', 'image6.jpg', 'motdepasse6'),
+    ('Séminaire Éducatif', 2, true, 'Séminaire éducatif sur les nouvelles tendances', 'image7.jpg', 'motdepasse7'),
+    ('Tournoi de Sport', 3, false, 'Tournoi de sports inter-entreprises', 'image8.jpg', 'motdepasse8'),
+    ('Forum des Entrepreneurs', 1, true, 'Forum annuel pour les entrepreneurs', 'image9.jpg', 'motdepasse9'),
+    ('Salon du Livre', 4, true, 'Rencontre des auteurs et dédicaces', 'image10.jpg', 'motdepasse10'),
+    ('Exposition Technologique', 3, false, 'Exposition des dernières innovations technologiques', 'image11.jpg', 'motdepasse11'),
+    ('Foire aux Métiers', 2, true, 'Foire pour explorer différentes carrières', 'image12.jpg', 'motdepasse12'),
+    ('Ciné-Club', 5, true, 'Projection de films indépendants', 'image13.jpg', 'motdepasse13'),
+    ('Conférence Médicale', 4, false, 'Conférence sur les avancées médicales', 'image14.jpg', 'motdepasse14'),
+    ('Festival de Cuisine', 1, true, 'Célébration de la gastronomie locale', 'image15.jpg', 'motdepasse15'),
+    ('Salon de la Mode', 3, true, 'Présentation des dernières tendances de la mode', 'image16.jpg', 'motdepasse16'),
+    ('Salon de l''Automobile', 2, false, 'Présentation des nouveaux modèles de voitures', 'image17.jpg', 'motdepasse17'),
+    ('Festival du Film', 5, true, 'Projection de films internationaux', 'image18.jpg', 'motdepasse18'),
+    ('Conférence Environnementale', 4, true, 'Débat sur les questions environnementales', 'image19.jpg', 'motdepasse19'),
+    ('Salon de l''Éducation', 1, false, 'Exposition des institutions éducatives', 'image20.jpg', 'motdepasse20');
 
 
-    INSERT INTO theme (name, event_id)
-VALUES
-    ('Fête de Printemps', 1),
-    ('Conférence sur la Technologie', 2),
-    ('Séminaire de Gestion', 1),
-    ('Salon de l''Automobile', 3),
-    ('Exposition d''Art Moderne', 2),
-    ('Course de Marathon', 4),
-    ('Festival de Musique', 3),
-    ('Salon de l''Innovation', 5),
-    ('Conférence sur l''Environnement', 4),
-    ('Salon de l''Emploi', 6),
-    ('Exposition de Design Industriel', 5),
-    ('Tournoi de Golf', 7),
-    ('Semaine de la Mode', 6),
-    ('Festival du Cinéma', 8),
-    ('Exposition de Photographie', 7),
-    ('Foire aux Livres', 9),
-    ('Salon de l''Alimentation', 8),
-    ('Conférence Médicale', 10),
-    ('Salon de la Mode Vintage', 9),
-    ('Salon de l''Informatique', 11);
 
     INSERT INTO userchoice (start_date_choice, end_date_choice, user_id, event_id)
 VALUES

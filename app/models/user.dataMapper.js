@@ -20,11 +20,13 @@ export default {
     return result.rows[0];
   },
 
+  // ! TODO : faire en sorte de faire qu'une seule requete a la BDD
   async deleteUserById(id) {
-    const result = await client.query('DELETE FROM "user" WHERE id = $1', [
-      id,
-    ]);
-    return result.rows[0];
+    const query = 'SELECT * FROM delete_user_on_cascade($1)';
+    const values = [
+      id];
+    const result = await client.query(query, values);
+    return result.rowCount;
   },
 
   async updateUserById(id, data) {
@@ -57,8 +59,7 @@ export default {
                 'owner_id', "event".owner_id,
                 'status', "event".status,
                 'description', "event".description,
-                'picture', "event".picture,
-                'link_project', "event".link_project
+                'picture', "event".picture
         ) ORDER BY "user_has_event".event_id
       ) AS events
       FROM
@@ -78,51 +79,42 @@ export default {
   async getUserWithEventsAndUserChoices(id) {
     const result = await client.query(
       `SELECT DISTINCT
-		"user".id,
-        "user"."firstname",
-        "user"."lastname",
-        "user"."email",
-        "user"."address",
-        "user"."birth_date",
-        "user"."gender",
-        "user"."profile_picture",
-        "user"."profile_desc", 
-        JSONB_AGG(DISTINCT event_info) AS "event_his_choices"  
-        FROM "user" 
-		JOIN "user_has_event" ON "user".id = "user_has_event".user_id
-		LEFT JOIN (
-			SELECT
-				"event".id AS event_id,
-				"event".name,
-				"event".owner_id,
-				"event".status,
-				"event".description,
-				"event".picture,
-				"event".link_project,
-				JSONB_AGG(DISTINCT user_choices) AS user_choices
-			FROM "event"
-			LEFT JOIN (
-				SELECT
-					"userchoice".id,
-					"userchoice".event_id AS choice_event_id,
-					"userchoice".start_date_choice,
-					"userchoice".end_date_choice
-        		FROM "userchoice"
-      		) AS user_choices ON "event".id = user_choices.choice_event_id
-        	GROUP BY "event".id
-		) AS event_info ON "event_info".event_id = "user_has_event".event_id        
+          "user".id,
+          "user"."firstname",
+          "user"."lastname",
+          "user"."email",
+          "user"."address",
+          "user"."birth_date",
+          "user"."gender",
+          "user"."profile_picture",
+          "user"."profile_desc", 
+          JSONB_AGG(DISTINCT event_info) AS "event_his_choices"  
+          FROM "user" 
+        JOIN "user_has_event" ON "user".id = "user_has_event".user_id
+        LEFT JOIN (
+          SELECT
+            "event".id AS event_id,
+            "event".name,
+            "event".owner_id,
+            "event".status,
+            "event".description,
+            "event".picture,
+            JSONB_AGG(DISTINCT user_choices) AS user_choices
+          FROM "event"
+          LEFT JOIN (
+            SELECT
+              "userchoice".id,
+              "userchoice".event_id AS choice_event_id,
+              "userchoice".start_date_choice,
+              "userchoice".end_date_choice
+                FROM "userchoice"
+              ) AS user_choices ON "event".id = user_choices.choice_event_id
+              GROUP BY "event".id
+        ) AS event_info ON "event_info".event_id = "user_has_event".event_id        
         WHERE "user".id = $1
         GROUP BY "user".id
         `,
       [id],
-    );
-    return result.rows[0];
-  },
-
-  async updateUserPic(id, path) {
-    const result = await client.query(
-      'UPDATE "user" SET profile_picture = $1 WHERE id = $2 RETURNING *',
-      [path, id],
     );
     return result.rows[0];
   },

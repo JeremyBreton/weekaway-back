@@ -23,4 +23,6 @@ package-lock.json
 sqitch.conf
 #test
 coverage/
-uploads/
+uploads/*
+!uploads/default.png
+.vscode/

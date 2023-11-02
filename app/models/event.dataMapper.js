@@ -7,48 +7,16 @@ export default {
     return results.rows;
   },
 
-  async findEventById2(id) {
-    const eventDetails = await client.query('SELECT * FROM event WHERE id=$1', [id]);
-
-    const eventDates = await client.query('SELECT * FROM eventdate WHERE event_id=$1', [id]);
-
-    const usersJoined = await client.query(`
-        SELECT "user".* 
-        FROM "user"
-        JOIN user_has_event ON "user".id = user_has_event.user_id
-        WHERE user_has_event.event_id=$1
-    `, [id]);
-
-    const usersWithChoices = await Promise.all(usersJoined.rows.map(async (user) => {
-      const userChoices = await client.query(`
-            SELECT start_date_choice, end_date_choice
-            FROM userchoice 
-            WHERE user_id=$1 AND event_id=$2
-        `, [user.id, id]);
-
-      return {
-        ...user,
-        choices: userChoices.rows,
-      };
-    }));
-
-    return {
-      event: eventDetails.rows[0],
-      dates: eventDates.rows,
-      users: usersWithChoices,
-    };
-  },
-
   async findEventById(id) {
     const result = await client.query(`SELECT
-      "event".id AS event_id,
-      "event".name AS event_name,
-      "event".owner_id AS event_owner_id,
-      "event".status AS event_status,
-      "event".description AS event_description,
-      "event".picture AS event_picture,
-      "event".link_project AS event_link_project,
-      "event".password AS event_password,
+      "event".id AS id,
+      "event".name AS name,
+      "event".owner_id AS owner_id,
+      "event".status AS status,
+      "event".description AS description,
+      "event".picture AS picture,
+      "event".theme AS theme,
+      "event".password AS password,
       JSONB_AGG(DISTINCT event_dates) AS dates_of_event,
       JSONB_AGG(DISTINCT user_data) AS users
     FROM "event"
@@ -99,14 +67,14 @@ export default {
 
   async createEvent(data) {
     const query = `
-    INSERT INTO event (name, owner_id, status, description, picture, link_project, password) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
+    INSERT INTO event (name, owner_id,theme, status, description, picture, password) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
     const values = [
       data.name,
-      data.ownerId,
+      data.owner_id,
+      data.theme,
       data.status,
       data.description,
       data.picture,
-      data.linkProject,
       data.password,
     ];
     const result = await client.query(query, values);
@@ -115,22 +83,25 @@ export default {
 
   async updateEvent(id, data) {
     const query = `
-    UPDATE event SET name=$1, owner_id=$2, status=$3, description=$4, picture=$5, link_project=$6 WHERE id=$7 RETURNING *`;
+    UPDATE event SET name=$1, owner_id=$2, status=$3, description=$4, picture=$5, theme=$6 WHERE id=$7 RETURNING *`;
     const values = [
       data.name,
-      data.ownerId,
+      data.owner_id,
       data.status,
       data.description,
       data.picture,
-      data.linkProject,
+      data.theme,
       id];
     const result = await client.query(query, values);
     return result.rows[0];
   },
 
   async deleteEvent(id) {
-    const result = await client.query('DELETE FROM event WHERE id=$1', [id]);
-    return result.rows[0];
+    const query = 'SELECT * FROM delete_event_on_cascade($1)';
+    const values = [
+      id];
+    const result = await client.query(query, values);
+    return result;
   },
 
   async findEventByPassword(password) {
@@ -148,6 +119,7 @@ export default {
     );
     return result.rows[0];
   },
+
   // Useful in EventLinkController, to send mail to user, gather infos about event and owner
   async findEventWithOwnerInfos(eventId) {
     const result = await client.query(

@@ -1,5 +1,6 @@
 /* eslint-disable linebreak-style */
 import express from 'express';
+import helmet from 'helmet';
 import cors from 'cors';
 import session from 'express-session';
 import passport from 'passport';
@@ -11,6 +12,7 @@ import userDocImplementation from './middlewares/swagger.doc.js';
 passportConfig(passport);
 
 const app = express();
+
 
 userDocImplementation(app);
 app.use('/static', express.static('uploads'));

@@ -2,11 +2,13 @@ import { Router } from 'express';
 import eventDateController from '../controllers/eventDate.controller.js';
 import validation from '../middlewares/validation.middleware.js';
 import * as schemaPost from '../schemas/app.post.schema.js';
+import * as schemaPatch from '../schemas/app.patch.schema.js';
 import controllerWrapper from '../middlewares/controller.wrapper.js';
 
 const eventDateRouter = Router();
 
 eventDateRouter.route('/api/eventDate')
+// ! TODO : Faire schema pour les .get
   .get(controllerWrapper(eventDateController.getAllEventDates))
   /**
    * GET /api/eventDate
@@ -14,7 +16,7 @@ eventDateRouter.route('/api/eventDate')
    * @tags EventDate
  */
   .post(
-    validation(schemaPost.eventDateSchema),
+    validation(schemaPost.eventDateSchema, 'body'),
     controllerWrapper(eventDateController.createEventDate),
   );
 /**
@@ -27,6 +29,7 @@ eventDateRouter.route('/api/eventDate')
    */
 
 eventDateRouter.route('/api/eventDate/:id')
+// ! TODO : Faire schema pour les .get
   .get(controllerWrapper(eventDateController.getEventDateById))
 /**
    * GET /api/eventDate/:id
@@ -34,7 +37,7 @@ eventDateRouter.route('/api/eventDate/:id')
    * @tags EventDate
  */
   .patch(
-    validation(schemaPost.eventDateSchema),
+    validation(schemaPatch.eventDateSchema),
     controllerWrapper(eventDateController.updateEventDateById),
   )
   /**
@@ -54,6 +57,7 @@ eventDateRouter.route('/api/eventDate/:id')
    */
 
 eventDateRouter.route('/api/eventDate/event/:eventId')
+// ! TODO : Faire schema pour les .get
   .get(controllerWrapper(eventDateController.getEventDateByeventId));
 /**
    * GET /api/eventDate/event/:eventId
@@ -62,6 +66,7 @@ eventDateRouter.route('/api/eventDate/event/:eventId')
  */
 
 eventDateRouter.route('/api/eventDate/:id/event')
+// ! TODO : Faire schema pour les .get
   .get(controllerWrapper(eventDateController.getEventDateWithEvent));
 /**
    * GET /api/eventDate/:id/event

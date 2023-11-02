@@ -1,6 +1,8 @@
 import datamapper from '../models/event.dataMapper.js';
-import randomId from '../services/randomId.services.js';
+import randomId from '../services/randomId.service.js';
 import userHasEventDataMapper from '../models/userHasEvent.dataMapper.js';
+import dateVerify from '../services/dateVerify.service.js';
+import eventDateDataMapper from '../models/eventDate.dataMapper.js';
 
 /**
    * @typedef {object} EventInput
@@ -8,7 +10,6 @@ import userHasEventDataMapper from '../models/userHasEvent.dataMapper.js';
    * @property {integer} ownerId
    * @property {boolean} status
    * @property {string} description
-   * @property {string} linkProject
   */
 
 export default {
@@ -25,38 +26,67 @@ export default {
 
   async createEvent(req, res) {
     const password = randomId.makeId(5);
-    const {
-      name, ownerId, status, description, picture, linkProject,
-    } = req.body;
-    const data = {
-      name, ownerId, status, description, picture, password, linkProject,
+    const data = req.body;
+    let eventDates = null;
+    if (data.datesOfEvent !== undefined && data.datesOfEvent !== null) {
+      eventDates = data.datesOfEvent;
+    }
+    if (data.startDate && data.endDate) {
+      eventDates = {
+        start_date: data.startDate,
+        end_date: data.endDate,
+      };
+    }
+
+    const dataEvent = {
+      name: data.name,
+      theme: data.theme,
+      owner_id: data.owner_id,
+      status: data.status,
+      description: data.description,
+      picture: data.picture,
+      password,
     };
 
     // If someone upload a picture, we add the path to the data
-    if (req.file) {
-      const path = `http://caca-boudin.fr/static/${req.file.filename}`;
-      data.picture = path;
+    if (!req.file) {
+      dataEvent.picture = 'http://caca-boudin.fr/static/default.png';
+    } else if (req.file) {
+      dataEvent.picture = `http://caca-boudin.fr/static/${req.file.filename}`;
     }
-    // const userHasEvent = await userHasEventDataMapper.addUserToEvent(user.id, event.id);
 
-    const event = await datamapper.createEvent(data);
-    console.log(event);
-    const userHasEvent = await userHasEventDataMapper.addUserToEvent(ownerId, event.id);
+    const event = await datamapper.createEvent(dataEvent);
+    if (eventDates !== undefined && eventDates !== null) {
+      if (eventDates.date === undefined && eventDates.date === null) {
+        const eventDateNoDuplicate = dateVerify.removeDuplicateDates(eventDates);
+        await eventDateDataMapper.createEventDateWithMultipleEvent(event.id, eventDateNoDuplicate);
+      } else {
+        await eventDateDataMapper.createEventDate(event.id, eventDates);
+      }
+    }
+    await userHasEventDataMapper.addUserToEvent(dataEvent.owner_id, event.id);
     res.json(event);
   },
 
   async updateEvent(req, res) {
-    const {
-      name, ownerId, status, description, picture,
-    } = req.body;
-    const data = {
-      name, ownerId, status, description, picture,
-    };
     const { id } = req.params;
+    const data = req.body;
+    const baseData = await datamapper.findEventById(id);
+
+    const dataToUpdate = [
+      'name', 'owner_id', 'status', 'description', 'picture', 'theme',
+    ];
+    console.log(baseData);
+    dataToUpdate.forEach((element) => {
+      if (!data[element]) {
+        data[element] = baseData[element];
+      }
+    });
     const event = await datamapper.updateEvent(id, data);
     res.json(event);
   },
 
+  // ! TODO : delete eventDate when delete event
   async deleteEvent(req, res) {
     const { id } = req.params;
     const event = await datamapper.deleteEvent(id);
@@ -68,4 +98,5 @@ export default {
     const event = await datamapper.findEventByPassword(password);
     res.json(event);
   },
+
 };

@@ -8,22 +8,19 @@
 GET http://localhost:3000/api/users/
 
 ### ? Get user by id
-GET http://localhost:3000/api/user/1
+GET http://localhost:3000/api/user/4
 
 ### ? Update user
-PATCH http://localhost:3000/api/user/1
+PATCH http://localhost:3000/api/user/16
 Content-Type: application/json
 
 {
-  "email": "fesses@gmouilledessous.fr",
-  "firstname": "Jean yves la fesse",
   "lastname": "Monfrèèèrrreeee",
-  "password": "Password25852!",
   "profile_picture": "https://resize.elle.fr/square/var/plain_site/storage/images/minceur/astuces-minceur/comment-avoir-des-fesses-de-reve-3896751/94237773-2-fre-FR/Avec-ou-sans-chirurgie-les-astuces-pour-des-fesses-de-reve.jpg"
 }
 
 ### ? Post User
-POST http://caca-boudin.fr/api/register
+POST http://localhost:3000/api/register
 Content-Type: application/json
 
 {
@@ -49,23 +46,17 @@ Content-Type: application/json
 ######### ! ############################# 
 
 ### ? Get 
-GET http://localhost:3000/api/event/
+GET http://caca-boudin.fr/api/event/
 
 ### ? Get event by id
-GET http://localhost:3000/api/event/4
+GET http://localhost:3000/api/event/6
 
 ### ? Update Event
-PATCH http://localhost:3000/api/event/21
+PATCH http://localhost:3000/api/event/25
 Content-Type: application/json
 
 {
-    
-  "name": "jean rachid",
-  "ownerId": 5,
-  "status" : true,
-  "description": "super event !!!"
-  "linkProject": "http://www.google.fr",
-
+  "owner_id": 5
 }
 
 ### ? Delete Event
@@ -76,13 +67,13 @@ POST http://localhost:3000/api/event
 Content-Type: application/json
 
 {
-    
-  "name": "fete du sperme ",
-  "ownerId": 22,
-  "status" : false,
-  "description": "super event !!!",
-  "linkProject": "http://www.google.fr"
-
+  "name": "fete du spourme",
+   "theme": "fete du spourme",
+    "description": "fete du spourme",
+  "owner_id": 5,
+  "status": false,
+  "startDate": "2023-12-27 15:30:00+03:00",
+  "endDate": "2023-12-27 15:30:00+03:00"
 }
 
 ############ ! ############################# 
@@ -97,7 +88,9 @@ Content-Type: application/json
 
 {
   "email": "fardeau.geoffrey@gmail.com",
+
   "eventId": "1"
+
 }
 
 ### ? Post event passs
@@ -116,10 +109,10 @@ Content-Type: application/json
 ######### ! ############################# 
 
 ### ? Get User with event
-GET http://localhost:3000/api/user/22/events
+GET http://localhost:3000/api/user/16/events
 
 ### ? Get User With Event and UserChoice
-GET http://localhost:3000/api/user/1/events/choices
+GET http://localhost:3000/api/user/5/events/choices
 
 ######### ! ############################# 
 
@@ -162,31 +155,7 @@ Content-Type: application/json
 DELETE http://localhost:3000/api/userchoice/4
 
 ### ? Delete user
-DELETE http://localhost:3000/api/user/33
-
-######### ! ############################# 
-
-#! THEME
-
-######### ! ############################# 
-
-### ? Get Theme
-GET http://localhost:3000/api/theme
-
-### ? GetThemeById
-GET http://localhost:3000/api/theme/1
-
-### ? Delete Theme
-DELETE http://localhost:3000/api/theme/5
-
-### ? Post Theme
-POST http://localhost:3000/api/theme
-Content-Type: application/json
-
-{
-  "name": "Camping",
-  "theme_id": 2
-}
+DELETE http://localhost:3000/api/user/5
 
 ######### ! ############################# 
 
@@ -242,7 +211,7 @@ GET http://localhost:3000/api/eventDate/3/event
 ######### ! #############################
 
 ### ? Get all user with Event
-GET http://localhost:3000/api/user/3/events
+GET http://localhost:3000/api/user/5/events
 
 
 ### ? DELETE all userHasEvent

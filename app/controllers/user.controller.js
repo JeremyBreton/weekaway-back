@@ -64,8 +64,8 @@ export default {
       data.password = await bcrypt.hash(data.password, 10);
     }
 
-    const user = await userDataMapper.updateUserById(id, data);
-    res.json('ça a marché mec!');
+    await userDataMapper.updateUserById(id, data);
+    res.json('l\'utilisateur a bien été modifié');
   },
 
   async getUserWithEvents(req, res) {
@@ -79,6 +79,4 @@ export default {
     const user = await userDataMapper.getUserWithEventsAndUserChoices(id);
     res.json(user);
   },
-
-
 };

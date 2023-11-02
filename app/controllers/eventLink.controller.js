@@ -20,7 +20,6 @@ export default {
   async createInviteLink(req, res) {
     const { email, eventId } = req.body;
     const userExist = await userDataMapper.getUserByEmail(email);
-
     const event = await eventDatamapper.findEventWithOwnerInfos(eventId);
     const ownerInfos = { firstname: event.firstname, lastname: event.lastname };
 
@@ -42,10 +41,10 @@ export default {
     if (!event || !user) {
       return res.json({ message: 'Mot de passe incorrect ou evènement non existant ou utilisateur non identifié / inexistant' });
     } if (!userIsInEvent) {
-      const userHasEvent = await userHasEventDataMapper.addUserToEvent(user.id, event.id);
-      return res.json({ message: `${user.firstname} ${user.lastname} ajouté à l'évènement ${event.name}` });
+      await userHasEventDataMapper.addUserToEvent(user.id, event.id);
+      return res.json({ eventId: event.id, message: `${user.firstname} ${user.lastname} ajouté à l'évènement ${event.name}` });
     }
 
-    return res.json({ message: 'Utilisateur fait déjà partie de l\'event !' });
+    return res.json({ message: 'Utilisateur déjà dans l\'évènement' });
   },
 };
