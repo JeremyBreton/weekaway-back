@@ -23,6 +23,7 @@ CREATE TABLE EVENT (
     name TEXT NOT NULL,
     owner_id INT NOT NULL,
     status BOOLEAN NOT NULL,
+    theme TEXT,
     description TEXT,
     picture TEXT,
     password TEXT NOT NULL,
@@ -30,14 +31,6 @@ CREATE TABLE EVENT (
     "updated_at" TIMESTAMPTZ 
     );
 
--- table THEME 
-CREATE TABLE THEME (
-    id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    name TEXT NOT NULL,
-    event_id INT REFERENCES EVENT(id),
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,--on peut utiliser now() aussi
-    "updated_at" TIMESTAMPTZ
-    );
 
 -- table EVENTDATE 
 CREATE TABLE EVENTDATE (

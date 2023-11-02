@@ -55,17 +55,17 @@ GET http://caca-boudin.fr/api/event/
 GET http://localhost:3000/api/event/6
 
 ### ? Update Event
-PATCH http://localhost:3000/api/event/534
+PATCH http://localhost:3000/api/event/22
 Content-Type: application/json
 
 {
-    
-  "name": "Vive les clébards",
-  "ownerId": 22,
-  "status" : false,
-  "description": "super event !!!",
-  "linkProject": "http://www.google.fr"
 
+  "name": "fete du spourme",
+  "theme":"fete du spirme",
+  "ownerId": 5,
+  "status": true,
+  "startDate": "2023-12-27 15:30:00+03:00",
+  "endDate": "2023-12-27 15:30:00+03:00"
 }
 
 ### ? Delete Event
@@ -77,6 +77,8 @@ Content-Type: application/json
 
 {
   "name": "fete du spourme",
+   "theme": "fete du spourme",
+    "description": "fete du spourme",
   "ownerId": 5,
   "status": false,
   "startDate": "2023-12-27 15:30:00+03:00",

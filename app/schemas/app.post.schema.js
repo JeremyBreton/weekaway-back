@@ -24,6 +24,7 @@ const eventSchema = Joi.object({
   startDate: Joi.date(),
   endDate: Joi.date(),
   datesOfEvent: Joi.object(),
+  theme: Joi.string(),
 });
 
 const loginSchema = Joi.object({
@@ -36,11 +37,6 @@ const userChoiceSchema = Joi.object({
   endDate: Joi.required(),
   eventId: Joi.number().required(),
   userId: Joi.number().required(),
-});
-
-const themeSchema = Joi.object({
-  name: Joi.string().min(1).max(255).required(),
-  event_id: Joi.number().integer().positive().required(),
 });
 
 const UserGestionSchema = Joi.object({
@@ -67,7 +63,6 @@ export {
   registerSchema,
   loginSchema,
   eventSchema,
-  themeSchema,
   userChoiceSchema,
   UserGestionSchema,
   eventDateSchema,
