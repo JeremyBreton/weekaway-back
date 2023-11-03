@@ -20,7 +20,6 @@ export default {
     return result.rows[0];
   },
 
-  // ! TODO : faire en sorte de faire qu'une seule requete a la BDD
   async deleteUserById(id) {
     const query = 'SELECT * FROM delete_user_on_cascade($1)';
     const values = [
