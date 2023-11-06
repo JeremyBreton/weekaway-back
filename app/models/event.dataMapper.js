@@ -92,7 +92,6 @@ export default {
       data.theme,
       id];
 
-    console.log(values);
     const result = await client.query(query, values);
     return result.rows[0];
   },

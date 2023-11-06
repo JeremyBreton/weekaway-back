@@ -10,7 +10,6 @@ const registerSchema = Joi.object({
     .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/),
   birth_date: Joi.date(),
   gender: Joi.string().valid('Homme', 'Femme'),
-  profile_picture: Joi.string().uri(),
   profile_desc: Joi.string().max(500),
 });
 

@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import upload from '../services/multer.js';
 import userController from '../controllers/user.controller.js';
 import validation from '../middlewares/validation.middleware.js';
 import * as schemaPatch from '../schemas/app.patch.schema.js';
@@ -24,6 +25,7 @@ userRouter
  */
 // ! TODO : Faire schema pour les .patch (remettre les schema post dans un doc patch)
   .patch(
+    upload.single('profile'),
     validation(schemaPatch.UserGestionSchema, 'body'),
     controllerWrapper(userController.updateUserById),
   )

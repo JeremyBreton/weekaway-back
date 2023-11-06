@@ -42,7 +42,7 @@ export default {
     const data = req.body;
     const baseData = await userDataMapper.getUserById(id);
 
-    const dataToUpdate = [
+    const dataToUpdateName = [
       'email',
       'password',
       'address',
@@ -54,7 +54,13 @@ export default {
       'profile_desc',
     ];
 
-    dataToUpdate.forEach((element) => {
+    if (!req.file) {
+      data.profile_picture = 'http://caca-boudin.fr/static/profilDefault.png';
+    } else if (req.file) {
+      data.profile_picture = `http://caca-boudin.fr/static/${req.file.filename}`;
+    }
+
+    dataToUpdateName.forEach((element) => {
       if (!data[element]) {
         data[element] = baseData[element];
       }
@@ -63,8 +69,8 @@ export default {
     if (data.password) {
       data.password = await bcrypt.hash(data.password, 10);
     }
-
     await userDataMapper.updateUserById(id, data);
+
     res.json('l\'utilisateur a bien été modifié');
   },
 
