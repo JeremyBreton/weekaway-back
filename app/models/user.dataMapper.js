@@ -44,6 +44,8 @@ export default {
         id,
       ],
     );
+
+
     return result.rows[0];
   },
 
