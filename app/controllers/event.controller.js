@@ -3,7 +3,7 @@ import randomId from '../services/randomId.service.js';
 import userHasEventDataMapper from '../models/userHasEvent.dataMapper.js';
 import dateVerify from '../services/dateVerify.service.js';
 import eventDateDataMapper from '../models/eventDate.dataMapper.js';
-
+import dateOneEvent from '../services/dataDateOneEvent.service.js';
 /**
    * @typedef {object} EventInput
    * @property {string} name
@@ -21,7 +21,8 @@ export default {
   async findEventById(req, res) {
     const { id } = req.params;
     const eventDetails = await datamapper.findEventById(id);
-    res.json(eventDetails);
+    const eventDatereport = await dateOneEvent.choiceDateOneEvent(eventDetails);
+    res.json({ eventDetails, eventDatereport });
   },
 
   async createEvent(req, res) {

@@ -56,7 +56,6 @@ export default {
           "userchoice".end_date_choice
         FROM "userchoice"
       ) AS user_choices ON "user".id = user_choices.user_id
-      WHERE "user_has_event".event_id = $1
       GROUP BY "user".id, user_information
     ) AS user_data ON TRUE
     WHERE "event".id = $1
