@@ -74,20 +74,21 @@ export default {
     const data = req.body;
     const baseData = await datamapper.findEventById(id);
 
+    if (!baseData) {
+      return res.json('Event not found');
+    }
     const dataToUpdate = [
       'name', 'owner_id', 'status', 'description', 'picture', 'theme',
     ];
-    console.log(baseData);
     dataToUpdate.forEach((element) => {
       if (!data[element]) {
         data[element] = baseData[element];
       }
     });
     const event = await datamapper.updateEvent(id, data);
-    res.json(event);
+    return res.json(event);
   },
 
-  // ! TODO : delete eventDate when delete event
   async deleteEvent(req, res) {
     const { id } = req.params;
     const event = await datamapper.deleteEvent(id);

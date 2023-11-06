@@ -51,7 +51,7 @@ GET http://caca-boudin.fr/api/event/
 GET http://localhost:3000/api/event/4
 
 ### ? Update Event
-PATCH http://caca-boudin.fr/api/event/55
+PATCH http://localhost:3000/api/event/44
 Content-Type: application/json
 
 {
@@ -69,7 +69,7 @@ Content-Type: application/json
   "name": "fete du spourme",
    "theme": "fete du spourme",
     "description": "fete du spourme",
-  "owner_id": 5,
+  "owner_id": 2,
   "status": false,
   "startDate": "2023-12-27 15:30:00+03:00",
   "endDate": "2023-12-27 15:30:00+03:00"
@@ -87,9 +87,7 @@ Content-Type: application/json
 
 {
   "email": "fardeau.geoffrey@gmail.com",
-
-  "eventId": "1"
-
+  "eventId": "2"
 }
 
 ### ? Post event passs
@@ -108,10 +106,10 @@ Content-Type: application/json
 ######### ! ############################# 
 
 ### ? Get User with event
-GET http://localhost:3000/api/user/16/events
+GET http://localhost:3000/api/user/2/events
 
 ### ? Get User With Event and UserChoice
-GET http://localhost:3000/api/user/5/events/choices
+GET http://localhost:3000/api/user/2/events/choices
 
 ######### ! ############################# 
 
@@ -154,7 +152,7 @@ Content-Type: application/json
 DELETE http://localhost:3000/api/userchoice/4
 
 ### ? Delete user
-DELETE http://localhost:3000/api/user/5
+DELETE http://localhost:3000/api/user/2
 
 ######### ! ############################# 
 
@@ -176,10 +174,10 @@ Content-Type: application/json
 }
 
 ### ? Get eventDate by id
-GET http://localhost:3000/api/eventDate/1
+GET http://localhost:3000/api/eventDate/8
 
 ### ? Get eventDate by eventId
-GET http://localhost:3000/api/eventDate/event/3
+GET http://localhost:3000/api/eventDate/event/1
 
 ### ? Update eventDate
 PATCH http://localhost:3000/api/eventDate/25
@@ -188,11 +186,11 @@ Content-Type: application/json
 {
   "start_date": "2023-11-27 20:30:00+03:00",
   "end_date": "2023-12-28 20:30:00+03:00",
-  "event_id": 1
+  "event_id": 2
 }
 
 ### ? Delete eventDate
-DELETE http://localhost:3000/api/eventDate/1
+DELETE http://localhost:3000/api/eventDate/25
 
 
 ### ? Get eventDate with eventId by eventDateId
@@ -210,7 +208,7 @@ GET http://localhost:3000/api/eventDate/3/event
 ######### ! #############################
 
 ### ? Get all user with Event
-GET http://localhost:3000/api/user/5/events
+GET http://localhost:3000/api/user/1/events
 
 
 ### ? DELETE all userHasEvent
@@ -219,6 +217,6 @@ Content-Type: application/json
 
 {
   "user_id": 2,
-  "event_id": 7
+  "event_id": 4
 }
 

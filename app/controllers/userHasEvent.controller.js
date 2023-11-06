@@ -13,12 +13,12 @@ export default {
     if (userExists.length === 0) {
       return res.status(404).json('User not found');
     }
-    const userInEvent = userExists.find((element) => element.event_id === data.eventId);
+    const userInEvent = userExists.events.find((element) => element.event_id === data.eventId);
     if (!userInEvent) {
       return res.status(404).json('User not found in this event');
     }
 
-    const userHasEvent = await dataMapper.deleteUserFromEvent(data.user_id, data.event_id);
+    await dataMapper.deleteUserFromEvent(data.user_id, data.event_id);
 
     return res.json('Deletion ok');
   },

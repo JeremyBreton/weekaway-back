@@ -2,6 +2,7 @@ import { Router } from 'express';
 import userController from '../controllers/user.controller.js';
 import validation from '../middlewares/validation.middleware.js';
 import * as schemaPatch from '../schemas/app.patch.schema.js';
+import schemaGet from '../schemas/app.get.schema.js';
 import controllerWrapper from '../middlewares/controller.wrapper.js';
 
 const userRouter = Router();
@@ -15,14 +16,15 @@ userRouter.get('/api/users', controllerWrapper(userController.getAllUsers));
 
 userRouter
   .route('/api/user/:id')
-// ! TODO : Faire schema pour les .get
-  .get(controllerWrapper(userController.getUserById))
+  .get(
+    validation(schemaGet, 'query'),
+    controllerWrapper(userController.getUserById),
+  )
   /**
    * GET /api/user/:id
    * @summary Get user by id
    * @tags User
  */
-// ! TODO : Faire schema pour les .patch (remettre les schema post dans un doc patch)
   .patch(
     validation(schemaPatch.UserGestionSchema, 'body'),
     controllerWrapper(userController.updateUserById),
@@ -35,7 +37,10 @@ userRouter
    *
 
    */
-  .delete(controllerWrapper(userController.deleteUserById));
+  .delete(
+    validation(schemaGet, 'query'),
+    controllerWrapper(userController.deleteUserById),
+  );
 /**
    * DELETE /api/user/:id
    * @summary Delete user by id
@@ -45,7 +50,6 @@ userRouter
 
 userRouter
   .route('/api/user/:id/events')
-// ! TODO : Faire schema pour les .get
   .get(controllerWrapper(userController.getUserWithEvents));
 
 /**
@@ -56,8 +60,10 @@ userRouter
 
 userRouter
   .route('/api/user/:id/events/choices')
-// ! TODO : Faire schema pour les .get
-  .get(controllerWrapper(userController.getUserWithEventsAndUserChoices));
+  .get(
+    validation(schemaGet, 'query'),
+    controllerWrapper(userController.getUserWithEventsAndUserChoices),
+  );
 /**
    * GET /api/users/:id/choices
    * @summary Get user by id with his events and choices

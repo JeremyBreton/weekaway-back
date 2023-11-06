@@ -2,13 +2,13 @@ import { Router } from 'express';
 import eventDateController from '../controllers/eventDate.controller.js';
 import validation from '../middlewares/validation.middleware.js';
 import * as schemaPost from '../schemas/app.post.schema.js';
+import schemaGet from '../schemas/app.get.schema.js';
 import * as schemaPatch from '../schemas/app.patch.schema.js';
 import controllerWrapper from '../middlewares/controller.wrapper.js';
 
 const eventDateRouter = Router();
 
 eventDateRouter.route('/api/eventDate')
-// ! TODO : Faire schema pour les .get
   .get(controllerWrapper(eventDateController.getAllEventDates))
   /**
    * GET /api/eventDate
@@ -29,8 +29,10 @@ eventDateRouter.route('/api/eventDate')
    */
 
 eventDateRouter.route('/api/eventDate/:id')
-// ! TODO : Faire schema pour les .get
-  .get(controllerWrapper(eventDateController.getEventDateById))
+  .get(
+    validation(schemaGet, 'query'),
+    controllerWrapper(eventDateController.getEventDateById),
+  )
 /**
    * GET /api/eventDate/:id
    * @summary Get event date by id
@@ -48,7 +50,10 @@ eventDateRouter.route('/api/eventDate/:id')
    * - object with different personnailzed sentence parts
 
    */
-  .delete(controllerWrapper(eventDateController.deleteEventDateById));
+  .delete(
+    validation(schemaGet, 'query'),
+    controllerWrapper(eventDateController.deleteEventDateById),
+  );
 /**
    * DELETE /api/eventDate/:id
    * @summary Delete event date by id
@@ -57,8 +62,10 @@ eventDateRouter.route('/api/eventDate/:id')
    */
 
 eventDateRouter.route('/api/eventDate/event/:eventId')
-// ! TODO : Faire schema pour les .get
-  .get(controllerWrapper(eventDateController.getEventDateByeventId));
+  .get(
+    validation(schemaGet, 'query'),
+    controllerWrapper(eventDateController.getEventDateByeventId),
+  );
 /**
    * GET /api/eventDate/event/:eventId
    * @summary Get event date by his event id
@@ -66,8 +73,10 @@ eventDateRouter.route('/api/eventDate/event/:eventId')
  */
 
 eventDateRouter.route('/api/eventDate/:id/event')
-// ! TODO : Faire schema pour les .get
-  .get(controllerWrapper(eventDateController.getEventDateWithEvent));
+  .get(
+    validation(schemaGet, 'query'),
+    controllerWrapper(eventDateController.getEventDateWithEvent),
+  );
 /**
    * GET /api/eventDate/:id/event
    * @summary Get event(s) with the eventDate id

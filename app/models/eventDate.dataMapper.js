@@ -41,11 +41,10 @@ export default {
     return results.map((result) => result.rows[0]);
   },
 
-  async createEventDate(eventId, data) {
-    console.log(data);
+  async createEventDate(data) {
     const result = await client.query(
       'INSERT INTO "eventdate" (event_id, start_date, end_date) VALUES ($1, $2, $3) RETURNING *',
-      [eventId, data.start_date, data.end_date],
+      [data.eventId, data.start_date, data.end_date],
     );
     return result.rows[0];
   },

@@ -3,7 +3,7 @@ import upload from '../services/multer.js';
 import eventController from '../controllers/event.controller.js';
 import validation from '../middlewares/validation.middleware.js';
 import * as schemaPost from '../schemas/app.post.schema.js';
-import * as schemaGet from '../schemas/app.get.schema.js';
+import schemaGet from '../schemas/app.get.schema.js';
 import * as schemaPatch from '../schemas/app.patch.schema.js';
 import controllerWrapper from '../middlewares/controller.wrapper.js';
 
@@ -24,7 +24,6 @@ eventRouter.route('/api/event')
    * - object with different personnailzed sentence parts
 
    */
-// ! TODO : Faire schema pour les .get
   .get(
     controllerWrapper(eventController.findAllEvents),
   );
@@ -36,7 +35,7 @@ eventRouter.route('/api/event')
 
 eventRouter.route('/api/event/:id')
   .get(
-    // ! TODO : Faire schema pour les .get
+    validation(schemaGet, 'query'),
     controllerWrapper(eventController.findEventById),
   )
   /**
@@ -44,10 +43,8 @@ eventRouter.route('/api/event/:id')
    * @summary Get an evet by id
    * @tags Event
  */
-// ! TODO : Faire schema pour les .patch (remettre les schema post dans un doc patch)
   .patch(
     validation(schemaPatch.eventSchema, 'body'),
-
     controllerWrapper(eventController.updateEvent),
   )
 /**
@@ -59,8 +56,8 @@ eventRouter.route('/api/event/:id')
 
    */
   .delete(
+    validation(schemaGet, 'query'),
     controllerWrapper(eventController.deleteEvent),
-
   );
 
 /**
