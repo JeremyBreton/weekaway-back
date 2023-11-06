@@ -64,12 +64,19 @@ export default {
     }
 
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
     const userData = {
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       email: req.body.email,
       password: hashedPassword,
     };
+
+    if (!req.file) {
+      userData.profile_picture = 'http://caca-boudin.fr/static/profilDefault.png';
+    } else if (req.file) {
+      userData.profile_picture = `http://caca-boudin.fr/static/${req.file.filename}`;
+    }
 
     const registeredUser = await authDataMapper.registerUser(userData);
     if (registeredUser) {
