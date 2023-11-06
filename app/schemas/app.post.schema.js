@@ -59,6 +59,11 @@ const eventDateSchema = Joi.object({
   end_date: Joi.date().required(),
 });
 
+const userHasEventSchema = Joi.object({
+  user_id: Joi.number().integer().positive().required(),
+  event_id: Joi.number().integer().positive().required(),
+});
+
 export {
   registerSchema,
   loginSchema,
@@ -66,4 +71,5 @@ export {
   userChoiceSchema,
   UserGestionSchema,
   eventDateSchema,
+  userHasEventSchema,
 };

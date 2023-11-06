@@ -21,16 +21,16 @@ export default {
     const { email, eventId } = req.body;
     const userExist = await userDataMapper.getUserByEmail(email);
     const event = await eventDatamapper.findEventWithOwnerInfos(eventId);
-    console.log(event);
-    const ownerInfos = { firstname: event.firstname, lastname: event.lastname };
-
-    if (userExist) {
-      mailService.sendMail(ownerInfos, event, email);
-      res.json({ message: 'User existant Mail envoyé !' });
-    } else {
-      mailService.sendMail(ownerInfos, event, email);
-      res.json({ message: 'User non existant, mail de registration envoyé !' });
+    if (!event) {
+      return res.json({ message: 'Evènement non existant' });
     }
+    const ownerInfos = { firstname: event.firstname, lastname: event.lastname };
+    if (!userExist) {
+      mailService.sendMail(ownerInfos, event, email);
+      return res.json({ message: 'User non existant, mail de registration envoyé !' });
+    }
+    mailService.sendMail(ownerInfos, event, email);
+    return res.json({ message: 'User existant Mail envoyé !' });
   },
 
   async joinEvent(req, res) {

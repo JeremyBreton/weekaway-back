@@ -101,7 +101,7 @@ export default {
     const values = [
       id];
     const result = await client.query(query, values);
-    return result;
+    return result.rowCount;
   },
 
   async findEventByPassword(password) {

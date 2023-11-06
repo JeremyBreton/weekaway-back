@@ -3,6 +3,7 @@ import userChoiceController from '../controllers/userChoice.controller.js';
 import validation from '../middlewares/validation.middleware.js';
 import * as schemaPost from '../schemas/app.post.schema.js';
 import * as schemaPatch from '../schemas/app.patch.schema.js';
+import schemaGet from '../schemas/app.get.schema.js';
 import controllerWrapper from '../middlewares/controller.wrapper.js';
 
 const userChoiceRouter = Router();
@@ -32,6 +33,7 @@ userChoiceRouter.route('/api/userchoice')
 
 userChoiceRouter.route('/api/userchoice/event/:id')
   .get(
+    validation(schemaGet, 'query'),
     controllerWrapper(userChoiceController.getUserChoiceByEventId),
   );
 /**
@@ -42,8 +44,8 @@ userChoiceRouter.route('/api/userchoice/event/:id')
 
 userChoiceRouter.route('/api/userchoice/:id')
   .get(
+    validation(schemaGet, 'query'),
     controllerWrapper(userChoiceController.getUserChoiceByUserId),
-
   )
 /**
    * GET /api/userchoice/:id
@@ -52,7 +54,6 @@ userChoiceRouter.route('/api/userchoice/:id')
  */
   .patch(
     validation(schemaPatch.userChoiceSchema, 'body'),
-
     controllerWrapper(userChoiceController.updateUserChoice),
   )
 /**
@@ -64,8 +65,8 @@ userChoiceRouter.route('/api/userchoice/:id')
 
    */
   .delete(
+    validation(schemaGet, 'query'),
     controllerWrapper(userChoiceController.deleteChoiceByUserId),
-
   );
 /**
    * DELETE /api/userchoice/:id
