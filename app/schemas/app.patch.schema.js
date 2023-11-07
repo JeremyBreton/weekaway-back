@@ -1,16 +1,16 @@
 import Joi from 'joi';
 
 const registerSchema = Joi.object({
-  firstname: Joi.string().min(1).max(255),
-  lastname: Joi.string().min(1).max(255),
-  email: Joi.string().email(),
-  address: Joi.string().min(1).max(255),
+  firstname: Joi.string().min(1).max(255).allow(null),
+  lastname: Joi.string().min(1).max(255).allow(null),
+  email: Joi.string().email().allow(null),
+  address: Joi.string().min(1).max(255).allow(null),
   password: Joi.string()
     .min(8)
-    .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/),
-  birth_date: Joi.date(),
-  gender: Joi.string().valid('Homme', 'Femme'),
-  profile_desc: Joi.string().max(500),
+    .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/).allow(null),
+  birth_date: Joi.date().allow(null),
+  gender: Joi.string().valid('Homme', 'Femme').allow(null),
+  profile_desc: Joi.string().max(500).allow(null),
 });
 
 const eventSchema = Joi.object({
