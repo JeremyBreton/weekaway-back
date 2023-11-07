@@ -21,10 +21,13 @@ export default {
   async findEventById(req, res) {
     const { id } = req.params;
     const eventDetails = await datamapper.findEventById(id);
-    if (eventDetails.users.length > 0) {
+
+    if (!eventDetails.users) {
       const eventDatereport = await dateOneEvent.choiceDateOneEvent(eventDetails);
-      const data = { eventDetails, eventDatereport };
-      return res.json({ data });
+
+      eventDetails.assing(eventDetails, eventDatereport);
+
+      return res.json({ eventDetails });
     }
     return res.json({ eventDetails });
   },
