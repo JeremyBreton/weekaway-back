@@ -1,6 +1,6 @@
 ######### ! ############################# 
 
-#! USERS Salut on est pas sur
+#! USERS
 
 ######### ! ############################# 
 
@@ -24,10 +24,10 @@ POST http://localhost:3000/api/register
 Content-Type: application/json
 
 {
-  "firstname": "Geoffrey",
-  "lastname": "Fardeau",
-  "email": "fardeau.geoffrey@gmail.com",
-  "password": "Password123!"
+"firstname": "michel", 
+"lastname": "kevin", 
+"email": "test123@testeur.fr",
+"password": "Testsauvage2!"
 }
 
 ### ? Login
