@@ -21,8 +21,12 @@ export default {
           numberVote.push(1);
           idOfUserChoice.push([userChoiceData[i].user_id]);
         } else {
-          numberVote[i] += 1;
-          idOfUserChoice[i].push(userChoiceData[i].user_id);
+          const existingIndex = Array.from(uniqueDateChoice).indexOf(datePair);
+          numberVote[existingIndex] += 1;
+          if (!idOfUserChoice[existingIndex]) {
+            idOfUserChoice[existingIndex] = [];
+          }
+          idOfUserChoice[existingIndex].push(userChoiceData[i].user_id);
         }
       }
     });
@@ -31,7 +35,8 @@ export default {
     for (let i = 0; i < idOfUserChoice.length; i += 1) {
       const userhasChoice = [];
       for (let j = 0; j < idOfUserChoice[i].length; j += 1) {
-        const user = data.users.find((element) => element.user_id === idOfUserChoice[i][j]);
+        const currentUser = data.users;
+        const user = currentUser.find((element) => element.user_id === idOfUserChoice[i][j]);
         if (user) {
           userhasChoice.push({
             name: `${user.user_information.user_firstname} ${user.user_information.user_lastname}`,
