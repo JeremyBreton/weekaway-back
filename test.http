@@ -5,7 +5,7 @@
 ######### ! ############################# 
 
 ### ? Get all users
-GET http://localhost:3000/api/users/
+GET http://caca-boudin.fr/api/users/
 
 ### ? Get user by id
 
@@ -49,7 +49,7 @@ Content-Type: application/json
 GET http://caca-boudin.fr/api/event/
 
 ### ? Get event by id
-GET http://localhost:3000/api/event/4
+GET http://localhost:3000/api/event/27
 
 ### ? Update Event
 PATCH http://localhost:3000/api/event/44
@@ -60,10 +60,10 @@ Content-Type: application/json
 }
 
 ### ? Delete Event
-DELETE http://localhost:3000/api/event/1
+DELETE http://localhost:3000/api/event
 
 ### ? Post to Create Event
-POST http://localhost:3000/api/event
+POST http://caca-boudin.fr/api/event
 Content-Type: application/json
 
 {
