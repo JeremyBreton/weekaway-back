@@ -50,7 +50,7 @@ GET http://caca-boudin.fr/api/event/
 
 ### ? Get event by id
 
-GET http://caca-boudin.fr/api/event/28
+GET http://localhost:3000/api/event/46
 
 
 ### ? Update Event
@@ -65,7 +65,7 @@ Content-Type: application/json
 DELETE http://localhost:3000/api/event
 
 ### ? Post to Create Event
-POST http://caca-boudin.fr/api/event
+POST http://localhost:3000/api/event
 Content-Type: application/json
 
 {
@@ -127,7 +127,7 @@ Content-Type: application/json
 {
   "startDate": "2023-11-01T10:00:00+01:00",
   "endDate": "2023-11-01T16:00:00+01:00",
-  "eventId": 4,
+  "eventId": 45,
   "userId": 2
 }
 
