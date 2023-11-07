@@ -21,8 +21,11 @@ export default {
   async findEventById(req, res) {
     const { id } = req.params;
     const eventDetails = await datamapper.findEventById(id);
-    const eventDatereport = await dateOneEvent.choiceDateOneEvent(eventDetails);
-    res.json({ eventDetails, eventDatereport });
+    if (eventDetails.users.user_choices) {
+      const eventDatereport = await dateOneEvent.choiceDateOneEvent(eventDetails);
+      return res.json({ eventDetails, eventDatereport });
+    }
+    return res.json({ eventDetails });
   },
 
   async createEvent(req, res) {
