@@ -1,5 +1,5 @@
 export default {
-  async removeDuplicateDates(datesOfEvent) {
+  removeDuplicateDates(datesOfEvent) {
     const uniqueDates = new Set();
     const result = {};
 
@@ -16,7 +16,6 @@ export default {
         };
       }
     });
-
     return result;
   },
 };

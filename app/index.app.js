@@ -13,7 +13,6 @@ passportConfig(passport);
 
 const app = express();
 
-
 userDocImplementation(app);
 app.use('/static', express.static('uploads'));
 
