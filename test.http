@@ -49,7 +49,7 @@ Content-Type: application/json
 GET http://caca-boudin.fr/api/event/
 
 ### ? Get event by id
-GET http://localhost:3000/api/event/4
+GET http://caca-boudin.fr/api/event/28
 
 ### ? Update Event
 PATCH http://localhost:3000/api/event/44
