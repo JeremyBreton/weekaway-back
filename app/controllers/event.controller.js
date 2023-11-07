@@ -23,7 +23,8 @@ export default {
     const eventDetails = await datamapper.findEventById(id);
     if (eventDetails.users.length > 0) {
       const eventDatereport = await dateOneEvent.choiceDateOneEvent(eventDetails);
-      return res.json({ eventDetails, eventDatereport });
+      const data = { eventDetails, eventDatereport };
+      return res.json({ data });
     }
     return res.json({ eventDetails });
   },
