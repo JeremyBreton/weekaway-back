@@ -1,4 +1,5 @@
 import datamapper from '../models/userChoice.dataMapper.js';
+import userChoiceVerify from '../services/userChoiceVerify.service.js';
 
 /**
    * @typedef {object} UserChoice
@@ -19,6 +20,7 @@ export default {
     const userChoice = await datamapper.getUserChoiceByUserId(id);
     res.json(userChoice);
   },
+
   async updateUserChoice(req, res) {
     const { id } = req.params;
     const {
@@ -36,23 +38,7 @@ export default {
   async addUserChoice(req, res) {
     const data = req.body;
     const userChoiceData = await datamapper.getUserChoiceByUserId(data.userId);
-
-    let hasVoted = false;
-
-    userChoiceData.forEach((element) => {
-      if (element.event_id === data.eventId) {
-        const elementStartDate = new Date(element.start_date_choice);
-        const elementEndDate = new Date(element.end_date_choice);
-        const inputStartDate = new Date(data.startDate);
-        const inputEndDate = new Date(data.endDate);
-
-        if (
-          elementStartDate.getTime() === inputStartDate.getTime()
-          && elementEndDate.getTime() === inputEndDate.getTime()) {
-          hasVoted = true;
-        }
-      }
-    });
+    const hasVoted = userChoiceVerify.removeDuplicateDatesForEvent(data, userChoiceData);
 
     if (hasVoted) {
       return res.json({ message: 'You have already voted for this date on this event' });
