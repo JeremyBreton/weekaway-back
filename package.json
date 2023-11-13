@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "DEBUG=WeekAway:* nodemon index.js",
     "Deploy": "psql -d weekaway -U postgres -f ./data/deploy/createTable.sql",
     "Revert": "psql -d weekaway -U postgres -f  ./data/revert/createTable.sql",
     "Verify": "psql -d weekaway -U postgres -f  ./data/verify/createTable.sql",
@@ -32,6 +32,7 @@
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "debug": "^4.3.4",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-jsdoc-swagger": "^1.8.0",

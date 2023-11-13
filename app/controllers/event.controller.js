@@ -1,8 +1,8 @@
-import datamapper from '../models/event.dataMapper.js';
+import EventDataMapper from '../models/event.dataMapper.js';
 import randomId from '../services/randomId.service.js';
-import userHasEventDataMapper from '../models/userHasEvent.dataMapper.js';
+import UserHasEventDataMapper from '../models/userHasEvent.dataMapper.js';
 import dateVerify from '../services/dateVerify.service.js';
-import eventDateDataMapper from '../models/eventDate.dataMapper.js';
+import EventDateDataMapper from '../models/eventDate.dataMapper.js';
 import dateOneEvent from '../services/dataDateOneEvent.service.js';
 /**
    * @typedef {object} EventInput
@@ -12,9 +12,13 @@ import dateOneEvent from '../services/dataDateOneEvent.service.js';
    * @property {string} description
   */
 
+const datamapper = new EventDataMapper();
+const userHasEventDataMapper = new UserHasEventDataMapper();
+const eventDateDataMapper = new EventDateDataMapper();
+
 export default {
   async findAllEvents(req, res) {
-    const events = await datamapper.findAllEvents();
+    const events = await datamapper.findAll();
     res.json(events);
   },
 
@@ -67,6 +71,7 @@ export default {
 
     const event = await datamapper.createEvent(dataEvent);
     if (eventDates !== undefined && eventDates !== null) {
+      console.log('event date n\'est pas undefined : ', eventDates);
       if (eventDates.date === undefined && eventDates.date === null) {
         const eventDateNoDuplicate = dateVerify.removeDuplicateDates(eventDates);
         await eventDateDataMapper.createEventDateWithMultipleEvent(event.id, eventDateNoDuplicate);

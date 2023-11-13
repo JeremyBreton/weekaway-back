@@ -1,6 +1,7 @@
-import datamapper from '../models/userChoice.dataMapper.js';
+import UserChoiceDataMapper from '../models/userChoice.dataMapper.js';
 import userChoiceVerify from '../services/userChoiceVerify.service.js';
 
+const datamapper = new UserChoiceDataMapper();
 /**
    * @typedef {object} UserChoice
    * @property {timestamp} startDate
@@ -11,7 +12,7 @@ import userChoiceVerify from '../services/userChoiceVerify.service.js';
 
 export default {
   async getAllUsersChoices(req, res) {
-    const userChoices = await datamapper.getAllUsersChoices();
+    const userChoices = await datamapper.findAll();
     res.json(userChoices);
   },
 
@@ -23,14 +24,8 @@ export default {
 
   async updateUserChoice(req, res) {
     const { id } = req.params;
-    const {
-      startDate,
-      endDate,
-    } = req.body;
-    const data = {
-      startDate,
-      endDate,
-    };
+    const data = req.body;
+
     const userChoice = await datamapper.updateUserChoice(id, data);
     res.json(userChoice);
   },

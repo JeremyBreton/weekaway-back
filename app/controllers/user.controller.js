@@ -1,5 +1,7 @@
 import bcrypt from 'bcrypt';
-import userDataMapper from '../models/user.dataMapper.js';
+import UserDataMapper from '../models/user.dataMapper.js';
+
+const datamapper = new UserDataMapper();
 
 /**
    * @typedef {object} data
@@ -15,32 +17,32 @@ import userDataMapper from '../models/user.dataMapper.js';
   */
 export default {
   async getAllUsers(req, res) {
-    const users = await userDataMapper.getAllUsers();
+    const users = await datamapper.findAll();
     res.json(users);
   },
 
   async getUserById(req, res) {
     const { id } = req.params;
-    const user = await userDataMapper.getUserById(id);
+    const user = await datamapper.findById(id);
     res.json(user);
   },
 
   async getUserByEmail(req, res) {
     const { email } = req.params;
-    const user = await userDataMapper.getUserByEmail(email);
+    const user = await datamapper.findByEmail(email);
     res.json(user);
   },
 
   async deleteUserById(req, res) {
     const { id } = req.params;
-    const user = await userDataMapper.deleteUserById(id);
+    const user = await datamapper.deleteUserById(id);
     res.json(user);
   },
 
   async updateUserById(req, res) {
     const { id } = req.params;
     const data = req.body;
-    const baseData = await userDataMapper.getUserById(id);
+    const baseData = await datamapper.findById(id);
 
     const dataToUpdateName = [
       'email',
@@ -70,20 +72,20 @@ export default {
       }
     });
 
-    await userDataMapper.updateUserById(id, data);
+    await datamapper.updateUserById(id, data);
 
     res.json('l\'utilisateur a bien été modifié');
   },
 
   async getUserWithEvents(req, res) {
     const { id } = req.params;
-    const user = await userDataMapper.getUserWithEvents(id);
+    const user = await datamapper.getUserWithEvents(id);
     res.json(user);
   },
 
   async getUserWithEventsAndUserChoices(req, res) {
     const { id } = req.params;
-    const user = await userDataMapper.getUserWithEventsAndUserChoices(id);
+    const user = await datamapper.getUserWithEventsAndUserChoices(id);
     res.json(user);
   },
 };
