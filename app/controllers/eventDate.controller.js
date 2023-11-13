@@ -35,7 +35,7 @@ export default {
 
   async createEventDate(req, res) {
     const data = req.body;
-    const eventDate = await datamapper.createEventDate(data);
+    const eventDate = await datamapper.createEventDate(data.id, data);
     res.json(eventDate);
   },
 

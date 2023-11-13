@@ -26,8 +26,8 @@ Content-Type: application/json
 {
 "firstname": "michel", 
 "lastname": "kevin", 
-"email": "test123@testeur.fr",
-"password": "Testsauvage2!"
+"email": "test@test.fr",
+"password": "Password123!"
 }
 
 ### ? Login
@@ -53,7 +53,7 @@ GET http://localhost:3000/api/event/5
 
 
 ### ? Update Event
-PATCH http://localhost:3000/api/event/49
+PATCH http://localhost:3000/api/event/5
 Content-Type: application/json
 
 {
@@ -61,7 +61,7 @@ Content-Type: application/json
 }
 
 ### ? Delete Event
-DELETE http://localhost:3000/api/event
+DELETE http://localhost:3000/api/event/5
 
 ### ? Post to Create Event
 POST http://localhost:3000/api/event
@@ -69,8 +69,8 @@ Content-Type: application/json
 
 {
   "name": "fete du spourme",
-   "theme": "fete du spourme",
-    "description": "fete du spourme",
+  "theme": "fete du spourme",
+  "description": "fete du spourme",
   "owner_id": 2,
   "status": false,
   "startDate": "2023-12-27 15:30:00+03:00",
@@ -124,7 +124,7 @@ POST http://localhost:3000/api/userchoice
 Content-Type: application/json
 
 {
-  "startDate": "2023-10-02T10:00:00.000Z",
+  "startDate": "2023-10-027T10:00:00.000Z",
   "endDate": "2023-12-21T16:00:00.000Z",
   "eventId": 4,
   "userId": 1
@@ -218,7 +218,7 @@ POST http://localhost:3000/api/userhasevent
 Content-Type: application/json
 
 {
-  "user_id": 2,
+  "user_id": 1,
   "event_id": 4
 }
 

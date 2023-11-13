@@ -1,12 +1,15 @@
+import Debug from 'debug';
 import client from './client.js';
 import CoreDataMapper from './datamapper.js';
+
+const debug = Debug('WeekAway:eventDateDataMapper');
 
 export default class EventDateDataMapper extends CoreDataMapper {
   static tableName = 'eventdate';
 
   constructor() {
     super();
-    console.log('eventDateDataMapper constructor');
+    debug('eventDateDataMapper constructor');
   }
 
   async getEventDateByeventId(eventId) {
@@ -28,10 +31,10 @@ export default class EventDateDataMapper extends CoreDataMapper {
     return results.map((result) => result.rows[0]);
   }
 
-  async createEventDate(data) {
+  async createEventDate(id, data) {
     const result = await client.query(
       `INSERT INTO "${this.constructor.tableName}" (event_id, start_date, end_date) VALUES ($1, $2, $3) RETURNING *`,
-      [data.id, data.start_date, data.end_date],
+      [id, data.start_date, data.end_date],
     );
     return result.rows[0];
   }

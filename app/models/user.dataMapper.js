@@ -1,5 +1,8 @@
+import Debug from 'debug';
 import client from './client.js';
 import CoreDataMapper from './datamapper.js';
+
+const debug = Debug('WeekAway:userDataMapper');
 
 export default class UserDataMapper extends CoreDataMapper {
   static tableName = 'user';
@@ -8,7 +11,7 @@ export default class UserDataMapper extends CoreDataMapper {
 
   constructor() {
     super();
-    console.log('UserDataMapper constructor');
+    debug('UserDataMapper constructor');
   }
 
   async deleteUserById(id) {

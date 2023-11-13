@@ -1,5 +1,8 @@
+import Debug from 'debug';
 import client from './client.js';
 import CoreDataMapper from './datamapper.js';
+
+const debug = Debug('WeekAway:eventDataMapper');
 
 export default class EventDataMapper extends CoreDataMapper {
   static tableName = 'event';
@@ -8,7 +11,7 @@ export default class EventDataMapper extends CoreDataMapper {
 
   constructor() {
     super();
-    console.log('EventDataMapper constructor');
+    debug('EventDataMapper constructor');
   }
 
   async findEventById(id) {

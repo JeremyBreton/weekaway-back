@@ -1,12 +1,15 @@
+import Debug from 'debug';
 import client from './client.js';
 import coreDataMapper from './datamapper.js';
+
+const debug = Debug('WeekAway:userChoiceDataMapper');
 
 export default class UserChoiceDataMapper extends coreDataMapper {
   static tableName = 'userchoice';
 
   constructor() {
     super();
-    console.log('userChoiceDataMapper constructor');
+    debug('userChoiceDataMapper constructor');
   }
 
   // Ordering by timestamptz
