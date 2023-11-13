@@ -11,13 +11,13 @@ export default function (passport) {
       { usernameField: 'email' },
       async (email, password, done) => {
         if (!isValidEmail(email)) {
-          return done(null, false, { message: 'Format d\'e-mail invalide.' });
+          return done(null, false, { message: "Format d'e-mail invalide." });
         }
 
         const user = await userDataMapper.getUserByEmail(email);
 
         if (!user) {
-          return done(null, false, { message: 'Email incorrecte.' });
+          return done(null, false, { message: 'Email incorrect.' });
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
@@ -39,18 +39,9 @@ export default function (passport) {
         }
 
         return done(null, false, {
-          message: 'Email ou mot de passe incorrect',
+          message: 'Email ou mot de passe incorrect.',
         });
       },
     ),
   );
-
-  passport.serializeUser((user, done) => {
-    done(null, user.id);
-  });
-
-  passport.deserializeUser(async (id, done) => {
-    const user = await authDataMapper.findUserById(id);
-    done(null, user);
-  });
 }
