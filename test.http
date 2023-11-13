@@ -46,11 +46,10 @@ Content-Type: application/json
 ######### ! ############################# 
 
 ### ? Get 
-GET http://caca-boudin.fr/api/event/
+GET http://localhost:3000/api/event/
 
 ### ? Get event by id
-
-GET http://localhost:3000/api/event/49
+GET http://localhost:3000/api/event/5
 
 
 ### ? Update Event

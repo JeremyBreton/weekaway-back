@@ -1,4 +1,4 @@
-import datamapper from '../models/event.dataMapper.js';
+import EventDataMapper from '../models/event.dataMapper.js';
 import randomId from '../services/randomId.service.js';
 import userHasEventDataMapper from '../models/userHasEvent.dataMapper.js';
 import dateVerify from '../services/dateVerify.service.js';
@@ -11,10 +11,11 @@ import dateOneEvent from '../services/dataDateOneEvent.service.js';
    * @property {boolean} status
    * @property {string} description
   */
+const datamapper = new EventDataMapper();
 
 export default {
   async findAllEvents(req, res) {
-    const events = await datamapper.findAllEvents();
+    const events = await datamapper.findAll();
     res.json(events);
   },
 
