@@ -54,6 +54,10 @@ export default {
       'profile_desc',
     ];
 
+    if (data.password) {
+      data.password = await bcrypt.hash(data.password, 10);
+    }
+
     if (!req.file) {
       data.profile_picture = 'http://caca-boudin.fr/static/profilDefault.png';
     } else if (req.file) {
@@ -66,9 +70,6 @@ export default {
       }
     });
 
-    if (data.password) {
-      data.password = await bcrypt.hash(data.password, 10);
-    }
     await userDataMapper.updateUserById(id, data);
 
     res.json('l\'utilisateur a bien été modifié');
