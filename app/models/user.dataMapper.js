@@ -1,36 +1,27 @@
 import client from './client.js';
+import CoreDataMapper from './datamapper.js';
 
-export default {
-  async getAllUsers() {
-    const result = await client.query('SELECT * FROM "user"');
-    return result.rows;
-  },
+export default class UserDataMapper extends CoreDataMapper {
+  static tableName = 'user';
 
-  async getUserById(id) {
-    const result = await client.query('SELECT * FROM "user" WHERE id = $1', [
-      id,
-    ]);
-    return result.rows[0];
-  },
+  static deleteUserFunction = 'delete_user_on_cascade';
 
-  async getUserByEmail(email) {
-    const result = await client.query('SELECT * FROM "user" WHERE email = $1', [
-      email,
-    ]);
-    return result.rows[0];
-  },
+  constructor() {
+    super();
+    console.log('UserDataMapper constructor');
+  }
 
   async deleteUserById(id) {
-    const query = 'SELECT * FROM delete_user_on_cascade($1)';
+    const query = `SELECT * FROM ${this.constructor.deleteUserFunction}($1)`;
     const values = [
       id];
     const result = await client.query(query, values);
     return result.rowCount;
-  },
+  }
 
   async updateUserById(id, data) {
     const result = await client.query(
-      'UPDATE "user" SET firstname = $1, lastname = $2, email = $3, address = $4, password = $5, birth_date = $6,gender = $7, profile_picture = $8,profile_desc = $9 WHERE id = $10 RETURNING *',
+      `UPDATE "${this.constructor.tableName}" SET firstname = $1, lastname = $2, email = $3, address = $4, password = $5, birth_date = $6,gender = $7, profile_picture = $8,profile_desc = $9 WHERE id = $10 RETURNING *`,
       [
         data.firstname,
         data.lastname,
@@ -45,9 +36,8 @@ export default {
       ],
     );
 
-
     return result.rows[0];
-  },
+  }
 
   async getUserWithEvents(id) {
     const result = await client.query(
@@ -64,7 +54,7 @@ export default {
         ) ORDER BY "user_has_event".event_id
       ) AS events
       FROM
-        "user"
+        "${this.constructor.tableName}"
       JOIN "user_has_event" ON "user".id = "user_has_event".user_id
       JOIN "event" ON "user_has_event".event_id = "event".id
       WHERE
@@ -75,7 +65,7 @@ export default {
       [id],
     );
     return result.rows[0];
-  },
+  }
 
   async getUserWithEventsAndUserChoices(id) {
     const result = await client.query(
@@ -90,7 +80,7 @@ export default {
           "user"."profile_picture",
           "user"."profile_desc", 
           JSONB_AGG(DISTINCT event_info) AS "event_his_choices"  
-          FROM "user" 
+          FROM "${this.constructor.tableName}" 
         JOIN "user_has_event" ON "user".id = "user_has_event".user_id
         LEFT JOIN (
           SELECT
@@ -118,5 +108,5 @@ export default {
       [id],
     );
     return result.rows[0];
-  },
-};
+  }
+}

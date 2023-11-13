@@ -11,6 +11,7 @@ import dateOneEvent from '../services/dataDateOneEvent.service.js';
    * @property {boolean} status
    * @property {string} description
   */
+
 const datamapper = new EventDataMapper();
 
 export default {
