@@ -1,8 +1,11 @@
+import Debug from 'debug';
 import { Strategy as LocalStrategy } from 'passport-local';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import UserDataMapper from '../models/user.dataMapper.js';
 import isValidEmail from '../services/emailService.js';
+
+const debug = Debug('WeekAway:middlewares:passportConfig');
 
 const userDataMapper = new UserDataMapper();
 
@@ -18,7 +21,7 @@ export default function (passport) {
         const user = await userDataMapper.findByEmail(email);
 
         if (!user) {
-          return done(null, false, { message: 'Email incorrect.' });
+          return done(null, false, { message: 'Email ou mot de passe incorrect.' });
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
@@ -46,7 +49,6 @@ export default function (passport) {
     ),
   );
 
-
   passport.serializeUser((user, done) => {
     done(null, user.id);
   });
@@ -55,5 +57,4 @@ export default function (passport) {
     const user = await UserDataMapper.findById(id);
     done(null, user);
   });
-
 }

@@ -1,9 +1,12 @@
+import Debug from 'debug';
 import EventDataMapper from '../models/event.dataMapper.js';
 import randomId from '../services/randomId.service.js';
 import UserHasEventDataMapper from '../models/userHasEvent.dataMapper.js';
 import dateVerify from '../services/dateVerify.service.js';
 import EventDateDataMapper from '../models/eventDate.dataMapper.js';
 import dateOneEvent from '../services/dataDateOneEvent.service.js';
+
+const debug = Debug('WeekAway:controller:event');
 /**
    * @typedef {object} EventInput
    * @property {string} name

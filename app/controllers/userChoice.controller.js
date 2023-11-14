@@ -1,5 +1,8 @@
+import Debug from 'debug';
 import UserChoiceDataMapper from '../models/userChoice.dataMapper.js';
 import userChoiceVerify from '../services/userChoiceVerify.service.js';
+
+const debug = Debug('WeekAway:controller:userChoice');
 
 const datamapper = new UserChoiceDataMapper();
 /**

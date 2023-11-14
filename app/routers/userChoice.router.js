@@ -1,3 +1,4 @@
+import Debug from 'debug';
 import { Router } from 'express';
 import userChoiceController from '../controllers/userChoice.controller.js';
 import validation from '../middlewares/validation.middleware.js';
@@ -5,6 +6,8 @@ import * as schemaPost from '../schemas/app.post.schema.js';
 import * as schemaPatch from '../schemas/app.patch.schema.js';
 import schemaGet from '../schemas/app.get.schema.js';
 import controllerWrapper from '../middlewares/controller.wrapper.js';
+
+const debug = Debug('WeekAway:router:userChoice');
 
 const userChoiceRouter = Router();
 

@@ -2,7 +2,7 @@ import Debug from 'debug';
 import client from './client.js';
 import CoreDataMapper from './datamapper.js';
 
-const debug = Debug('WeekAway:eventDataMapper');
+const debug = Debug('WeekAway:models:eventDataMapper');
 
 export default class EventDataMapper extends CoreDataMapper {
   static tableName = 'event';

@@ -2,7 +2,7 @@ import Debug from 'debug';
 import client from './client.js';
 import CoreDataMapper from './datamapper.js';
 
-const debug = Debug('WeekAway:userDataMapper');
+const debug = Debug('WeekAway:models:userDataMapper');
 
 export default class UserDataMapper extends CoreDataMapper {
   static tableName = 'user';
@@ -30,7 +30,7 @@ export default class UserDataMapper extends CoreDataMapper {
         data.lastname,
         data.email,
         data.address,
-        data.password,
+        data.newPassword,
         data.birth_date,
         data.gender,
         data.profile_picture,
