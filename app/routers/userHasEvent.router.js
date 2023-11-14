@@ -1,8 +1,11 @@
+import Debug from 'debug';
 import { Router } from 'express';
 import userHasEventController from '../controllers/userHasEvent.controller.js';
 import validation from '../middlewares/validation.middleware.js';
 import * as schemaPost from '../schemas/app.post.schema.js';
 import controllerWrapper from '../middlewares/controller.wrapper.js';
+
+const debug = Debug('WeekAway:router:userHasEvent');
 
 const userHasEventRouter = Router();
 

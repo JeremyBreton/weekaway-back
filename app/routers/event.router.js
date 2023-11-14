@@ -1,3 +1,4 @@
+import Debug from 'debug';
 import { Router } from 'express';
 import upload from '../services/multer.js';
 import eventController from '../controllers/event.controller.js';
@@ -6,6 +7,8 @@ import * as schemaPost from '../schemas/app.post.schema.js';
 import schemaGet from '../schemas/app.get.schema.js';
 import * as schemaPatch from '../schemas/app.patch.schema.js';
 import controllerWrapper from '../middlewares/controller.wrapper.js';
+
+const debug = Debug('WeekAway:router:event');
 
 const eventRouter = Router();
 

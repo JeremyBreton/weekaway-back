@@ -1,8 +1,11 @@
+import Debug from 'debug';
 import { Strategy as LocalStrategy } from 'passport-local';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import UserDataMapper from '../models/user.dataMapper.js';
 import isValidEmail from '../services/emailService.js';
+
+const debug = Debug('WeekAway:middlewares:passportConfig');
 
 const userDataMapper = new UserDataMapper();
 

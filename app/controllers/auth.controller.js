@@ -1,9 +1,12 @@
+import Debug from 'debug';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import passport from 'passport';
 import authDataMapper from '../models/auth.dataMapper.js';
 import mailService from '../services/mailer/mailer.js';
 import isValidEmail from '../services/emailService.js';
+
+const debug = Debug('WeekAway:controller:auth');
 
 /**
    * @typedef {object} UserInput

@@ -1,7 +1,10 @@
+import Debug from 'debug';
 import UserDataMapper from '../models/user.dataMapper.js';
 import EventDatamapper from '../models/event.dataMapper.js';
 import mailService from '../services/mailer/inviteLink.mailer.js';
 import UserHasEventDataMapper from '../models/userHasEvent.dataMapper.js';
+
+const debug = Debug('WeekAway:controller:eventLink');
 
 const userHasEventDataMapper = new UserHasEventDataMapper();
 const userDataMapper = new UserDataMapper();

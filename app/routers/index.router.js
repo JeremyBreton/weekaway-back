@@ -1,4 +1,4 @@
-/* eslint-disable linebreak-style */
+import Debug from 'debug';
 import { Router } from 'express';
 import authRouter from './auth.router.js';
 import eventRouter from './event.router.js';
@@ -10,6 +10,8 @@ import errorHandler from '../middlewares/error.middleware.js';
 import logger from '../helpers/logger.js';
 import eventLinkRouter from './eventLink.router.js';
 import userHasEventRouter from './userHasEvent.router.js';
+
+const debug = Debug('WeekAway:router:index');
 
 /**
  * @typedef {object} ResponseError response error

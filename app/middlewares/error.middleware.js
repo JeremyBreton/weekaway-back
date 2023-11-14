@@ -1,5 +1,9 @@
+import Debug from 'debug';
+
 import logger from '../helpers/logger.js';
-// eslint-disable-next-line no-unused-vars
+
+const debug = Debug('WeekAway:middlewares:error');
+
 export default (err, req, res, next) => {
   switch (err.name) {
     case 'NotFoundError':

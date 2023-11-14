@@ -1,4 +1,7 @@
+import Debug from 'debug';
 import client from './client.js';
+
+const debug = Debug('WeekAway:models:authDataMapper');
 
 export default {
 

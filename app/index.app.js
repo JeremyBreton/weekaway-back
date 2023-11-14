@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+import Debug from 'debug';
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
@@ -10,16 +11,21 @@ import router from './routers/index.router.js';
 import passportConfig from './middlewares/passportConfig.js';
 import userDocImplementation from './middlewares/swagger.doc.js';
 
+const debug = Debug('WeekAway:app:index');
+
 passportConfig(passport);
 
 const app = express();
-app.set('trust proxy', 1)
+
+app.set('trust proxy', 1);
+
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: true }
-}))
+  cookie: { secure: true },
+}));
+
 userDocImplementation(app);
 app.use('/static', express.static('uploads'));
 

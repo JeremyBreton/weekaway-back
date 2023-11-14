@@ -1,4 +1,7 @@
+import Debug from 'debug';
 import EventDateDataMapper from '../models/eventDate.dataMapper.js';
+
+const debug = Debug('WeekAway:controller:eventtDate');
 
 const datamapper = new EventDateDataMapper();
 /**

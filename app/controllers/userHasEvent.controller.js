@@ -1,5 +1,8 @@
+import Debug from 'debug';
 import UserDataMapper from '../models/user.dataMapper.js';
 import UserHasEventDataMapper from '../models/userHasEvent.dataMapper.js';
+
+const debug = Debug('WeekAway:controller:userHasEvent');
 
 const dataMapper = new UserHasEventDataMapper();
 const userDataMapper = new UserDataMapper();

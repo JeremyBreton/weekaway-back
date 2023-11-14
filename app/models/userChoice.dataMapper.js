@@ -2,7 +2,7 @@ import Debug from 'debug';
 import client from './client.js';
 import coreDataMapper from './datamapper.js';
 
-const debug = Debug('WeekAway:userChoiceDataMapper');
+const debug = Debug('WeekAway:models:userChoiceDataMapper');
 
 export default class UserChoiceDataMapper extends coreDataMapper {
   static tableName = 'userchoice';

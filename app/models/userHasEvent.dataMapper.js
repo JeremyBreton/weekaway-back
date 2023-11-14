@@ -1,7 +1,7 @@
 import Debug from 'debug';
 import client from './client.js';
 
-const debug = Debug('WeekAway:UserHasEventDataMapper');
+const debug = Debug('WeekAway:models:UserHasEventDataMapper');
 
 export default class UserHasEventDataMapper {
   static tableName = 'user_has_event';

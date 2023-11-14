@@ -1,7 +1,10 @@
+import Debug from 'debug';
 import './app/helpers/env.load.js';
 import { createServer } from 'node:http';
 // app is a module
 import app from './app/index.app.js';
+
+const debug = Debug('WeekAway:index');
 // and we inject app, like a middleware
 const server = createServer(app);
 

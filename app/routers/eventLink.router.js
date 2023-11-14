@@ -1,6 +1,9 @@
+import Debug from 'debug';
 import { Router } from 'express';
 import controllerWrapper from '../middlewares/controller.wrapper.js';
 import eventLinkController from '../controllers/eventLink.controller.js';
+
+const debug = Debug('WeekAway:router:eventLink');
 
 const eventLinkRouter = Router();
 
