@@ -18,7 +18,7 @@ export default function (passport) {
         const user = await userDataMapper.findByEmail(email);
 
         if (!user) {
-          return done(null, false, { message: 'Email incorrect.' });
+          return done(null, false, { message: 'Email ou mot de passe incorrect.' });
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
@@ -46,7 +46,6 @@ export default function (passport) {
     ),
   );
 
-
   passport.serializeUser((user, done) => {
     done(null, user.id);
   });
@@ -55,5 +54,4 @@ export default function (passport) {
     const user = await UserDataMapper.findById(id);
     done(null, user);
   });
-
 }

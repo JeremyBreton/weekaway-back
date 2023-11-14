@@ -60,7 +60,7 @@ export default {
 
   async register(req, res) {
     if (!isValidEmail(req.body.email)) {
-      return res.status(400).json({ message: 'Adresse mail incorrecte.' });
+      return res.status(400).json({ message: 'Adresse mail incorrect.' });
     }
 
     const hashedPassword = await bcrypt.hash(req.body.password, 10);

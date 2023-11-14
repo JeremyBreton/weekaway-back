@@ -30,7 +30,7 @@ export default class UserDataMapper extends CoreDataMapper {
         data.lastname,
         data.email,
         data.address,
-        data.password,
+        data.newPassword,
         data.birth_date,
         data.gender,
         data.profile_picture,

@@ -45,6 +45,9 @@ const UserGestionSchema = Joi.object({
   password: Joi.string()
     .min(8)
     .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/),
+  newPassword: Joi.string()
+    .min(8)
+    .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/),
   birth_date: Joi.date(),
   gender: Joi.string().valid('Homme', 'Femme'),
   profile_picture: Joi.string().uri(),

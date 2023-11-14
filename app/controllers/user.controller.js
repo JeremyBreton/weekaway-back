@@ -1,6 +1,8 @@
+import Debug from 'debug';
 import bcrypt from 'bcrypt';
 import UserDataMapper from '../models/user.dataMapper.js';
 
+const debug = Debug('WeekAway:userController');
 const datamapper = new UserDataMapper();
 
 /**
@@ -46,7 +48,7 @@ export default {
 
     const dataToUpdateName = [
       'email',
-      'password',
+      'newPassword',
       'address',
       'birth_date',
       'firstname',
@@ -56,8 +58,13 @@ export default {
       'profile_desc',
     ];
 
-    if (data.password) {
-      data.password = await bcrypt.hash(data.password, 10);
+    if (data.newPassword) {
+      const isMatch = bcrypt.compareSync(data.password, baseData.password);
+      if (!isMatch) {
+        return res.status(401).json({ message: 'Oups, il y a une erreur !' });
+      }
+      data.newPassword = bcrypt.hashSync(data.newPassword, 10);
+      delete data.password;
     }
 
     if (!req.file) {
@@ -74,7 +81,7 @@ export default {
 
     await datamapper.updateUserById(id, data);
 
-    res.json('l\'utilisateur a bien été modifié');
+    return res.json('l\'utilisateur a bien été modifié');
   },
 
   async getUserWithEvents(req, res) {
