@@ -16,13 +16,16 @@ const debug = Debug('WeekAway:app:index');
 passportConfig(passport);
 
 const app = express();
+
 app.set('trust proxy', 1);
+
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
   cookie: { secure: true },
 }));
+
 userDocImplementation(app);
 app.use('/static', express.static('uploads'));
 
