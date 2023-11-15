@@ -20,7 +20,6 @@ const datamapper = new UserDataMapper();
 export default {
   async getAllUsers(req, res) {
     const users = await datamapper.findAll();
-    debug(users);
     res.json(users);
   },
 
