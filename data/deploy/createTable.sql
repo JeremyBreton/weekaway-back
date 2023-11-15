@@ -13,8 +13,8 @@ CREATE TABLE "user" (
     gender TEXT,
     profile_picture TEXT,
     profile_desc TEXT,
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,--on peut utiliser now() aussi
-    "updated_at" TIMESTAMPTZ
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    "updated_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
     );
 
 -- table EVENT 
@@ -27,8 +27,8 @@ CREATE TABLE EVENT (
     description TEXT,
     picture TEXT,
     password TEXT NOT NULL,
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,--on peut utiliser now() aussi
-    "updated_at" TIMESTAMPTZ 
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    "updated_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
     );
 
 
@@ -38,8 +38,8 @@ CREATE TABLE EVENTDATE (
     start_date TIMESTAMPTZ NOT NULL,
     end_date TIMESTAMPTZ NOT NULL,
     event_id INT REFERENCES EVENT(id),
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,--on peut utiliser now() aussi
-    "updated_at" TIMESTAMPTZ
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    "updated_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
     );
 
 -- table USERCHOICE 
@@ -49,16 +49,16 @@ CREATE TABLE USERCHOICE (
     end_date_choice TIMESTAMPTZ NOT NULL,
     user_id INT REFERENCES "user"(id),
     event_id INT REFERENCES EVENT(id),
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,--on peut utiliser now() aussi
-    "updated_at" TIMESTAMPTZ
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    "updated_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
     );
 
 CREATE TABLE user_has_event (
     user_id INT REFERENCES "user"(id),
     event_id INT REFERENCES EVENT(id),
     PRIMARY KEY (user_id, event_id),
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,--on peut utiliser now() aussi
-    "updated_at" TIMESTAMPTZ
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    "updated_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
     );
 
 COMMIT;

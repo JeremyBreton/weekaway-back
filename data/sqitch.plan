@@ -3,3 +3,4 @@
 
 createTable 2023-10-24T12:26:38Z Renaud Berni <renau@Renaud-BERNI> # add the news tables
 CreateFonction 2023-11-02T11:35:51Z Tim <tim.moyence@gmail.com> # CreateFonctionToDelete
+set_timestamp 2023-11-15T09:04:57Z Tim <tim.moyence@gmail.com> # create a Trigger set_timestamp
