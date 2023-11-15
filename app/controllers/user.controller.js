@@ -68,9 +68,9 @@ export default {
     }
 
     if (!req.file) {
-      data.profile_picture = 'http://localhost:3000/static/profilDefault.png';
+      data.profile_picture = 'http://87.106.123.203:3000/static/profilDefault.png';
     } else if (req.file) {
-      data.profile_picture = `http://localhost:3000/static/${req.file.filename}`;
+      data.profile_picture = `http://87.106.123.203:3000/static/${req.file.filename}`;
     }
 
     dataToUpdateName.forEach((element) => {
@@ -79,6 +79,10 @@ export default {
       }
     });
 
+    if (data.newPassword === undefined || data.newPassword === null) {
+      data.newPassword = baseData.password;
+    }
+    debug(data);
     await datamapper.updateUserById(id, data);
 
     return res.json('l\'utilisateur a bien été modifié');
