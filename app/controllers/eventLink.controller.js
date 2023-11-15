@@ -42,7 +42,7 @@ export default {
 
   async joinEvent(req, res) {
     const { password, id } = req.body;
-    const user = await userDataMapper.getUserById(id);
+    const user = await userDataMapper.findById(id);
     const event = await eventDatamapper.findEventByPassword(password);
     const userIsInEvent = await userHasEventDataMapper.verifyUserInEvent(user?.id, event?.id);
 
