@@ -2,6 +2,7 @@ import Debug from 'debug';
 import UserDataMapper from '../models/user.dataMapper.js';
 import EventDatamapper from '../models/event.dataMapper.js';
 import mailService from '../services/mailer/inviteLink.mailer.js';
+import mailServiceRegistered from '../services/mailer/inviteLinkRegistered.mailer.js';
 import UserHasEventDataMapper from '../models/userHasEvent.dataMapper.js';
 
 const debug = Debug('WeekAway:controller:eventLink');
@@ -36,7 +37,7 @@ export default {
       mailService.sendMail(ownerInfos, event, email);
       return res.json({ message: 'User non existant, mail de registration envoyé !' });
     }
-    mailService.sendMail(ownerInfos, event, email);
+    mailServiceRegistered.sendMail(userExist, ownerInfos, event, email);
     return res.json({ message: 'User existant Mail envoyé !' });
   },
 
