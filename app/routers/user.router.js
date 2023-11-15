@@ -1,3 +1,4 @@
+import Debug from 'debug';
 import { Router } from 'express';
 import upload from '../services/multer.js';
 import userController from '../controllers/user.controller.js';
@@ -5,6 +6,8 @@ import validation from '../middlewares/validation.middleware.js';
 import * as schemaPatch from '../schemas/app.patch.schema.js';
 import schemaGet from '../schemas/app.get.schema.js';
 import controllerWrapper from '../middlewares/controller.wrapper.js';
+
+const debug = Debug('WeekAway:router:user');
 
 const userRouter = Router();
 

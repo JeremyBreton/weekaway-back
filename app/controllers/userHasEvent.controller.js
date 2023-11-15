@@ -1,6 +1,11 @@
-import userDataMapper from '../models/user.dataMapper.js';
-import dataMapper from '../models/userHasEvent.dataMapper.js';
+import Debug from 'debug';
+import UserDataMapper from '../models/user.dataMapper.js';
+import UserHasEventDataMapper from '../models/userHasEvent.dataMapper.js';
 
+const debug = Debug('WeekAway:controller:userHasEvent');
+
+const dataMapper = new UserHasEventDataMapper();
+const userDataMapper = new UserDataMapper();
 /**
    * @typedef {object} data
    * @property {integer} event_id

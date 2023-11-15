@@ -7,11 +7,11 @@
     "doc": "docs"
   },
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "DEBUG=WeekAway:* nodemon index.js",
     "Deploy": "psql -d weekaway -U postgres -f ./data/deploy/createTable.sql",
     "Revert": "psql -d weekaway -U postgres -f  ./data/revert/createTable.sql",
     "Verify": "psql -d weekaway -U postgres -f  ./data/verify/createTable.sql",
-    "resetDB": "psql -d weekaway -U weekaway_admin -f ./data/revert/createTable.sql; psql -d weekaway -U weekaway_admin -f ./data/deploy/createTable.sql;psql -d weekaway -U weekaway_admin -f ./data/deploy/CreateFonction.sql; psql -d weekaway -U weekaway_admin -f ./data/verify/createTable.sql; psql -d weekaway -U weekaway_admin -f data/seeding.sql;"
+    "resetDB": "psql -d weekaway -U weekaway_admin -f ./data/revert/createTable.sql; psql -d weekaway -U weekaway_admin -f ./data/deploy/createTable.sql;psql -d weekaway -U weekaway_admin -f ./data/deploy/CreateFonction.sql; psql -d weekaway -U weekaway_admin -f ./data/deploy/set_timestamp.sql; psql -d weekaway -U weekaway_admin -f ./data/verify/createTable.sql; psql -d weekaway -U weekaway_admin -f data/seeding.sql;"
   },
   "keywords": [],
   "author": "",
@@ -25,12 +25,14 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-jest": "^27.2.3",
-    "jest": "^29.7.0"
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "debug": "^4.3.4",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-jsdoc-swagger": "^1.8.0",

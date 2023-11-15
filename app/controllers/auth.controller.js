@@ -1,9 +1,12 @@
+import Debug from 'debug';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import passport from 'passport';
 import authDataMapper from '../models/auth.dataMapper.js';
 import mailService from '../services/mailer/mailer.js';
 import isValidEmail from '../services/emailService.js';
+
+const debug = Debug('WeekAway:controller:auth');
 
 /**
    * @typedef {object} UserInput
@@ -60,7 +63,7 @@ export default {
 
   async register(req, res) {
     if (!isValidEmail(req.body.email)) {
-      return res.status(400).json({ message: 'Adresse mail incorrecte.' });
+      return res.status(400).json({ message: 'Adresse mail incorrect.' });
     }
 
     const hashedPassword = await bcrypt.hash(req.body.password, 10);

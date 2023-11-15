@@ -1,9 +1,13 @@
+import Debug from 'debug';
 import { Strategy as LocalStrategy } from 'passport-local';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import authDataMapper from '../models/auth.dataMapper.js';
-import userDataMapper from '../models/user.dataMapper.js';
+import UserDataMapper from '../models/user.dataMapper.js';
 import isValidEmail from '../services/emailService.js';
+
+const debug = Debug('WeekAway:middlewares:passportConfig');
+
+const userDataMapper = new UserDataMapper();
 
 export default function (passport) {
   passport.use(
@@ -11,13 +15,13 @@ export default function (passport) {
       { usernameField: 'email' },
       async (email, password, done) => {
         if (!isValidEmail(email)) {
-          return done(null, false, { message: 'Format d\'e-mail invalide.' });
+          return done(null, false, { message: "Format d'e-mail invalide." });
         }
 
-        const user = await userDataMapper.getUserByEmail(email);
+        const user = await userDataMapper.findByEmail(email);
 
         if (!user) {
-          return done(null, false, { message: 'Email incorrecte.' });
+          return done(null, false, { message: 'Email ou mot de passe incorrect.' });
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
@@ -39,7 +43,7 @@ export default function (passport) {
         }
 
         return done(null, false, {
-          message: 'Email ou mot de passe incorrect',
+          message: 'Email ou mot de passe incorrect.',
         });
       },
     ),
@@ -50,7 +54,7 @@ export default function (passport) {
   });
 
   passport.deserializeUser(async (id, done) => {
-    const user = await authDataMapper.findUserById(id);
+    const user = await UserDataMapper.findById(id);
     done(null, user);
   });
 }

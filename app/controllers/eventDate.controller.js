@@ -1,5 +1,9 @@
-import eventDateDataMapper from '../models/eventDate.dataMapper.js';
+import Debug from 'debug';
+import EventDateDataMapper from '../models/eventDate.dataMapper.js';
 
+const debug = Debug('WeekAway:controller:eventtDate');
+
+const datamapper = new EventDateDataMapper();
 /**
    * @typedef {object} EventDate
    * @property {integer} event_id
@@ -10,38 +14,38 @@ import eventDateDataMapper from '../models/eventDate.dataMapper.js';
 
 export default {
   async getAllEventDates(req, res) {
-    const eventDates = await eventDateDataMapper.getAllEventDates();
+    const eventDates = await datamapper.findAll();
     res.json(eventDates);
   },
 
   async getEventDateById(req, res) {
     const { id } = req.params;
-    const eventDate = await eventDateDataMapper.getEventDateById(id);
+    const eventDate = await datamapper.findById(id);
     res.json(eventDate);
   },
 
   async getEventDateByeventId(req, res) {
     const { eventId } = req.params;
-    const eventDate = await eventDateDataMapper.getEventDateByeventId(eventId);
+    const eventDate = await datamapper.getEventDateByeventId(eventId);
     res.json(eventDate);
   },
 
   async deleteEventDateById(req, res) {
     const { id } = req.params;
-    const eventDate = await eventDateDataMapper.deleteEventDateById(id);
+    const eventDate = await datamapper.deleteById(id);
     res.json(eventDate);
   },
 
   async createEventDate(req, res) {
     const data = req.body;
-    const eventDate = await eventDateDataMapper.createEventDate(data);
+    const eventDate = await datamapper.createEventDate(data.id, data);
     res.json(eventDate);
   },
 
   async updateEventDateById(req, res) {
     const { id } = req.params;
     const data = req.body;
-    const baseData = await eventDateDataMapper.getEventDateById(id);
+    const baseData = await datamapper.findById(id);
     const dataToUpdate = [
       'event_id',
       'start_date',
@@ -54,13 +58,13 @@ export default {
       }
     });
 
-    const eventDate = await eventDateDataMapper.updateEventDateById(id, data);
+    const eventDate = await datamapper.updateEventDateById(id, data);
     res.json(eventDate);
   },
 
   async getEventDateWithEvent(req, res) {
     const { id } = req.params;
-    const eventDate = await eventDateDataMapper.getEventDateWithEvent(id);
+    const eventDate = await datamapper.getEventDateWithEvent(id);
     res.json(eventDate);
   },
 };

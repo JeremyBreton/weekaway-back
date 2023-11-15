@@ -1,17 +1,30 @@
 /* eslint-disable linebreak-style */
+import Debug from 'debug';
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
-import session from 'express-session';
+// Suppression de l'importation inutile de express-session
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
+import session from 'express-session';
 import router from './routers/index.router.js';
 import passportConfig from './middlewares/passportConfig.js';
 import userDocImplementation from './middlewares/swagger.doc.js';
 
+const debug = Debug('WeekAway:app:index');
+
 passportConfig(passport);
 
 const app = express();
+
+app.set('trust proxy', 1);
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true },
+}));
 
 userDocImplementation(app);
 app.use('/static', express.static('uploads'));
@@ -26,23 +39,13 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(cookieParser());
-// middleaware pour récupérer un body au format JSON
+// Middleware pour récupérer un body au format JSON
 app.use(express.json());
-// On peut donner la possibilité d'utiliser les 2 format dans la même app
+// Possibilité d'utiliser les deux formats (JSON et URL-encoded) dans la même app
 app.use(express.urlencoded({ extended: true }));
 
-// Session
-app.use(
-  session({
-    secret: process.env.JWT_SECRET,
-    resave: true,
-    saveUninitialized: true,
-  }),
-);
-
-// Passport middleware
+// Passport middleware pour l'authentification
 app.use(passport.initialize());
-app.use(passport.session());
 
 // Routes
 app.use(router);

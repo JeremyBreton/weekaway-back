@@ -1,7 +1,14 @@
-import userDataMapper from '../models/user.dataMapper.js';
-import eventDatamapper from '../models/event.dataMapper.js';
+import Debug from 'debug';
+import UserDataMapper from '../models/user.dataMapper.js';
+import EventDatamapper from '../models/event.dataMapper.js';
 import mailService from '../services/mailer/inviteLink.mailer.js';
-import userHasEventDataMapper from '../models/userHasEvent.dataMapper.js';
+import UserHasEventDataMapper from '../models/userHasEvent.dataMapper.js';
+
+const debug = Debug('WeekAway:controller:eventLink');
+
+const userHasEventDataMapper = new UserHasEventDataMapper();
+const userDataMapper = new UserDataMapper();
+const eventDatamapper = new EventDatamapper();
 
 /**
    * @typedef {object} createEventLink
@@ -19,7 +26,7 @@ export default {
 
   async createInviteLink(req, res) {
     const { email, eventId } = req.body;
-    const userExist = await userDataMapper.getUserByEmail(email);
+    const userExist = await userDataMapper.findByEmail(email);
     const event = await eventDatamapper.findEventWithOwnerInfos(eventId);
     if (!event) {
       return res.json({ message: 'Evènement non existant' });
