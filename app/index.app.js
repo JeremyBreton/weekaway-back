@@ -28,7 +28,7 @@ app.use(session({
 
 userDocImplementation(app);
 app.use('/static', express.static('uploads'));
-
+/*
 // CORS setup
 const corsOptions = {
   origin: (origin, callback) => {
@@ -36,8 +36,8 @@ const corsOptions = {
   },
   credentials: true,
 };
-
-app.use(cors(corsOptions));
+*/
+app.use(cors());
 app.use(cookieParser());
 // Middleware pour récupérer un body au format JSON
 app.use(express.json());
