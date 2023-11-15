@@ -35,7 +35,13 @@ const corsOptions = {
   credentials: true,
 };
 */
-app.use(cors({ credentials: true, origin: 'http://87.106.123.203:5173' }));
+const corsOptions = {
+  origin: '*',
+  credentials: true, // access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 
 app.use(cookieParser());
 // Middleware pour récupérer un body au format JSON
