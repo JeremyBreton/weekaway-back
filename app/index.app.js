@@ -17,8 +17,6 @@ passportConfig(passport);
 
 const app = express();
 
-app.set('trust proxy', 1);
-
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
@@ -38,6 +36,13 @@ const corsOptions = {
 };
 */
 app.use(cors());
+
+app.all('*', (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Content-Length, Authorization, Accept,X-Requested-With');
+  res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS');
+  // ...
+});
 app.use(cookieParser());
 // Middleware pour récupérer un body au format JSON
 app.use(express.json());
