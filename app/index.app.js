@@ -35,7 +35,7 @@ const corsOptions = {
   credentials: true,
 };
 */
-app.use(cors({ credentials: true, origin: 'http://localhost:5173' }));
+app.use(cors({ credentials: true, origin: 'http://87.106.123.203:5173' }));
 
 app.use(cookieParser());
 // Middleware pour récupérer un body au format JSON
