@@ -76,9 +76,9 @@ export default {
     };
 
     if (!req.file) {
-      userData.profile_picture = 'http://localhost:3000/static/profilDefault.png';
+      userData.profile_picture = 'http://87.106.123.203:3000/static/profilDefault.png';
     } else if (req.file) {
-      userData.profile_picture = `http://localhost:3000/static/${req.file.filename}`;
+      userData.profile_picture = `http://87.106.123.203:3000/static/${req.file.filename}`;
     }
 
     const registeredUser = await authDataMapper.registerUser(userData);
