@@ -2,7 +2,7 @@ import Debug from 'debug';
 import bcrypt from 'bcrypt';
 import UserDataMapper from '../models/user.dataMapper.js';
 
-const debug = Debug('WeekAway:userController');
+const debug = Debug('WeekAway:Controller:userController');
 const datamapper = new UserDataMapper();
 
 /**
