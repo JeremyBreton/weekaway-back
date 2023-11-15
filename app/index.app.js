@@ -17,8 +17,6 @@ passportConfig(passport);
 
 const app = express();
 
-app.set('trust proxy', 1);
-
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
