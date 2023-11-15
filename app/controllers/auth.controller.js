@@ -63,7 +63,7 @@ export default {
 
   async register(req, res) {
     if (!isValidEmail(req.body.email)) {
-      return res.status(400).json({ message: 'Adresse mail incorrect.' });
+      return res.status(400).json({ message: 'Adresse mail incorrecte.' });
     }
 
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -76,9 +76,9 @@ export default {
     };
 
     if (!req.file) {
-      userData.profile_picture = 'http://caca-boudin.fr/static/profilDefault.png';
+      userData.profile_picture = 'http://localhost:3000/static/profilDefault.png';
     } else if (req.file) {
-      userData.profile_picture = `http://caca-boudin.fr/static/${req.file.filename}`;
+      userData.profile_picture = `http://localhost:3000/static/${req.file.filename}`;
     }
 
     const registeredUser = await authDataMapper.registerUser(userData);
