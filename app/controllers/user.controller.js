@@ -2,7 +2,7 @@ import Debug from 'debug';
 import bcrypt from 'bcrypt';
 import UserDataMapper from '../models/user.dataMapper.js';
 
-const debug = Debug('WeekAway:userController');
+const debug = Debug('WeekAway:Controller:userController');
 const datamapper = new UserDataMapper();
 
 /**
@@ -20,6 +20,7 @@ const datamapper = new UserDataMapper();
 export default {
   async getAllUsers(req, res) {
     const users = await datamapper.findAll();
+    debug(users);
     res.json(users);
   },
 

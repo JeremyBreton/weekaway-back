@@ -74,7 +74,6 @@ export default {
 
     const event = await datamapper.createEvent(dataEvent);
     if (eventDates !== undefined && eventDates !== null) {
-      console.log('event date n\'est pas undefined : ', eventDates);
       if (eventDates.date === undefined && eventDates.date === null) {
         const eventDateNoDuplicate = dateVerify.removeDuplicateDates(eventDates);
         await eventDateDataMapper.createEventDateWithMultipleEvent(event.id, eventDateNoDuplicate);
