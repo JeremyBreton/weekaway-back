@@ -68,9 +68,9 @@ export default {
     }
 
     if (!req.file) {
-      data.profile_picture = 'http://caca-boudin.fr/static/profilDefault.png';
+      data.profile_picture = 'http://localhost:3000/static/profilDefault.png';
     } else if (req.file) {
-      data.profile_picture = `http://caca-boudin.fr/static/${req.file.filename}`;
+      data.profile_picture = `http://localhost:3000/static/${req.file.filename}`;
     }
 
     dataToUpdateName.forEach((element) => {
