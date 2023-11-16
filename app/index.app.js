@@ -28,7 +28,6 @@ app.use(session({
 userDocImplementation(app);
 app.use('/static', express.static('uploads'));
 
-
 const corsOptions = {
   origin: '*',
   credentials: true, // access-control-allow-credentials:true
