@@ -23,7 +23,6 @@ userChoiceRouter.route('/api/userchoice')
    * @tags UserChoices
    * @param {UserChoice} request.body.required
    *
-
    */
   .get(
     controllerWrapper(userChoiceController.getAllUsersChoices),
@@ -75,6 +74,7 @@ userChoiceRouter.route('/api/userchoice/:id')
    * DELETE /api/userchoice/:id
    * @summary delete user choice by user id
    * @tags UserChoices
+   * @param {UserId} request.params.required
  */
 
 export default userChoiceRouter;

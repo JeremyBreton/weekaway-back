@@ -5,7 +5,7 @@
 ######### ! ############################# 
 
 ### ? Get all users
-GET http://localhost:3000/api/users/
+GET http://www.tmoyence.fr:3000/api/users/
 
 ### ? Get user by id
 
@@ -67,17 +67,17 @@ Content-Type: application/json
 DELETE http://localhost:3000/api/event/5
 
 ### ? Post to Create Event
-POST http://localhost:3000/api/event
+POST http://www.tmoyence.fr:3000/api/event
 Content-Type: application/json
 
 {
-  "name": "fete du spourme",
-  "theme": "fete du spourme",
-  "description": "fete du spourme",
-  "owner_id": 2,
+  "name": "Fête de la musique",
+  "theme": "musique",
+  "description": "Fête de la musique",
+  "owner_id": 14,
   "status": false,
-  "startDate": "2023-12-27 15:30:00+03:00",
-  "endDate": "2023-12-27 15:30:00+03:00"
+  "startDate": "2023-06-21 15:30:00+00:00",
+  "endDate": "2023-06-21 23:30:00+00:00"
 }
 
 ############ ! ############################# 
