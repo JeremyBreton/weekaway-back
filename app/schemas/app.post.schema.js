@@ -25,6 +25,7 @@ const eventSchema = Joi.object({
   endDate: Joi.date(),
   datesOfEvent: Joi.object(),
   theme: Joi.string(),
+  event: Joi.string(),
 });
 
 const loginSchema = Joi.object({
