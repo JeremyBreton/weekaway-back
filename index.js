@@ -11,7 +11,7 @@ const server = createServer(app);
 // Production mode or dev mode
 
 if (process.env.NODE_ENV === 'development') {
-  server.listen(process.env.PORT || 3000, () => console.log(`API launched on http://localhost:${3000}`));
+  server.listen(3000, () => console.log(`API launched on http://localhost:${3000}`));
 } else if (process.env.NODE_ENV === 'production') {
   server.listen(80, () => console.log(`API launched on http://localhost:${80}`));
 }
