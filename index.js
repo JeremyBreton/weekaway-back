@@ -8,7 +8,7 @@ const debug = Debug('WeekAway:index');
 // and we inject app, like a middleware
 const server = createServer(app);
 
-// Production mode or dev mode !
+// Production mode or dev mode
 
 if (process.env.NODE_ENV === 'development') {
   server.listen(process.env.PORT || 3000, () => console.log(`API launched on http://localhost:${3000}`));
