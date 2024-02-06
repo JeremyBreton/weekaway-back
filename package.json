@@ -14,7 +14,6 @@
     "Verify": "psql -d weekaway -U jeremy -f  ./data/verify/createTable.sql",
     "Seeding": "psql -d weekaway -U jeremy -f  ./data/seeding.sql",
     "resetDB": "psql -d weekaway -U jeremy -f ./data/revert/createTable.sql; psql -d weekaway -U jeremy -f ./data/deploy/createTable.sql;psql -d weekaway -U jeremy -f ./data/deploy/CreateFonction.sql; psql -d weekaway -U jeremy -f ./data/deploy/set_timestamp.sql; psql -d weekaway -U jeremy -f ./data/verify/createTable.sql; psql -d weekaway -U jeremy -f data/seeding.sql;"
-
   },
   "keywords": [],
   "author": "",
