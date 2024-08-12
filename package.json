@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "nodemon index.js",
-    "start": "nodemon index.js",
+    "start": "node index.js",
     "Deploy": "psql -d weekaway -U jeremy -f ./data/deploy/createTable.sql",
     "Revert": "psql -d weekaway -U jeremy -f  ./data/revert/createTable.sql",
     "Verify": "psql -d weekaway -U jeremy -f  ./data/verify/createTable.sql",
