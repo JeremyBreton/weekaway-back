@@ -24,7 +24,7 @@ export default {
     const htmlToSend = template(data);
 
     const mailOptions = {
-      from: 'fardeau.geoffrey@gmail.com',
+      from: 'breton.jeremy@live.fr',
       to: data.email,
       subject: `Bienvenue ${data.firstname} ${data.lastname}`,
       html: htmlToSend,

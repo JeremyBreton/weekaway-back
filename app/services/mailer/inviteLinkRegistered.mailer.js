@@ -26,7 +26,7 @@ export default {
     const htmlToSend = template(data);
 
     const mailOptions = {
-      from: 'fardeau.geoffrey@gmail.com',
+      from: 'breton.jeremy@live.fr',
       to: email,
       subject: `WeekAway : ${data.firstname} vous à invité(e) à participer à son évènement`,
       html: htmlToSend,

@@ -67,9 +67,9 @@ export default {
 
     // If someone upload a picture, we add the path to the data
     if (!req.file) {
-      dataEvent.picture = 'http://87.106.123.203:3000/static/default.png';
+      dataEvent.picture = 'http://localhost:3000/static/default.png';
     } else if (req.file) {
-      dataEvent.picture = `http://87.106.123.203:3000/static/${req.file.filename}`;
+      dataEvent.picture = `http://localhost:3000/static/${req.file.filename}`;
     }
 
     const event = await datamapper.createEvent(dataEvent);

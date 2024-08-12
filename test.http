@@ -9,7 +9,7 @@ GET http://localhost:3000/api/users/
 
 ### ? Get user by id
 
-GET http://www.tmoyence.fr:3000/api/user/1
+GET http://localhost:3000/api/user/1
 
 ### ? Update user
 PATCH http://localhost:3000/api/user/19
@@ -52,7 +52,7 @@ Content-Type: application/json
 GET http://localhost:3000/api/event/
 
 ### ? Get event by id
-GET http://www.tmoyence.fr:3000/api/event/24
+GET http://localhost:3000/api/event/24
 
 
 ### ? Update Event
@@ -67,7 +67,7 @@ Content-Type: application/json
 DELETE http://localhost:3000/api/event/5
 
 ### ? Post to Create Event
-POST http://www.tmoyence.fr:3000/api/event
+POST http://localhost:3000/api/event
 Content-Type: application/json
 
 {
